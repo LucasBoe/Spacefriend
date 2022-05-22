@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: space-background
+    uniqueID: 372436835
+    locked: 0
+  - name: shapeship-particles
+    uniqueID: 1191219791
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
