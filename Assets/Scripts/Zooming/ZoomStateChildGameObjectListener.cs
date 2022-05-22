@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZoomStateChildGameObjectListener : ZoomStateListenerBase
 {
-    protected override void OnChangedState(ZoomState newState)
+    protected override void OnChangedState(ZoomState previous, ZoomState newState)
     {
         bool active = newState == state;
         foreach (Transform child in transform)

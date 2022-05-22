@@ -7,10 +7,10 @@ public class CoroutineUtil
 {
     public static void ExecuteFloatRoutine(float from, float to, Action<float> function, MonoBehaviour behaviour, float duration = 1f)
     {
-        behaviour.StartCoroutine(FloatCoroutine(from, to, duration, function));
+        behaviour.StartCoroutine(FloatRoutine(from, to, duration, function));
     }
 
-    private static IEnumerator FloatCoroutine(float min, float max, float duration, System.Action<float> function)
+    private static IEnumerator FloatRoutine(float min, float max, float duration, System.Action<float> function)
     {
         float t = 0;
         while (t < 1f)
@@ -21,5 +21,16 @@ public class CoroutineUtil
         }
 
         function?.Invoke(max);
+    }
+
+    public static void Delay(System.Action function, MonoBehaviour behaviour, float delay)
+    {
+        behaviour.StartCoroutine(DelayRoutine(function, delay));
+    }
+
+    private static IEnumerator DelayRoutine(System.Action function, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        function?.Invoke();
     }
 }

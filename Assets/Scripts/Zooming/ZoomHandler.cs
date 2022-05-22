@@ -2,27 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
-public class ZoomHandler : MonoBehaviour
+public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 {
     ZoomState current = ZoomState.TOTAL;
 
-    public static System.Action<ZoomState> ChangedStateEvent;
+    public static System.Action<ZoomState,ZoomState> ChangedStateEvent;
+
+    private bool isZooming = false;
 
     [ContextMenu("NextState")]
-    public void NextState()
+    public void TryZoom(int change)
     {
+        ZoomState before = current;
         int number = (int)current;
 
-        number++;
+        number += change;
 
-        if (number > System.Enum.GetValues(typeof(ZoomState)).Length - 1)
-            number = 0;
+        int max = System.Enum.GetValues(typeof(ZoomState)).Length - 1;
 
-        current = (ZoomState)number;
+        number = Mathf.Clamp(number, 0, max);
 
-        ChangedStateEvent?.Invoke(current);
+        if (number != (int)current)
+        {
+            current = (ZoomState)number;
+            ChangedStateEvent?.Invoke(before, current);
+        }
     }
+
+    public void TryZoomOut()
+    {
+        if (isZooming) return;
+
+        TryZoom(-1);
+
+        isZooming = true;
+        CoroutineUtil.Delay(() => isZooming = false, this, 2f);
+    }
+
+    public void TryZoomIn()
+    {
+        if (isZooming) return;
+
+        TryZoom(1);
+
+        isZooming = true;
+        CoroutineUtil.Delay(() => isZooming = false, this, 2f);
+    }
+
 }
 
 [System.Serializable]

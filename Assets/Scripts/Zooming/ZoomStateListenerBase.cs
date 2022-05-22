@@ -14,5 +14,5 @@ public abstract class ZoomStateListenerBase : MonoBehaviour
         ZoomHandler.ChangedStateEvent -= OnChangedState;
     }
 
-    protected abstract void OnChangedState(ZoomState newState);
+    protected abstract void OnChangedState(ZoomState previous, ZoomState newState);
 }
