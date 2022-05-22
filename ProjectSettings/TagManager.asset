@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: foreground-blend
+    uniqueID: 2874404543
+    locked: 0
+  - name: spaceship-room-background
+    uniqueID: 3207727193
+    locked: 0
