@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToInstatiate:
   - {fileID: 7627514327832957460, guid: c84bef6d080740b47a5cde85a3de579a, type: 3}
+  - {fileID: 3782616660749072961, guid: ee1769ff0209c104d8a05d6c59f79b24, type: 3}
