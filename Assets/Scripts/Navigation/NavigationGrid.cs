@@ -15,7 +15,6 @@ public class NavigationGrid : MonoBehaviour
     internal List<Vector3>GetPath(Vector3 start, Vector3 target)
     {
         List<Vector3> path = new List<Vector3>();
-        path.Add(start);
 
         NavigationLink startLink = GetClosestLinkTo(start);
         NavigationLink endLink = GetClosestLinkTo(target);
