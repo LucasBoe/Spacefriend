@@ -41,23 +41,26 @@ public class NavigationGrid : MonoBehaviour
 
             if (current.Link == targetLink)
             {
-                NavigationPoint previous = current.GetSharedPoint(current.Parent);
-                path.Add(previous.transform.position);
-
-                current = current.Parent;
-                
-                while (current.Link != startLink)
+                if (current.Parent != null)
                 {
-                    NavigationPoint next = current.Link.GetOtherPoint(previous);
+                    NavigationPoint previous = current.GetSharedPoint(current.Parent);
+                    path.Add(previous.transform.position);
 
-                    Debug.Log(next.name);
-
-                    path.Add(next.transform.position);
-                    previous = next;
                     current = current.Parent;
-                }
 
-                path.Reverse();
+                    while (current.Link != startLink)
+                    {
+                        NavigationPoint next = current.Link.GetOtherPoint(previous);
+
+                        Debug.Log(next.name);
+
+                        path.Add(next.transform.position);
+                        previous = next;
+                        current = current.Parent;
+                    }
+
+                    path.Reverse();
+                }
 
                 path.Add(targetLink.ToLine(target));
 
