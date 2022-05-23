@@ -7,9 +7,12 @@ public class NavigationAgent : MonoBehaviour
 {
     [SerializeField] NavigationGrid grid;
     List<Vector3> currentPath = new List<Vector3>();
-    internal void MoveTo(Vector3 target)
+    Action callback;
+
+    internal void MoveTo(Vector3 target, Action _callback = null)
     {
         currentPath = grid.GetPath(transform.position, target);
+        callback = _callback;
     }
 
     private void Update()
@@ -21,6 +24,11 @@ public class NavigationAgent : MonoBehaviour
         if (distance < 0.01f)
         {
             currentPath.RemoveAt(0);
+
+            if (currentPath.Count == 0)
+            {
+                callback?.Invoke();
+            }
         } else
         {
             transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime);
