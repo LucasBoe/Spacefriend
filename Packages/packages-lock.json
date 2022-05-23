@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.dbrizov.naughtyattributes": {
+      "version": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8a8fa5a9659a6d63f196391c71e06c4286c8acd7"
+    },
+    "com.lucasboe.simple-sound-system": {
+      "version": "https://github.com/lucasboe/simple-sound-system.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.dbrizov.naughtyattributes": "2.1.4"
+      },
+      "hash": "689b7bd2b71c9bb46a90a7ec94c0cafb00140110"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

@@ -52,8 +52,6 @@ public class NavigationGrid : MonoBehaviour
                     {
                         NavigationPoint next = current.Link.GetOtherPoint(previous);
 
-                        Debug.Log(next.name);
-
                         path.Add(next.transform.position);
                         previous = next;
                         current = current.Parent;
