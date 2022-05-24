@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PlayerInteractor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //stop all world interaction, the pointer is on the ui;
+        bool pointerOverUI = EventSystem.current.IsPointerOverGameObject();
+
         Camera cam = Camera.main;
         Vector2 mousePos = Input.mousePosition;
         Vector3 point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -cam.transform.position.z));
@@ -17,7 +21,7 @@ public class PlayerInteractor : MonoBehaviour
         // HOVER
         RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero);
         Interactable hovered = null;
-        if (hit.collider != null) hovered = hit.collider.GetComponent<Interactable>();
+        if (!pointerOverUI && hit.collider != null) hovered = hit.collider.GetComponent<Interactable>();
 
         if (hovered != interactable)
         {
@@ -29,9 +33,12 @@ public class PlayerInteractor : MonoBehaviour
         }
         interactable = hovered;
 
+        if (pointerOverUI) return;
+
         // CLICK
         if (Input.GetMouseButtonDown(0))
         {
+
             if (interactable != null)
             {
                 Interactable target = interactable;
