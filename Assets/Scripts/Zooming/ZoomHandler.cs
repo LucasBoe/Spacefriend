@@ -8,6 +8,8 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 {
     ZoomState current = ZoomState.TOTAL;
 
+    public static ZoomState CurrentZoom => Instance.current;
+
     public static System.Action<ZoomState,ZoomState> ChangedStateEvent;
 
     private bool isZooming = false;
@@ -57,6 +59,5 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 public enum ZoomState
 {
     TOTAL,
-    WHOLE_SHIP,
-    ROOM1,
+    ROOM,
 }

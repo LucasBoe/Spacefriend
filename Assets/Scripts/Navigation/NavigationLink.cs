@@ -8,7 +8,7 @@ public class NavigationLink : MonoBehaviour
     [SerializeField] NavigationPoint[] points = new NavigationPoint[2];
     public NavigationPoint[] Points => points;
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (points[0] != null && points[1] != null)
         {

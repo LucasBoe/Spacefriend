@@ -13,17 +13,17 @@ public class ZoomStateVirtualCameraListener : ZoomStateListenerBase
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         ZoomHandler.ChangedStateEvent += OnChangedState;
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         ZoomHandler.ChangedStateEvent -= OnChangedState;
     }
 
     protected override void OnChangedState(ZoomState previous, ZoomState newState)
     {
-        virtualCamera.Priority = state == newState ? 1 : 0;
+        virtualCamera.Priority = state == newState ? 10 : 0;
     }
 }

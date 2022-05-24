@@ -6,6 +6,7 @@ using UnityEngine;
 public class NavigationAgent : MonoBehaviour
 {
     [SerializeField] NavigationGrid grid;
+    [SerializeField] float speed = 10f;
     List<Vector3> currentPath = new List<Vector3>();
     Action callback;
 
@@ -31,7 +32,7 @@ public class NavigationAgent : MonoBehaviour
             }
         } else
         {
-            transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime * speed);
         }
     }
 }

@@ -1,18 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public System.Action<bool> SetRoomStateEvent;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
+
+        if (roomAgent != null)
+            SetRoomState(roomAgent, true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        
+        RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
+
+        if (roomAgent != null)
+            SetRoomState(roomAgent, false);
+    }
+
+    private void SetRoomState(RoomAgent roomAgent, bool isInRoom)
+    {
+        SetRoomStateEvent?.Invoke(isInRoom);
     }
 }
