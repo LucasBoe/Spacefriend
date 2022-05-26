@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,13 @@ public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] Player player;
     Interactable interactable;
+
+    int interactableLayerMask;
+
+    private void Awake()
+    {
+        interactableLayerMask = ~LayerMask.GetMask("Room");
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,7 +27,8 @@ public class PlayerInteractor : MonoBehaviour
         Vector3 point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -cam.transform.position.z));
 
         // HOVER
-        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero, float.MaxValue, layerMask: interactableLayerMask);
+
         Interactable hovered = null;
         if (!pointerOverUI && hit.collider != null) hovered = hit.collider.GetComponent<Interactable>();
 
