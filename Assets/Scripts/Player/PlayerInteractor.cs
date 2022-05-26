@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] Player player;
-    Interactable interactable;
+    [SerializeField, ReadOnly] Interactable interactable;
 
     int interactableLayerMask;
 
     private void Awake()
     {
-        interactableLayerMask = ~LayerMask.GetMask("Room");
+        interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast");
     }
 
     // Update is called once per frame
