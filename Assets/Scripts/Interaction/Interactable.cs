@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,14 +7,23 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public static System.Action<Interactable> BeginHoverInteractableEvent, EndHoverInteractableEvent, InteractEvent;
-    public string DisplayName;
+    
+    [Foldout("Settings")] public string DisplayName;
+
+    [Foldout("Settings"), SerializeField] bool useCustomWalkTargetPoint = false;
+    [Foldout("Settings"), SerializeField, ShowIf("useCustomWalkTargetPoint")] Transform customWalkTargetTransform;
+
+    [Foldout("Settings"), SerializeField] bool isConditioned = false;
+    [Foldout("Settings"), SerializeField, ShowIf("isConditioned")] InteractableConditionBase[] conditions;
+
+
 
     private IInteractionListener[] interactionListeners;
     private IInteractableHoverListener[] hoverListeners;
     private void Awake()
     {
-        interactionListeners = GetComponents<IInteractionListener>();
-        hoverListeners = GetComponents<IInteractableHoverListener>();
+        interactionListeners = GetComponentsInChildren<IInteractionListener>();
+        hoverListeners = GetComponentsInChildren<IInteractableHoverListener>();
     }
 
     internal void BeginHover()
@@ -28,7 +38,7 @@ public class Interactable : MonoBehaviour
         EndHoverInteractableEvent?.Invoke(this);
     }
 
-    internal Vector3 GetPoint() => transform.position;
+    internal Vector3 GetPoint() => (useCustomWalkTargetPoint ? customWalkTargetTransform : transform).position;
     internal void Interact()
     {
         foreach (IInteractionListener listener in interactionListeners) listener.Interact();
