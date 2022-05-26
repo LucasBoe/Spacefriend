@@ -16,7 +16,7 @@ public class NavigationAgent : MonoBehaviour
         callback = _callback;
     }
 
-    private void Update()
+    internal void Move()
     {
         if (currentPath == null || currentPath.Count == 0) return;
 
@@ -30,7 +30,8 @@ public class NavigationAgent : MonoBehaviour
             {
                 callback?.Invoke();
             }
-        } else
+        }
+        else
         {
             transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime * speed);
         }

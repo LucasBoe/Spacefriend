@@ -25,6 +25,7 @@ public class Minigame : MonoBehaviour
     {
         if (hasAnimations && inAnimation != null)
         {
+            animator.Play(inAnimation.name);
             yield return new WaitForSeconds(inAnimation.length);
         }
 
@@ -35,6 +36,7 @@ public class Minigame : MonoBehaviour
 
         if (hasAnimations && outAnimation != null)
         {
+            animator.Play(outAnimation.name);
             yield return new WaitForSeconds(outAnimation.length);
         }
     }

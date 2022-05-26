@@ -12,13 +12,13 @@ public class MinigamePhase : MonoBehaviour
     {
         uiElements = GetComponentsInChildren<UIBehaviour>();
     }
-    public void StartPhase()
+    public virtual void StartPhase()
     {
         StartPhaseEvent?.Invoke();
         foreach (UIBehaviour behaviour in uiElements) behaviour.SetActive(true);
     }
 
-    public void EndPhase()
+    public virtual void EndPhase()
     {
         EndPhaseEvent?.Invoke();
         foreach (UIBehaviour behaviour in uiElements) behaviour.SetActive(false);
