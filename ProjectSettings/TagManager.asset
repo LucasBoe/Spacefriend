@@ -56,6 +56,9 @@ TagManager:
   - name: player
     uniqueID: 2780983191
     locked: 0
+  - name: spaceship-room-foreground
+    uniqueID: 1344528553
+    locked: 0
   - name: foreground-blend
     uniqueID: 2874404543
     locked: 0
