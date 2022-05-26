@@ -9,7 +9,7 @@ public class Minigame : MonoBehaviour
     [SerializeField] private bool hasAnimations = false;
     [SerializeField, ShowIf("hasAnimations")] Animator animator;
     [SerializeField, ShowIf("hasAnimations")] AnimationClip inAnimation, outAnimation;
-    private bool done = false;
+    [SerializeField] private bool done = false;
     public void StartMinigame()
     {
         done = false;
