@@ -12,6 +12,8 @@ public class NavigationAgent : MonoBehaviour
     Action callback;
     [SerializeField, ReadOnly] public Vector3 DirectionalVector;
 
+    float velocity = 0f;
+
     internal void MoveTo(Vector3 target, Action _callback = null)
     {
         currentPath = grid.GetPath(transform.position, target);
@@ -21,7 +23,12 @@ public class NavigationAgent : MonoBehaviour
     internal void Move()
     {
         DirectionalVector = Vector3.zero;
-        if (currentPath == null || currentPath.Count == 0) return;
+
+        if (currentPath == null || currentPath.Count == 0)
+        {
+            velocity = 0f;
+            return;
+        }
 
         float distance = Vector2.Distance(transform.position, currentPath[0]);
 
@@ -37,7 +44,13 @@ public class NavigationAgent : MonoBehaviour
         else
         {
             DirectionalVector = (currentPath[0] - transform.position).normalized;
-            transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime * speed);
+
+            if (distance > 1f)
+                velocity = Mathf.MoveTowards(velocity, speed, Time.deltaTime * speed * 2);
+            else
+                velocity = Mathf.MoveTowards(velocity, 1, Time.deltaTime * speed * 2);
+
+            transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime * velocity);
         }
     }
 
