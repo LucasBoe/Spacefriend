@@ -13585,6 +13585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977381686}
   - component: {fileID: 1977381687}
+  - component: {fileID: 1977381689}
   - component: {fileID: 1977381688}
   m_Layer: 0
   m_Name: Interactable_ClothingCabinet
@@ -13655,6 +13656,23 @@ PolygonCollider2D:
       - {x: -1.6365094, y: -0.020068526}
       - {x: 1.6557518, y: -0.020067453}
       - {x: 1.6534128, y: 3.3012514}
+--- !u!114 &1977381689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977381685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4673e1f27c21d4e8db2e8b0f08860b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Phases: []
+  hasAnimations: 0
+  animator: {fileID: 0}
+  inAnimation: {fileID: 0}
+  outAnimation: {fileID: 0}
 --- !u!1 &2064295757
 GameObject:
   m_ObjectHideFlags: 0
