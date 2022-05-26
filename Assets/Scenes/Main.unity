@@ -1168,7 +1168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684207920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.92, y: 4.06, z: 0}
+  m_LocalPosition: {x: 18.92, y: 4.161, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1734776384}
@@ -1218,6 +1218,9 @@ MonoBehaviour:
     MoveMode: 0
     agent: {fileID: 684207922}
     playerTransform: {fileID: 684207921}
+  AnimationController: {fileID: 1734776385}
+  SkinModule:
+    skinType: 0
 --- !u!114 &684207925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12926,9 +12929,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1734776384}
+  - component: {fileID: 1734776385}
   - component: {fileID: 1734776383}
   m_Layer: 0
-  m_Name: placeholder-player
+  m_Name: animationController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12974,12 +12978,12 @@ SpriteRenderer:
   m_SortingLayerID: -1513984105
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cf22a2fb0c18c434ca3037954ece87da, type: 3}
+  m_Sprite: {fileID: -2728649004618633639, guid: cf22a2fb0c18c434ca3037954ece87da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.24, y: 2.33}
+  m_Size: {x: 3, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -12993,12 +12997,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734776382}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 684207921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1734776385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734776382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dea84bdb2cd2544aa3c64815cdf8870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 684207924}
+  skins:
+  - Type: -2
+    PlaceholderSprite: {fileID: 5864988276522048943, guid: cf22a2fb0c18c434ca3037954ece87da, type: 3}
+  - Type: -1
+    PlaceholderSprite: {fileID: -312976436598637825, guid: cf22a2fb0c18c434ca3037954ece87da, type: 3}
+  - Type: 0
+    PlaceholderSprite: {fileID: -2728649004618633639, guid: cf22a2fb0c18c434ca3037954ece87da, type: 3}
+  - Type: 1
+    PlaceholderSprite: {fileID: -4516174559812301073, guid: cf22a2fb0c18c434ca3037954ece87da, type: 3}
+  spriteRenderer: {fileID: 1734776383}
 --- !u!1 &1767833991
 GameObject:
   m_ObjectHideFlags: 0
@@ -13368,6 +13395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977381686}
   - component: {fileID: 1977381687}
+  - component: {fileID: 1977381692}
   - component: {fileID: 1977381690}
   - component: {fileID: 1977381689}
   - component: {fileID: 1977381688}
@@ -13413,8 +13441,9 @@ MonoBehaviour:
   DisplayName: Clothing cabinet
   useCustomWalkTargetPoint: 1
   customWalkTargetTransform: {fileID: 1077065621}
-  isConditioned: 0
-  conditions: []
+  isConditioned: 1
+  conditions:
+  - {fileID: 1977381692}
 --- !u!60 &1977381688
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -13494,6 +13523,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1977381692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977381685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabf0bc2c084fdf48a998413c6ce3e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSkinType: 0
+  invert: 1
 --- !u!1 &2013866320
 GameObject:
   m_ObjectHideFlags: 0

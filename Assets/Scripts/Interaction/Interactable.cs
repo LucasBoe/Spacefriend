@@ -28,12 +28,16 @@ public class Interactable : MonoBehaviour
 
     internal void BeginHover()
     {
+        if (!CheckAllConditions()) return;
+
         foreach (IInteractableHoverListener listener in hoverListeners) listener.BeginHover();
         BeginHoverInteractableEvent?.Invoke(this);
     }
 
     internal void EndHover()
     {
+        if (!CheckAllConditions()) return;
+
         foreach (IInteractableHoverListener listener in hoverListeners) listener.EndHover();
         EndHoverInteractableEvent?.Invoke(this);
     }
@@ -41,8 +45,24 @@ public class Interactable : MonoBehaviour
     internal Vector3 GetPoint() => (useCustomWalkTargetPoint ? customWalkTargetTransform : transform).position;
     internal void Interact()
     {
+        if (!CheckAllConditions()) return;
+
         foreach (IInteractionListener listener in interactionListeners) listener.Interact();
         InteractEvent?.Invoke(this);
+    }
+
+    private bool CheckAllConditions()
+    {
+        if (isConditioned)
+        {
+            foreach (InteractableConditionBase condition in conditions)
+            {
+                if (!condition.IsMet())
+                    return false;
+            }
+        }
+
+        return true;
     }
 }
 

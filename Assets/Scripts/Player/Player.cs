@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,9 +7,30 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerMoveModule MoveModule;
+    public PlayerAnimationController AnimationController;
+    public PlayerSkinModule SkinModule;
+
+    private void Start()
+    {
+        SkinModule.SetSkinType(PlayerSkinType.Bed);
+    }
+
     private void Update()
     {
         MoveModule.Update();
+    }
+}
+
+[System.Serializable]
+public class PlayerSkinModule
+{
+    [SerializeField] private PlayerSkinType skinType;
+    public PlayerSkinType SkinType => skinType;
+    public System.Action<PlayerSkinType> ChangedSkinTypeEvent;
+    public void SetSkinType(PlayerSkinType newSkinType)
+    {
+        skinType = newSkinType;
+        ChangedSkinTypeEvent?.Invoke(newSkinType);
     }
 }
 

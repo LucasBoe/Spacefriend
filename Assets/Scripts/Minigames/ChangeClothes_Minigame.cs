@@ -7,6 +7,7 @@ public class ChangeClothes_Minigame : MinigamePhase
 {
     [SerializeField] SliderUIBehaviour slider;
     float startValue = 0f, targetValue = 1f;
+    [SerializeField] PlayerSkinType toChangeTo;
     public override void StartPhase()
     {
         base.StartPhase();
@@ -17,6 +18,7 @@ public class ChangeClothes_Minigame : MinigamePhase
     public override void EndPhase()
     {
         base.EndPhase();
+        PlayerManager.SetPlayerSkin(toChangeTo);
         slider.OnValueChanged.RemoveAllListeners();
     }
 

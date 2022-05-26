@@ -12,13 +12,9 @@ public class PlayerManager : SingletonBehaviour<PlayerManager>
         player = FindObjectOfType<Player>();
     }
 
-    internal void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider)
-    {
-        player.MoveModule.SetPositionOverride(playerPositionOverrider);
-    }
+    public static void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.SetPositionOverride(playerPositionOverrider);
+    public static void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.RevokeOverridePosition(playerPositionOverrider);
 
-    internal void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider)
-    {
-        player.MoveModule.RevokeOverridePosition(playerPositionOverrider);
-    }
+    public static PlayerSkinType GetPlayerSkin() => Instance.player.SkinModule.SkinType;
+    public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
 }
