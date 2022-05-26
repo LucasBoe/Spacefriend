@@ -38,19 +38,32 @@ public class PlayerSkinModule
 public class PlayerMoveModule
 {
     public PlayerMoveMode MoveMode;
+
+    public void SetSpaceModeActive(bool spaceMode)
+    {
+        MoveMode = spaceMode ? PlayerMoveMode.SPACE : PlayerMoveMode.SPACE;
+        spaceMover.SetSpaceMode(spaceMode);
+    }
+
     private PlayerPositionOverrider positionOverride;
 
+    [SerializeField] PlayerSpaceMover spaceMover;
     [SerializeField] NavigationAgent agent;
     [SerializeField] Transform playerTransform;
 
-    public void MoveTo(Vector3 point) => agent.MoveTo(point);
-
-
-    public void MoveTo(Vector3 point, System.Action callback) => agent.MoveTo(point, callback);
+    public void WalkTo(Vector3 point, System.Action callback = null)
+    {
+        if (MoveMode == PlayerMoveMode.SPACE)
+            spaceMover.MoveTo(point, callback);
+        else
+            agent.MoveTo(point, callback);
+    }
 
     public void Update()
     {
-        if (MoveMode == PlayerMoveMode.FREE)
+        if (MoveMode == PlayerMoveMode.SPACE && PlayerManager.GetPlayerSkin() == PlayerSkinType.Space)
+            spaceMover.Move();
+        else if (MoveMode == PlayerMoveMode.FREE)
             agent.Move();
         else
         {

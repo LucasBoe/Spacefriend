@@ -52,12 +52,12 @@ public class PlayerInteractor : MonoBehaviour
             {
                 Interactable target = interactable;
                 //click on interactable
-                player.MoveModule.MoveTo(target.GetPoint(), () => target.Interact());
+                player.MoveModule.WalkTo(target.GetPoint(), () => target.Interact());
             }
             else
             {
                 //move to cursor positon
-                player.MoveModule.MoveTo(point);
+                player.MoveModule.WalkTo(point);
             }
         }
     }

@@ -27,6 +27,6 @@ public class RoomCamera : MonoBehaviour
 
     private void OnRoomStateChanged(bool isInside)
     {
-        virtualCamera.m_Priority = isInside ? 1 : 0;
+        virtualCamera.m_Priority = isInside ? 5 : 0;
     }
 }

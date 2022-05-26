@@ -17,4 +17,6 @@ public class PlayerManager : SingletonBehaviour<PlayerManager>
 
     public static PlayerSkinType GetPlayerSkin() => Instance.player.SkinModule.SkinType;
     public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
+
+    public static void SetSpaceMode(bool spaceMode) => Instance.player.MoveModule.SetSpaceModeActive(spaceMode);
 }
