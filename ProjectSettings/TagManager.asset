@@ -36,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - BlurTexture
   m_SortingLayers:
   - name: space-background
     uniqueID: 372436835

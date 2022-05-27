@@ -8,7 +8,7 @@ public class MinigamePhase : MonoBehaviour
 
     public System.Action StartPhaseEvent, EndPhaseEvent;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         uiElements = GetComponentsInChildren<UIBehaviour>();
     }

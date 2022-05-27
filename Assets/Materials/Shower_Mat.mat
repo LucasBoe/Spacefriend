@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite-Unlint-Interactable
-  m_Shader: {fileID: -6465566751694194690, guid: 8bc1cb8872a1ca54ebb3a8a446427765, type: 3}
+  m_Name: Shower_Mat
+  m_Shader: {fileID: -6465566751694194690, guid: 5e62c3e5edb909041962a2b362c4eab9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,16 +19,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_331670bfc7cc43d7a0c9e8598a0e6a82:
-        m_Texture: {fileID: 0}
+    - Texture2D_5c2f094a9cc441b5b59988ecf98b3d12:
+        m_Texture: {fileID: 2800000, guid: aa7b490078210cc4bb166b6a909b42f2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlphaTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BlurTex:
+        m_Texture: {fileID: 8400000, guid: 749230bd757da8741a50763d69d3fb2e, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GetBlurByDistanceXY_c15856719645436ab0204d0934ebd9cc_Texture2D457442d0c0ed49ac8f5efc4d24016fd6_1762473205:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -36,6 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_a68558bd894a476386cb32f37b1cc784_Texture_1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -52,12 +64,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Hover: 0
-    - Vector1_a8262db042b74a96afa767454405d6fd: 10
+    - Blur: 0
+    - Vector1_411330543c70423ea27d60f041228f9d: 0.5
+    - Vector1_af6d1ef5134b4224aba5ee02868f0cad: -0.119
     - _EnableExternalAlpha: 0
     m_Colors:
-    - Color_7206461cc18e4bb0b5c660a7e9cad366: {r: 1, g: 1, b: 1, a: 1}
-    - Color_ca1347e54079490ab1ba80a92fee5dea: {r: 1, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
