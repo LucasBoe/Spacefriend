@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpaceMover : MonoBehaviour
+public class SpaceAgent : SpaceRoomObject
 {
-    [SerializeField] Rigidbody2D rigidbody;
     [SerializeField] ParticleSystem spaceParticles;
     [SerializeField] float forceMultiplier;
     Vector3 target;
@@ -16,12 +15,12 @@ public class PlayerSpaceMover : MonoBehaviour
 
     internal void Move()
     {
-        rigidbody.AddForce((target - transform.position).normalized * forceMultiplier);
+        Rigidbody.AddForce((target - transform.position).normalized * forceMultiplier);
     }
 
     internal void SetSpaceMode(bool isInspaceMode)
     {
-        rigidbody.bodyType = isInspaceMode ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+        Rigidbody.bodyType = isInspaceMode ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
         if (isInspaceMode) target = transform.position;
         spaceParticles.gameObject.SetActive(true);
     }

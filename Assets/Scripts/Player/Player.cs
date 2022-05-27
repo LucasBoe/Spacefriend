@@ -10,6 +10,16 @@ public class Player : MonoBehaviour
     public PlayerAnimationController AnimationController;
     public PlayerSkinModule SkinModule;
 
+    private void OnEnable()
+    {
+        MoveModule.OnEnable();
+    }
+
+    private void OnDisable()
+    {
+        MoveModule.OnDisable();
+    }
+
     private void Start()
     {
         SkinModule.SetSkinType(PlayerSkinType.Bed);
@@ -38,33 +48,30 @@ public class PlayerSkinModule
 public class PlayerMoveModule
 {
     public PlayerMoveMode MoveMode;
-
-    public void SetSpaceModeActive(bool spaceMode)
-    {
-        MoveMode = spaceMode ? PlayerMoveMode.SPACE : PlayerMoveMode.SPACE;
-        spaceMover.SetSpaceMode(spaceMode);
-    }
-
     private PlayerPositionOverrider positionOverride;
-
-    [SerializeField] PlayerSpaceMover spaceMover;
-    [SerializeField] NavigationAgent agent;
     [SerializeField] Transform playerTransform;
+
+    [SerializeField] SpaceAgent spaceAgent;
+    [SerializeField] NavigationAgent navigationAgent;
+
+    public void OnEnable() => spaceAgent.ChangeSpaceModeEvent += SetSpaceModeActive;
+    public void OnDisable() => spaceAgent.ChangeSpaceModeEvent -= SetSpaceModeActive;
+    public void SetSpaceModeActive(bool spaceMode) => MoveMode = spaceMode ? PlayerMoveMode.SPACE : PlayerMoveMode.SPACE;
 
     public void WalkTo(Vector3 point, System.Action callback = null)
     {
         if (MoveMode == PlayerMoveMode.SPACE)
-            spaceMover.MoveTo(point, callback);
+            spaceAgent.MoveTo(point, callback);
         else
-            agent.MoveTo(point, callback);
+            navigationAgent.MoveTo(point, callback);
     }
 
     public void Update()
     {
         if (MoveMode == PlayerMoveMode.SPACE && PlayerManager.GetPlayerSkin() == PlayerSkinType.Space)
-            spaceMover.Move();
+            spaceAgent.Move();
         else if (MoveMode == PlayerMoveMode.FREE)
-            agent.Move();
+            navigationAgent.Move();
         else
         {
             if (positionOverride != null)
@@ -73,8 +80,6 @@ public class PlayerMoveModule
     }
     public void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider)
     {
-        Debug.Log("SetPositionOverride");
-
         positionOverride = playerPositionOverrider;
         MoveMode = PlayerMoveMode.OVERRIDEN;
     }

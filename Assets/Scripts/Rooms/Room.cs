@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
         SetRoomSpriteRendererAlphas(0);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
 
@@ -21,7 +21,7 @@ public class Room : MonoBehaviour
             SetRoomState(roomAgent, true);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
 
