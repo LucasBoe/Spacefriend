@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SpaceTransitionRoom : Room
 {
-    [SerializeField] Collider2D roomCollider;
-
     List<SpaceRoomObject> spaceRoomObjects = new List<SpaceRoomObject>();
 
     protected override void OnTriggerEnter2D(Collider2D collision)
