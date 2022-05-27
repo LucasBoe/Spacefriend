@@ -10,6 +10,7 @@ public class Room : MonoBehaviour
     private void Awake()
     {
         roomSpriteRenderers = GetComponentsInChildren<RoomSpriteRenderer>();
+        SetRoomState(null, false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
