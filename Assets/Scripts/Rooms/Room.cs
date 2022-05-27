@@ -7,10 +7,10 @@ public class Room : MonoBehaviour
 {
     private RoomSpriteRenderer[] roomSpriteRenderers;
     public System.Action<bool> SetRoomStateEvent;
-    private void Awake()
+    private void Start()
     {
         roomSpriteRenderers = GetComponentsInChildren<RoomSpriteRenderer>();
-        SetRoomState(null, false);
+        SetRoomSpriteRendererAlphas(0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

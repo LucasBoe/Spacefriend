@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRendererMaterialInstanciator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class RoomSpriteRenderer : MonoBehaviour
 {
-    Material material;
+    SpriteRenderer spriteRenderer;
     private void Awake()
     {
-        material = GetComponent<SpriteRenderer>().material;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void SetAlpha(float alpha)
     {
-        Color c = material.color;
+        Color c = spriteRenderer.color;
         c.a = alpha;
-        material.color = c;
+        spriteRenderer.color = c;
     }
 }
