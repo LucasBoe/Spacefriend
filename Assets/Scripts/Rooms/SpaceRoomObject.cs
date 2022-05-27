@@ -11,7 +11,7 @@ public class SpaceRoomObject : MonoBehaviour
     public System.Action<bool> ChangeSpaceModeEvent;
     [SerializeField] protected Rigidbody2D Rigidbody;
 
-    public void SetSpaceMode(bool isSpaceMode)
+    public virtual void SetSpaceMode(bool isSpaceMode)
     {
         StartCoroutine(SpaceModeTransition(isSpaceMode));
     }

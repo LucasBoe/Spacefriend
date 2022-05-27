@@ -56,7 +56,7 @@ public class PlayerMoveModule
 
     public void OnEnable() => spaceAgent.ChangeSpaceModeEvent += SetSpaceModeActive;
     public void OnDisable() => spaceAgent.ChangeSpaceModeEvent -= SetSpaceModeActive;
-    public void SetSpaceModeActive(bool spaceMode) => MoveMode = spaceMode ? PlayerMoveMode.SPACE : PlayerMoveMode.SPACE;
+    private void SetSpaceModeActive(bool spaceMode) => MoveMode = spaceMode ? PlayerMoveMode.SPACE : PlayerMoveMode.SPACE;
 
     public void WalkTo(Vector3 point, System.Action callback = null)
     {

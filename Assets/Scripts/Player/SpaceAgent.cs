@@ -18,8 +18,9 @@ public class SpaceAgent : SpaceRoomObject
         Rigidbody.AddForce((target - transform.position).normalized * forceMultiplier);
     }
 
-    internal void SetSpaceMode(bool isInspaceMode)
+    public override void SetSpaceMode(bool isInspaceMode)
     {
+        base.SetSpaceMode(isInspaceMode);
         Rigidbody.bodyType = isInspaceMode ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
         if (isInspaceMode) target = transform.position;
         spaceParticles.gameObject.SetActive(true);

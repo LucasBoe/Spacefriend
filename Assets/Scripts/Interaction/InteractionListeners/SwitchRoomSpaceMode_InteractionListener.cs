@@ -6,9 +6,11 @@ public class SwitchRoomSpaceMode_InteractionListener : MonoBehaviour, IInteracti
 {
     [SerializeField] SpaceTransitionRoom transitionRoom;
     [SerializeField] bool space = true;
+    [SerializeField] bool addSpaceSuite = true;
 
     public void Interact()
     {
         transitionRoom.SetRoomState(isSpace: space);
+        if (addSpaceSuite) PlayerManager.SetPlayerSkin(space ? PlayerSkinType.Space : PlayerSkinType.Default);
     }
 }
