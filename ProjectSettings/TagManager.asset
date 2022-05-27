@@ -47,6 +47,9 @@ TagManager:
   - name: spaceship-background
     uniqueID: 3784456537
     locked: 0
+  - name: player-behind-room
+    uniqueID: 3576389259
+    locked: 0
   - name: spaceship-room-background
     uniqueID: 3207727193
     locked: 0

@@ -7,6 +7,7 @@ public class Room : MonoBehaviour
 {
     private RoomSpriteRenderer[] roomSpriteRenderers;
     public System.Action<bool> SetRoomStateEvent;
+
     private void Start()
     {
         roomSpriteRenderers = GetComponentsInChildren<RoomSpriteRenderer>();
