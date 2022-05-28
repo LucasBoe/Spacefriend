@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerAnimationOverrider : MonoBehaviour
 {
-    [SerializeField] AnimationClip clip;
+    [SerializeField, PlayerAnimatorParam] string parameter;
+    public string Parameter => parameter;
+
     public static System.Action<PlayerAnimationOverrider> AddOverrideEvent;
     public static System.Action<PlayerAnimationOverrider> RemoveOverrideEvent;
     private void OnEnable()
@@ -16,10 +18,5 @@ public class PlayerAnimationOverrider : MonoBehaviour
     private void OnDisable()
     {
         RemoveOverrideEvent?.Invoke(this);
-    }
-
-    internal string GetOverrideAnimation()
-    {
-        return clip.name;
     }
 }

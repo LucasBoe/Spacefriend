@@ -12,6 +12,7 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] PlayerSkin[] skins;
 
     private List<PlayerAnimationOverrider> playerAnimationOverrides = new List<PlayerAnimationOverrider>();
+    private bool hasOverrides => playerAnimationOverrides.Count > 0;
     private Vector2 lastDirVector;
 
     private void OnEnable()
@@ -31,14 +32,16 @@ public class PlayerAnimationController : MonoBehaviour
     private void OnAddOverride(PlayerAnimationOverrider over)
     {
         playerAnimationOverrides.Add(over);
-        UpdateAnimation();
+        animator.SetBool(over.Parameter, true);
+        animator.SetBool(overrideParam, hasOverrides);
     }
 
 
     private void OnRemoveOverride(PlayerAnimationOverrider over)
     {
         playerAnimationOverrides.Remove(over);
-        UpdateAnimation();
+        animator.SetBool(over.Parameter, false);
+        animator.SetBool(overrideParam, hasOverrides);
     }
     private void OnSkinChanged(PlayerSkinType newSkin)
     {
@@ -65,15 +68,5 @@ public class PlayerAnimationController : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Sign(directionalVector.x), 1, 1);
 
         lastDirVector = directionalVector;
-    }
-
-    private void UpdateAnimation()
-    {
-        bool hasOverrides = playerAnimationOverrides.Count > 0;
-        animator.SetBool(overrideParam, hasOverrides);
-        if (hasOverrides)
-            animator.Play(playerAnimationOverrides.First().GetOverrideAnimation());
-        else
-            animator.Play("AnimationTree");
     }
 }
