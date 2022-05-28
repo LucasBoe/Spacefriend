@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 6715826325018484520}
   - component: {fileID: 2040526060597754232}
   - component: {fileID: 2040526060597754233}
+  - component: {fileID: 7711367951999828943}
   m_Layer: 0
   m_Name: Avatar_001
   m_TagString: Untagged
@@ -199,6 +200,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7711367951999828943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734119024538194396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c0d8cdc13c3534e99630ad1c18f089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  neutralWalk: {fileID: -652989102282725533, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
+  ladder: {fileID: 1523805884469562660, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
 --- !u!1 &1424366492262608437
 GameObject:
   m_ObjectHideFlags: 0
