@@ -49,6 +49,7 @@ public class PlayerMoveModule
 {
     public PlayerMoveMode MoveMode;
     private PlayerPositionOverrider positionOverride;
+    private Vector2 directionalVectorFromOverride;
     [SerializeField] Transform playerTransform;
 
     [SerializeField] SpaceAgent spaceAgent;
@@ -75,7 +76,17 @@ public class PlayerMoveModule
         else
         {
             if (positionOverride != null)
+            {
+                Vector2 posBefore = playerTransform.position;
+                Vector2 posAfter = positionOverride.transform.position;
+
                 playerTransform.position = positionOverride.transform.position;
+
+                if (Vector2.Distance(posBefore, posAfter) < Time.deltaTime)
+                    directionalVectorFromOverride = Vector2.zero;
+                else
+                    directionalVectorFromOverride = (posAfter - posBefore).normalized;
+            }
         }
     }
     public void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider)
@@ -92,7 +103,7 @@ public class PlayerMoveModule
         }
     }
 
-    public Vector3 GetDirectionalMoveVector() => navigationAgent.DirectionalVector;
+    public Vector3 GetDirectionalMoveVector() => MoveMode == PlayerMoveMode.OVERRIDEN ? directionalVectorFromOverride : navigationAgent.DirectionalVector;
     public enum PlayerMoveMode
     {
         FREE, //Tied to the nav grid, position is defined through the agent, interactions are possible

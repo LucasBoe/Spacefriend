@@ -8,7 +8,7 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] Animator animator;
-    [SerializeField, AnimatorParam("animator")] string directionalVectorX, directionalVectorY;
+    [SerializeField, AnimatorParam("animator")] string directionalVectorX, directionalVectorY, overrideParam;
     [SerializeField] PlayerSkin[] skins;
 
     private List<PlayerAnimationOverrider> playerAnimationOverrides = new List<PlayerAnimationOverrider>();
@@ -69,6 +69,11 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        //
+        bool hasOverrides = playerAnimationOverrides.Count > 0;
+        animator.SetBool(overrideParam, hasOverrides);
+        if (hasOverrides)
+            animator.Play(playerAnimationOverrides.First().GetOverrideAnimation());
+        else
+            animator.Play("AnimationTree");
     }
 }
