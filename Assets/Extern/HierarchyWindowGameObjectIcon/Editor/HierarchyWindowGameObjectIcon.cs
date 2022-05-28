@@ -20,7 +20,7 @@ public static class HierarchyWindowGameObjectIcon
         var content = EditorGUIUtility.ObjectContent(EditorUtility.InstanceIDToObject(instanceID), null);
 
         if (content.image != null && !IgnoreIcons.Contains(content.image.name))
-            GUI.DrawTexture(new Rect(38, selectionRect.yMin, 16, 16), content.image);
+            GUI.DrawTexture(new Rect(32, selectionRect.yMin, 16, 16), content.image);
 
     }
 }

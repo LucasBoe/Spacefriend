@@ -92,6 +92,7 @@ public class PlayerMoveModule
         }
     }
 
+    public Vector3 GetDirectionalMoveVector() => navigationAgent.DirectionalVector;
     public enum PlayerMoveMode
     {
         FREE, //Tied to the nav grid, position is defined through the agent, interactions are possible

@@ -10,7 +10,7 @@ public class NavigationAgent : MonoBehaviour
     [SerializeField] float speed = 10f;
     List<Vector3> currentPath = new List<Vector3>();
     Action callback;
-    [SerializeField, ReadOnly] public Vector3 DirectionalVector;
+    [SerializeField, ReadOnly] public Vector2 DirectionalVector;
 
     float velocity = 0f;
 
@@ -22,7 +22,7 @@ public class NavigationAgent : MonoBehaviour
 
     internal void Move()
     {
-        DirectionalVector = Vector3.zero;
+        DirectionalVector = Vector2.zero;
 
         if (currentPath == null || currentPath.Count == 0)
         {
@@ -43,7 +43,8 @@ public class NavigationAgent : MonoBehaviour
         }
         else
         {
-            DirectionalVector = (currentPath[0] - transform.position).normalized;
+            Vector3 dirRaw = (currentPath[0] - transform.position).normalized;
+            DirectionalVector = new Vector2(Mathf.Round(dirRaw.x * 10f) / 10f, Mathf.Round(dirRaw.y * 10f) / 10f);
 
             if (distance > 1f)
                 velocity = Mathf.MoveTowards(velocity, speed, Time.deltaTime * speed * 2);
@@ -57,6 +58,6 @@ public class NavigationAgent : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(transform.position + Vector3.up, transform.position + Vector3.up + DirectionalVector);
+        Gizmos.DrawLine(transform.position + Vector3.up, transform.position + Vector3.up + (Vector3)DirectionalVector);
     }
 }
