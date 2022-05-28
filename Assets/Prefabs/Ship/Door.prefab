@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb01f5f1a7bf79c409506aab7d312c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorSound: {fileID: -2464703334148386924, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
 --- !u!212 &272070072652974191
 SpriteRenderer:
   m_ObjectHideFlags: 0
