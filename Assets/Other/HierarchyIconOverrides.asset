@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbf4a42e662a3445875ac12fcaed884, type: 3}
+  m_Name: HierarchyIconOverrides
+  m_EditorClassIdentifier: 
+  Pairs:
+  - String: Vcam
+    Icon: {fileID: 2800000, guid: ec2f01df0bb1bfe459b5562a9e71c8d4, type: 3}
+  - String: ROOM_
+    Icon: {fileID: 2800000, guid: 70d16a5f04690d74ab9b1ddcbefd47bb, type: 3}
+  - String: Interactable
+    Icon: {fileID: 2800000, guid: d7094718bdac022428dd29244922d06b, type: 3}
+  - String: Minigame
+    Icon: {fileID: 2800000, guid: 2f2e2190c36a7b54295d734e567b3e44, type: 3}

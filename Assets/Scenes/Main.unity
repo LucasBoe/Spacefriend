@@ -6383,7 +6383,7 @@ GameObject:
   m_Layer: 6
   m_Name: ROOM_Kitchen
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -6455,7 +6455,7 @@ GameObject:
   m_Layer: 6
   m_Name: ROOM_LivingQuarters
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7781,7 +7781,7 @@ GameObject:
   m_Layer: 6
   m_Name: ROOM_Storage
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -18826,7 +18826,7 @@ GameObject:
   m_Layer: 6
   m_Name: ROOM_Airlock
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -19250,7 +19250,7 @@ GameObject:
   - component: {fileID: 1659761171}
   - component: {fileID: 1659761175}
   m_Layer: 31
-  m_Name: Shower
+  m_Name: Interactable_Shower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19802,7 +19802,7 @@ GameObject:
   m_Layer: 6
   m_Name: ROOM_Bath
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
