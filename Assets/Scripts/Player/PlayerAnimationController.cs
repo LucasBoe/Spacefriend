@@ -7,9 +7,10 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] Player player;
-    [SerializeField] Animator animator;
-    [SerializeField, AnimatorParam("animator")] string directionalVectorX, directionalVectorY, overrideParam;
+    [SerializeField, Foldout("AnimatorReferences")] Animator animator;
+    [SerializeField, Foldout("AnimatorReferences"), AnimatorParam("animator")] string directionalVectorX, directionalVectorY, overrideParam;
     [SerializeField] PlayerSkin[] skins;
+    [SerializeField] PlayerBodySpriteRenderers bodySpriteRendererReferences;
 
     private List<PlayerAnimationOverrider> playerAnimationOverrides = new List<PlayerAnimationOverrider>();
     private bool hasOverrides => playerAnimationOverrides.Count > 0;
@@ -50,7 +51,9 @@ public class PlayerAnimationController : MonoBehaviour
         foreach (PlayerSkin skin in skins)
         {
             if (skin.Type == newSkin)
-                newSprite = skin.PlaceholderSprite;
+            {
+                skin.Apply(bodySpriteRendererReferences);
+            }
         }
 
         /*
@@ -68,5 +71,11 @@ public class PlayerAnimationController : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Sign(directionalVector.x), 1, 1);
 
         lastDirVector = directionalVector;
+    }
+
+    [System.Serializable]
+    public class PlayerBodySpriteRenderers
+    {
+        public SpriteRenderer HeadRenderer, BodyRenderer, ArmLRenderer, ArmRRenderer, LegLRenderer, LegRRenderer;
     }
 }
