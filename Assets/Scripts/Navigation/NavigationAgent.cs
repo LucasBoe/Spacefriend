@@ -7,7 +7,7 @@ using UnityEngine;
 public class NavigationAgent : MonoBehaviour
 {
     [SerializeField] NavigationGrid grid;
-    [SerializeField] float speed = 10f;
+    [SerializeField] float speedRegular = 3.5f, speedDown = 5f;
     List<Vector3> currentPath = new List<Vector3>();
     Action callback;
     [SerializeField, ReadOnly] public Vector2 DirectionalVector;
@@ -43,15 +43,21 @@ public class NavigationAgent : MonoBehaviour
         }
         else
         {
-            Vector3 dirRaw = (currentPath[0] - transform.position).normalized;
+            Vector3 targetPos = currentPath[0];
+
+            Vector3 dirRaw = (targetPos - transform.position).normalized;
             DirectionalVector = new Vector2(Mathf.Round(dirRaw.x * 10f) / 10f, Mathf.Round(dirRaw.y * 10f) / 10f);
+
+            bool climbingDown = (Mathf.Abs(DirectionalVector.x) < 0.5f && DirectionalVector.y < -0.5f);
+
+            float speed = climbingDown ? speedDown : speedRegular;
 
             if (distance > 1f)
                 velocity = Mathf.MoveTowards(velocity, speed, Time.deltaTime * speed * 2);
             else
                 velocity = Mathf.MoveTowards(velocity, 1, Time.deltaTime * speed * 2);
 
-            transform.position = Vector3.MoveTowards(transform.position, currentPath[0], Time.deltaTime * velocity);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * velocity);
         }
     }
 

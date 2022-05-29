@@ -4911,7 +4911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  speed: 3.5
+  speedRegular: 3.5
+  speedDown: 6
   DirectionalVector: {x: 0, y: 0}
 --- !u!114 &3284776779164404046
 MonoBehaviour:
