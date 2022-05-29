@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afbf4a42e662a3445875ac12fcaed884, type: 3}
-  m_Name: HierarchyIconOverrides
+  m_Name: Hierarchy Icon Override Data
   m_EditorClassIdentifier: 
   Pairs:
   - String: Vcam

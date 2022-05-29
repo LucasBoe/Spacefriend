@@ -40,7 +40,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f3ff4f81e58a07241a85bda50a4bb41c, type: 3}
   - {fileID: 8300000, guid: 5db94be1240a31846a6b07956544794f, type: 3}
   - {fileID: 8300000, guid: 742749fd70012a646b19a5c5acd6b764, type: 3}
-  volume: 0.5
+  volume: 0.33
   pitch: 1
   pitchRange: {x: 0.9, y: 1.1}
   randomizePitch: 1

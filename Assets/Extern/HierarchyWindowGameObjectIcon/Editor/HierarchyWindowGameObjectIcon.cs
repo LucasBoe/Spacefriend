@@ -31,7 +31,8 @@ public static class HierarchyWindowGameObjectIcon
         else
         {
             HierarchyIconOverrideData overrides = HierarchyIconOverrideData.instance;
-            if (overrides != null)
+
+            if (overrides != null && overrides.Pairs != null)
             {
                 foreach (StringIconPair pair in overrides.Pairs)
                 {
