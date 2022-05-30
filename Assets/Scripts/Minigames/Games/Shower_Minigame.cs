@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using SoundSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ public class Shower_Minigame : MinigamePhase
     [Foldout("References"), SerializeField] PlayerProperty stinkyProperty;
     [Foldout("References"), SerializeField] PlayerAnimationOverrider showerAnimationOverrider;
     [SerializeField] string blurPropertyName;
+    [SerializeField] Sound showerSound;
     Material regularInteractableMaterial;
     ParticleSystem.EmissionModule emissionModule;
     ParticleSystem.MainModule mainModule;
@@ -33,6 +35,7 @@ public class Shower_Minigame : MinigamePhase
         slider.OnValueChanged.AddListener(OnValueChanged);
         CoroutineUtil.Delay(EndPhase, this, showerPhaseDuration);
         CoroutineUtil.Delay(() => stinkyProperty.Value = 0, this, showerPhaseDuration / 2f);
+        showerSound.PlayLoop(fadeDuration: 0.5f);
         showerAnimationOverrider.gameObject.SetActive(true);
     }
 
@@ -40,7 +43,9 @@ public class Shower_Minigame : MinigamePhase
     {
         base.EndPhase();
         slider.OnValueChanged.RemoveListener(OnValueChanged);
+        emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(0);
         PlayerManager.SetPlayerSkin(PlayerSkinType.Bath);
+        showerSound.Stop();
         showerAnimationOverrider.gameObject.SetActive(false);
 
     }

@@ -24786,6 +24786,7 @@ MonoBehaviour:
   stinkyProperty: {fileID: 11400000, guid: 1baa5304d560a5849818b44a519ba7bf, type: 2}
   showerAnimationOverrider: {fileID: 285857228}
   blurPropertyName: Blur
+  showerSound: {fileID: -3835659345959758788, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
 --- !u!1 &1663778900
 GameObject:
   m_ObjectHideFlags: 0
