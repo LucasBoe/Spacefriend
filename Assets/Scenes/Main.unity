@@ -31439,6 +31439,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6573544356131400939, guid: 19dce806170eb01409c539bb8cc783ea, type: 3}
+      propertyPath: lerpWith
+      value: 
+      objectReference: {fileID: 658424219}
+    - target: {fileID: 6573544356131400939, guid: 19dce806170eb01409c539bb8cc783ea, type: 3}
+      propertyPath: userLerp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573544356131400939, guid: 19dce806170eb01409c539bb8cc783ea, type: 3}
+      propertyPath: lerpValue
+      value: 0.502
+      objectReference: {fileID: 0}
     - target: {fileID: 8265919313561321044, guid: 19dce806170eb01409c539bb8cc783ea, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.11665653
