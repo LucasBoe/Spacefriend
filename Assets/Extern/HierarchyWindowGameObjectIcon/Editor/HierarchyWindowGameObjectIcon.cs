@@ -9,6 +9,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class HierarchyWindowGameObjectIcon
 {
+    static HierarchyIconOverrideData overrides = null;
     const string IgnoreIcons = "GameObject Icon, Prefab Icon, d_GameObject Icon, d_Prefab Icon";
 
     static HierarchyWindowGameObjectIcon()
@@ -30,9 +31,9 @@ public static class HierarchyWindowGameObjectIcon
             icon = content.image;
         else
         {
-            HierarchyIconOverrideData overrides = HierarchyIconOverrideData.instance;
-
-            if (overrides != null && overrides.Pairs != null)
+            if (overrides == null)
+                overrides = GetHierarchyIconOverrideData();
+            else if (overrides.Pairs != null)
             {
                 foreach (StringIconPair pair in overrides.Pairs)
                 {
@@ -44,5 +45,11 @@ public static class HierarchyWindowGameObjectIcon
 
         if (icon != null)
             GUI.DrawTexture(new Rect(32, selectionRect.yMin, 16, 16), icon);
+    }
+
+    static HierarchyIconOverrideData GetHierarchyIconOverrideData()
+    {
+        string[] guids = AssetDatabase.FindAssets("t:" + typeof(HierarchyIconOverrideData).Name);
+        return AssetDatabase.LoadAssetAtPath<HierarchyIconOverrideData>(AssetDatabase.GUIDToAssetPath(guids[0]));
     }
 }

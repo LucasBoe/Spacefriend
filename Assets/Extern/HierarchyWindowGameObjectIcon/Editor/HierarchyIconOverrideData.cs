@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class HierarchyIconOverrideData : ScriptableSingleton<HierarchyIconOverrideData>
+public class HierarchyIconOverrideData : ScriptableObject
 {
     [SerializeField] public StringIconPair[] Pairs;
 }
