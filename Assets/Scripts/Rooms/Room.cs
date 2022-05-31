@@ -40,7 +40,8 @@ public class Room : MonoBehaviour
     {
         foreach (RoomSpriteRenderer roomSpriteRenderer in roomSpriteRenderers)
         {
-            roomSpriteRenderer.SetAlpha(alpha);
+            //TODO: make sure placing objects later on also adds them here...
+            if (roomSpriteRenderer != null) roomSpriteRenderer.SetAlpha(alpha);
         }
     }
 }

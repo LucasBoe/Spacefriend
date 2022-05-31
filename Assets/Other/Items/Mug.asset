@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901a97ade2fbec24e8f0d1bc5da573dc, type: 3}
   m_Name: Mug
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: cf864f55ed2adb94c8eac5a6da2f372d, type: 3}
   InHandOffset: {x: 0.21, y: -0.04, z: 0}
   InHandFlip: 0

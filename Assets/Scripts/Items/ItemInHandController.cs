@@ -12,11 +12,15 @@ public class ItemInHandController : MonoBehaviour
     [SerializeField, Foldout("Reference")] Transform targetPositionTransform, targetRotationTransform;
 
     [SerializeField, BoxGroup("Lerp")] bool lerpActive = false;
-    [SerializeField, BoxGroup("Lerp")] Transform lerpWith;
+    [SerializeField, BoxGroup("Lerp")] TransformData lerpWith;
     [SerializeField, Range(0, 1), BoxGroup("Lerp")] float lerpValue;
+
+    public ItemData Item => item;
 
     private void LateUpdate()
     {
+        if (item == null) return;
+
         bool flipped = readFlipTransform.localScale.x < 0.1f;
 
         TransformData target = GetTargetTransformData();
@@ -33,9 +37,23 @@ public class ItemInHandController : MonoBehaviour
     {
         return new TransformData()
         {
-            Position = targetPositionTransform.position + GetOffset(targetPositionTransform, readFlipTransform.localScale.x < 0.1f, item),
+            Position = targetPositionTransform.position + GetOffset(targetRotationTransform, readFlipTransform.localScale.x < 0.1f, item),
             Rotation = targetRotationTransform.rotation
         };
+    }
+
+    internal void SetItemInHand(ItemData data, Transform origin)
+    {
+        item = data;
+        itemRenderer.sprite = data.Sprite;
+
+        float transitonDuration = 0.25f;
+
+        lerpWith = new TransformData() { Position = origin.position, Rotation = origin.rotation };
+        CoroutineUtil.ExecuteFloatRoutine(1f, 0f, (float lerp) => lerpValue = lerp, this, transitonDuration);
+
+        lerpActive = true;
+        CoroutineUtil.Delay(() => lerpActive = false, this, transitonDuration);
     }
 
     private Vector3 GetOffset(Transform handTransform, bool flipped, ItemData item)
@@ -49,8 +67,8 @@ public class TransformData
     public Vector3 Position;
     public Quaternion Rotation;
 
-    public TransformData Lerp(Transform toLerpWith, float t)
+    public TransformData Lerp(TransformData toLerpWith, float t)
     {
-        return new TransformData() { Position = Vector3.Lerp(Position, toLerpWith.position, t), Rotation = Quaternion.Lerp(Rotation, toLerpWith.rotation, t) };
+        return new TransformData() { Position = Vector3.Lerp(Position, toLerpWith.Position, t), Rotation = Quaternion.Lerp(Rotation, toLerpWith.Rotation, t) };
     }
 }
