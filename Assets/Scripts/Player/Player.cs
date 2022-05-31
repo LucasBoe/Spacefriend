@@ -69,7 +69,7 @@ public class PlayerMoveModule
 
     public void Update()
     {
-        if (MoveMode == PlayerMoveMode.SPACE && PlayerManager.GetPlayerSkin() == PlayerSkinType.Space)
+        if (MoveMode == PlayerMoveMode.SPACE && PlayerServiceProvider.GetPlayerSkin() == PlayerSkinType.Space)
             spaceAgent.Move();
         else if (MoveMode == PlayerMoveMode.FREE)
             navigationAgent.Move();

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : SingletonBehaviour<PlayerManager>
+public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
 {
     Player player;
     Animator playerAimator;
@@ -19,10 +19,11 @@ public class PlayerManager : SingletonBehaviour<PlayerManager>
 
     public static void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.SetPositionOverride(playerPositionOverrider);
     public static void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.RevokeOverridePosition(playerPositionOverrider);
+    internal static PlayerMoveModule GetMoveModule() => Instance.player.MoveModule;
     public static Animator GetPlayerAnimator() =>  Instance.playerAimator;
     public static ItemData GetPlayerItemInHand() => Instance.itemInHandController.Item;
     public static PlayerSkinType GetPlayerSkin() => Instance.player.SkinModule.SkinType;
     public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
-
     internal static void SetPlayerItemInHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
+
 }

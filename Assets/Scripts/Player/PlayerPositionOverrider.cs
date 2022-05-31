@@ -6,11 +6,11 @@ public class PlayerPositionOverrider : MonoBehaviour
 {
     private void OnEnable()
     {
-        PlayerManager.SetPositionOverride(this);
+        PlayerServiceProvider.SetPositionOverride(this);
     }
 
     private void OnDisable()
     {
-        PlayerManager.RevokeOverridePosition(this);
+        PlayerServiceProvider.RevokeOverridePosition(this);
     }
 }

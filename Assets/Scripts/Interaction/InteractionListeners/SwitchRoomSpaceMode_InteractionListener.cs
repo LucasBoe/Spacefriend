@@ -11,6 +11,6 @@ public class SwitchRoomSpaceMode_InteractionListener : MonoBehaviour, IInteracti
     public void Interact()
     {
         transitionRoom.SetRoomState(isSpace: space);
-        if (addSpaceSuite) PlayerManager.SetPlayerSkin(space ? PlayerSkinType.Space : PlayerSkinType.Default);
+        if (addSpaceSuite) PlayerServiceProvider.SetPlayerSkin(space ? PlayerSkinType.Space : PlayerSkinType.Default);
     }
 }

@@ -21,7 +21,7 @@ public class ChangeClothes_Minigame : MinigamePhase
     {
         base.EndPhase();
         puttingOnClothesSound.Play();
-        PlayerManager.SetPlayerSkin(toChangeTo);
+        PlayerServiceProvider.SetPlayerSkin(toChangeTo);
         slider.OnValueChanged.RemoveAllListeners();
     }
 

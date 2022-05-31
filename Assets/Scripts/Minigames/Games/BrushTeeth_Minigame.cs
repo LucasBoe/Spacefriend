@@ -30,7 +30,7 @@ public class BrushTeeth_Minigame : MinigamePhase
 
     private void Start()
     {
-        playerAnimator = PlayerManager.GetPlayerAnimator();
+        playerAnimator = PlayerServiceProvider.GetPlayerAnimator();
     }
 
     private void Update()
