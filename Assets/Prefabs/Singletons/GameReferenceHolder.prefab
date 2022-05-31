@@ -47,3 +47,5 @@ MonoBehaviour:
   Sounds:
     PointerDownSound: {fileID: 3912205405235404402, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
     PointerUpSound: {fileID: 5604561401334464200, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
+    PopupOpenSound: {fileID: 3404450531745126, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
+    PopupCloseSound: {fileID: -1278726064346379640, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}

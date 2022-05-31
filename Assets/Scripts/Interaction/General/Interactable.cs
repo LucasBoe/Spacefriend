@@ -47,6 +47,8 @@ public class Interactable : MonoBehaviour
     {
         if (!CheckAllConditions()) return;
 
+        EndHover();
+
         foreach (IInteractionListener listener in interactionListeners) listener.Interact();
         InteractEvent?.Invoke(this);
     }

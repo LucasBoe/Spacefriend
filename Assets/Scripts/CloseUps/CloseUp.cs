@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class CloseUp : MonoBehaviour
 {
+    private static AnimationCurve easeInOutCurve = AnimationCurve.EaseInOut(0,0,1,1);
     private const float ANIMATION_DURATION = 0.25f;
     [SerializeField, ReadOnly] private bool open;
 
@@ -35,14 +36,15 @@ public class CloseUp : MonoBehaviour
 
     public void Open()
     {
+        gameObject.SetActive(true);
+
         if (open) return;
         open = true;
 
         ChangeCloseUpOpenEvent?.Invoke(true);
 
         StopAllCoroutines();
-        gameObject.SetActive(true);
-        CoroutineUtil.ExecuteFloatRoutine(0,1, (float t) => transform.localScale = new Vector3(t,1,1), this, ANIMATION_DURATION);
+        CoroutineUtil.ExecuteFloatRoutine(0,1, (float t) => transform.localScale = new Vector3(easeInOutCurve.Evaluate(t), 1,1), this, ANIMATION_DURATION);
     }
 
     public void Close()
@@ -53,7 +55,7 @@ public class CloseUp : MonoBehaviour
         ChangeCloseUpOpenEvent?.Invoke(false);
 
         StopAllCoroutines();
-        CoroutineUtil.ExecuteFloatRoutine(1, 0, (float t) => transform.localScale = new Vector3(t, 1, 1), this, ANIMATION_DURATION);
+        CoroutineUtil.ExecuteFloatRoutine(1, 0, (float t) => transform.localScale = new Vector3(easeInOutCurve.Evaluate(t), 1, 1), this, ANIMATION_DURATION);
         CoroutineUtil.Delay(() => gameObject.SetActive(false), this, ANIMATION_DURATION);
     }
 }

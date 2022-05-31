@@ -12,7 +12,7 @@ public class GameReferenceHolder : SingletonBehaviour<GameReferenceHolder>
     [System.Serializable]
     public class SoundReferences
     {
-        public Sound PointerDownSound;
-        public Sound PointerUpSound;
+        public Sound PointerDownSound, PointerUpSound;
+        public Sound PopupOpenSound, PopupCloseSound;
     }
 }

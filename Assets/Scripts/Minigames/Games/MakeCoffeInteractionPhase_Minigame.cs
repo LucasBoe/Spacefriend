@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MakeCoffe_Minigame : MinigamePhase
+public class MakeCoffeInteractionPhase_Minigame : MinigamePhase
 {
     [SerializeField] ButtonUIBehaviour button;
     public override void StartPhase()
