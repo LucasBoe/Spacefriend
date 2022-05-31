@@ -12523,7 +12523,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bd1951e6f175e7f4c8cc7bcdd280335d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -18253,7 +18253,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f8aab4a588448824e9d0f96d61e250a9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -24833,6 +24833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 533214726}
   toChangeTo: 0
+  puttingOnClothesSound: {fileID: 6902183693122078432, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
 --- !u!1 &1664586620
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using SoundSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ public class ChangeClothes_Minigame : MinigamePhase
     [SerializeField] SliderUIBehaviour slider;
     float startValue = 0f, targetValue = 1f;
     [SerializeField] PlayerSkinType toChangeTo;
+    [SerializeField] Sound puttingOnClothesSound;
     public override void StartPhase()
     {
         base.StartPhase();
@@ -18,6 +20,7 @@ public class ChangeClothes_Minigame : MinigamePhase
     public override void EndPhase()
     {
         base.EndPhase();
+        puttingOnClothesSound.Play();
         PlayerManager.SetPlayerSkin(toChangeTo);
         slider.OnValueChanged.RemoveAllListeners();
     }
