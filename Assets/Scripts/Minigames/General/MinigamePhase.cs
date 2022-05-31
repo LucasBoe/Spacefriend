@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class MinigamePhase : MonoBehaviour
 
     public System.Action StartPhaseEvent, EndPhaseEvent;
 
-    private bool isRunning = false;
+    [SerializeField, ReadOnly] protected bool IsRunning = false;
 
     protected virtual void Awake()
     {
@@ -16,7 +17,7 @@ public class MinigamePhase : MonoBehaviour
     }
     public virtual void StartPhase()
     {
-        isRunning = true;
+        IsRunning = true;
 
         StartPhaseEvent?.Invoke();
         foreach (UIBehaviour behaviour in uiElements) behaviour.SetActive(true);
@@ -24,7 +25,9 @@ public class MinigamePhase : MonoBehaviour
 
     public virtual void EndPhase()
     {
-        if (!isRunning) return;
+        if (!IsRunning) return;
+
+        IsRunning = false;
 
         EndPhaseEvent?.Invoke();
         foreach (UIBehaviour behaviour in uiElements) behaviour.SetActive(false);

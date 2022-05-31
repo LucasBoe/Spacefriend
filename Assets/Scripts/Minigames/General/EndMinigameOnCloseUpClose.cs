@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EndMinigamePhaseOnCloseUpClose : MonoBehaviour
+public class EndMinigameOnCloseUpClose : MonoBehaviour
 {
     [SerializeField] CloseUp closeUp;
-    [SerializeField] MinigamePhase minigamePhase;
+    [SerializeField] Minigame minigame;
 
     private void OnEnable()
     {
@@ -19,6 +19,6 @@ public class EndMinigamePhaseOnCloseUpClose : MonoBehaviour
 
     private void OnChangeCloseUpOpen(bool open)
     {
-        if (!open) minigamePhase.EndPhase();
+        if (!open) minigame.EndMinigame();
     }
 }

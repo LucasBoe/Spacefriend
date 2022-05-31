@@ -45,15 +45,23 @@ public class ItemInHandController : MonoBehaviour
     internal void SetItemInHand(ItemData data, Transform origin)
     {
         item = data;
-        itemRenderer.sprite = data.Sprite;
 
-        float transitonDuration = 0.25f;
+        if (data == null)
+        {
+            itemRenderer.sprite = null;
+        }
+        else
+        {
+            itemRenderer.sprite = data.Sprite;
 
-        lerpWith = new TransformData() { Position = origin.position, Rotation = origin.rotation };
-        CoroutineUtil.ExecuteFloatRoutine(1f, 0f, (float lerp) => lerpValue = lerp, this, transitonDuration);
+            float transitonDuration = 0.25f;
 
-        lerpActive = true;
-        CoroutineUtil.Delay(() => lerpActive = false, this, transitonDuration);
+            lerpWith = new TransformData() { Position = origin.position, Rotation = origin.rotation };
+            CoroutineUtil.ExecuteFloatRoutine(1f, 0f, (float lerp) => lerpValue = lerp, this, transitonDuration);
+
+            lerpActive = true;
+            CoroutineUtil.Delay(() => lerpActive = false, this, transitonDuration);
+        }
     }
 
     private Vector3 GetOffset(Transform handTransform, bool flipped, ItemData item)

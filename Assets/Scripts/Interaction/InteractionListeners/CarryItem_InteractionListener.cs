@@ -8,7 +8,7 @@ public class CarryItem_InteractionListener : MonoBehaviour, IInteractionListener
 
     public void Interact()
     {
-        PlayerServiceProvider.SetPlayerItemInHand(data, transform);
+        PlayerServiceProvider.CollectItemToHand(data, transform);
         Destroy(gameObject);
     }
 }

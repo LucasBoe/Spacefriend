@@ -24,6 +24,6 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     public static ItemData GetPlayerItemInHand() => Instance.itemInHandController.Item;
     public static PlayerSkinType GetPlayerSkin() => Instance.player.SkinModule.SkinType;
     public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
-    internal static void SetPlayerItemInHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
-
+    internal static void CollectItemToHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
+    internal static void RemoveItemFromHand(Transform target) => Instance.itemInHandController.SetItemInHand(null, target);
 }

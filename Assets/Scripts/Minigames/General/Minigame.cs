@@ -16,13 +16,20 @@ public class Minigame : MonoBehaviour
     public bool IsRunning => running;
     public void StartMinigame()
     {
+        foreach (MinigamePhase phase in Phases) phase.EndPhaseEvent += NextPhase;
+
         running = true;
         phaseIndex = 0;
+
         StartCoroutine(MinigameRoutine());
     }
 
     public void EndMinigame()
     {
+        foreach (MinigamePhase phase in Phases) phase.EndPhaseEvent -= NextPhase;
+
+        if (phaseIndex < Phases.Length - 1) Phases[phaseIndex].EndPhase();
+
         running = false;
     }
 
@@ -35,11 +42,8 @@ public class Minigame : MonoBehaviour
         }
 
         Phases.First().StartPhase();
-        foreach (MinigamePhase phase in Phases) phase.EndPhaseEvent += NextPhase;
 
         while (running) yield return null;
-
-        foreach (MinigamePhase phase in Phases) phase.EndPhaseEvent -= NextPhase;
 
         if (hasAnimations && outAnimation != null)
         {

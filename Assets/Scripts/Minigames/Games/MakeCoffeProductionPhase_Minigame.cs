@@ -7,6 +7,9 @@ public class MakeCoffeProductionPhase_Minigame : MinigamePhase
 {
     [SerializeField] ParticleSystem coffeeDownParticles, coffeeOverflowPartices;
     [SerializeField] Sound coffeeProductionSound;
+    [SerializeField] MakeCoffe_MugManager mugVisualizer;
+    [SerializeField] GameObject finishedMug;
+    [SerializeField] CoffeMugItemData mugItem;
     public override void StartPhase()
     {
         base.StartPhase();
@@ -14,8 +17,20 @@ public class MakeCoffeProductionPhase_Minigame : MinigamePhase
         CoroutineUtil.Delay(() =>
         {
             coffeeDownParticles.Play();
-            coffeeOverflowPartices.Play();
+            if (!mugVisualizer.MugActive) coffeeOverflowPartices.Play();
         }, this, 2);
+
         CoroutineUtil.Delay(() => EndPhase(), this, 10f);
+    }
+
+    public override void EndPhase()
+    {
+        base.EndPhase();
+        if (mugVisualizer.MugActive)
+        {
+            finishedMug.SetActive(true);
+            mugVisualizer.MugActive = false;
+            mugItem.HoldsCoffee = true;
+        }
     }
 }
