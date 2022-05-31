@@ -82,6 +82,7 @@ MonoBehaviour:
   - {fileID: 1523805884469562660}
   - {fileID: -3835659345959758788}
   - {fileID: 6902183693122078432}
+  - {fileID: 3585583294298198007}
 --- !u!114 &1523805884469562660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +104,28 @@ MonoBehaviour:
   volume: 0.5
   pitch: 1
   pitchRange: {x: 0.8, y: 1.2}
+  randomizePitch: 1
+--- !u!114 &3585583294298198007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72527e59cbfe0e94e902be4c01aecd1b, type: 3}
+  m_Name: Female Fear and Cold 04
+  m_EditorClassIdentifier: 
+  _myLibrary: {fileID: 11400000}
+  clip: {fileID: 0}
+  useMultipleClipVariants: 1
+  clips:
+  - {fileID: 8300000, guid: 0d2a5759adee80d45a554add666a7a0f, type: 3}
+  - {fileID: 8300000, guid: 4b6b025651ce03045af8ef5869f40ff7, type: 3}
+  volume: 0.5
+  pitch: 1
+  pitchRange: {x: 0.9, y: 1.1}
   randomizePitch: 1
 --- !u!114 &6902183693122078432
 MonoBehaviour:

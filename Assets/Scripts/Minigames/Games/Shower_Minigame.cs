@@ -9,14 +9,17 @@ public class Shower_Minigame : MinigamePhase
 {
     [SerializeField] float showerPhaseDuration;
     [Foldout("References"), SerializeField] SliderUIBehaviour slider;
-    [SerializeField] AnimationCurve heatToParticleAmountCurve, heatToParticleSizeCurve;
+    [SerializeField] AnimationCurve heatToParticleAmountCurve, heatToParticleSizeCurve, heatToWhistlingVolume;
     [Foldout("References"), SerializeField] ParticleSystem steamShowerParticles;
     [Foldout("References"), SerializeField] SpriteRenderer showerRenderer;
     [Foldout("References"), SerializeField] Material showerMaterial;
     [Foldout("References"), SerializeField] PlayerProperty stinkyProperty;
     [Foldout("References"), SerializeField] PlayerAnimationOverrider showerAnimationOverrider;
+    [Foldout("References"), SerializeField] AudioSource whistlingAudioSource;
     [SerializeField] string blurPropertyName;
-    [SerializeField] Sound showerSound;
+    [SerializeField] Sound showerSound, freezingSound;
+    [SerializeField, Range(0, 1)] float freezingEdgeValue;
+    bool isFreezing = false;
     Material regularInteractableMaterial;
     ParticleSystem.EmissionModule emissionModule;
     ParticleSystem.MainModule mainModule;
@@ -37,6 +40,7 @@ public class Shower_Minigame : MinigamePhase
         CoroutineUtil.Delay(() => stinkyProperty.Value = 0, this, showerPhaseDuration / 2f);
         showerSound.PlayLoop(fadeDuration: 0.5f);
         showerAnimationOverrider.gameObject.SetActive(true);
+        whistlingAudioSource.gameObject.SetActive(true);
     }
 
     public override void EndPhase()
@@ -47,6 +51,7 @@ public class Shower_Minigame : MinigamePhase
         PlayerManager.SetPlayerSkin(PlayerSkinType.Bath);
         showerSound.Stop();
         showerAnimationOverrider.gameObject.SetActive(false);
+        whistlingAudioSource.gameObject.SetActive(false);
 
     }
 
@@ -54,6 +59,17 @@ public class Shower_Minigame : MinigamePhase
     {
         emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(heatToParticleAmountCurve.Evaluate(heat));
         mainModule.startSize = new ParticleSystem.MinMaxCurve(heatToParticleSizeCurve.Evaluate(heat));
+        whistlingAudioSource.volume = heatToWhistlingVolume.Evaluate(heat);
+
+        bool shouldBeFreezing = heat < freezingEdgeValue;
+
+        if (!isFreezing && shouldBeFreezing)
+        {
+            freezingSound.Stop();
+            freezingSound.Play();
+        }
+
+        isFreezing = shouldBeFreezing;
     }
 
     public void AnimateShowerBlurIn()
