@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6520774987985759197}
   - component: {fileID: 6520774987985759196}
   m_Layer: 5
-  m_Name: HandleFill
+  m_Name: CircleFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6520774988574296001}
   - component: {fileID: 6520774988574296000}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6520774988737952428}
   - component: {fileID: 4319714948279995785}
+  - component: {fileID: 9083264359948518411}
   m_Layer: 5
   m_Name: DefaultButtonUIElement
   m_TagString: Untagged
@@ -232,3 +233,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9083264359948518411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6520774988737952403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab110a16e6dea1498abacf344ca8b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

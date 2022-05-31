@@ -1,3 +1,4 @@
+using SoundSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,4 +6,13 @@ using UnityEngine;
 public class GameReferenceHolder : SingletonBehaviour<GameReferenceHolder>
 {
     public Material InteractableMaterial;
+
+    public SoundReferences Sounds;
+
+    [System.Serializable]
+    public class SoundReferences
+    {
+        public Sound PointerDownSound;
+        public Sound PointerUpSound;
+    }
 }

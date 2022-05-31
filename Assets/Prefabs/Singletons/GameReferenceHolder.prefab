@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InteractableMaterial: {fileID: 2100000, guid: f00d6f2cebb13d845ba86cca43079f16, type: 2}
+  Sounds:
+    PointerDownSound: {fileID: 3912205405235404402, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
+    PointerUpSound: {fileID: 5604561401334464200, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}

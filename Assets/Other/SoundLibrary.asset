@@ -83,6 +83,8 @@ MonoBehaviour:
   - {fileID: -3835659345959758788}
   - {fileID: 6902183693122078432}
   - {fileID: 3585583294298198007}
+  - {fileID: 3912205405235404402}
+  - {fileID: 5604561401334464200}
 --- !u!114 &1523805884469562660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +129,46 @@ MonoBehaviour:
   pitch: 1
   pitchRange: {x: 0.9, y: 1.1}
   randomizePitch: 1
+--- !u!114 &3912205405235404402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72527e59cbfe0e94e902be4c01aecd1b, type: 3}
+  m_Name: ui-click-down
+  m_EditorClassIdentifier: 
+  _myLibrary: {fileID: 11400000}
+  clip: {fileID: 8300000, guid: 1ebf1e65cb358ab4b8b51c5afdccf18b, type: 3}
+  useMultipleClipVariants: 0
+  clips: []
+  volume: 0.5
+  pitch: 1
+  pitchRange: {x: 0.75, y: 1.25}
+  randomizePitch: 0
+--- !u!114 &5604561401334464200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72527e59cbfe0e94e902be4c01aecd1b, type: 3}
+  m_Name: ui-click-up
+  m_EditorClassIdentifier: 
+  _myLibrary: {fileID: 11400000}
+  clip: {fileID: 8300000, guid: 3baa0ce2b6a9f9e4bbda5116b94517ec, type: 3}
+  useMultipleClipVariants: 0
+  clips: []
+  volume: 0.5
+  pitch: 1
+  pitchRange: {x: 0.75, y: 1.25}
+  randomizePitch: 0
 --- !u!114 &6902183693122078432
 MonoBehaviour:
   m_ObjectHideFlags: 0
