@@ -9,6 +9,7 @@ public class GroupUIBehaviour : UIBehaviour
     protected virtual void Awake()
     {
         group = GetComponent<CanvasGroup>();
+        group.alpha = 0f;
     }
     protected override void SetAlpha(float alpha)
     {

@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.Animations;
 
 [CreateAssetMenu]
-public class EditorContextData : ScriptableSingleton<EditorContextData>
+public class EditorReferenceHolder : ScriptableSingleton<EditorReferenceHolder>
 {
     public AnimatorController PlayerAnimatorController;
 }

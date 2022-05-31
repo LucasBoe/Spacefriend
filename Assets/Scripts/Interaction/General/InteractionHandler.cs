@@ -16,7 +16,7 @@ public class InteractionHandler : MonoBehaviour
 
     private void Awake()
     {
-        interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast");
+        interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast", "CloseUp");
         closeUpLayerMask = LayerMask.GetMask("CloseUp");
         mainCam = Camera.main;
     }

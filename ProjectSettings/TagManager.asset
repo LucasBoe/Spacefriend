@@ -65,6 +65,12 @@ TagManager:
   - name: foreground-blend
     uniqueID: 2874404543
     locked: 0
+  - name: closeup-background
+    uniqueID: 4196040369
+    locked: 0
+  - name: closeup-content
+    uniqueID: 2680357939
+    locked: 0
   - name: ui
     uniqueID: 883619511
     locked: 0

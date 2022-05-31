@@ -9,7 +9,12 @@ public class SpriteRendererMaterialInstanciator : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Material material = new Material(spriteRenderer.material);
+        Material material = new Material(GetMaterialToInstatiate());
         spriteRenderer.material = material;
+    }
+
+    protected virtual Material GetMaterialToInstatiate()
+    {
+        return spriteRenderer.material;
     }
 }

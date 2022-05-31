@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRendererMaterialInstanciator))]
+[RequireComponent(typeof(InteractableSpriteRenderMaterialInstanciator))]
 public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteractableHoverListener
 {
     Material material;

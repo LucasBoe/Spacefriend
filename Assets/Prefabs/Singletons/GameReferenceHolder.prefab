@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1763409508273524563
+--- !u!1 &9050739656407581106
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1763409508273524560}
-  - component: {fileID: 8269263756719575743}
+  - component: {fileID: 2940240236256345254}
+  - component: {fileID: 6945609154075441900}
   m_Layer: 0
-  m_Name: GameSceneConstructor
+  m_Name: GameReferenceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1763409508273524560
+--- !u!4 &2940240236256345254
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763409508273524563}
+  m_GameObject: {fileID: 9050739656407581106}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8269263756719575743
+--- !u!114 &6945609154075441900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763409508273524563}
+  m_GameObject: {fileID: 9050739656407581106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ce768ee7953f04ab10e94482b0538a, type: 3}
+  m_Script: {fileID: 11500000, guid: 94f42ae1c7aa79a49b567ee7af4dec06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ToInstatiate:
-  - {fileID: 7627514327832957460, guid: c84bef6d080740b47a5cde85a3de579a, type: 3}
-  - {fileID: 3782616660749072961, guid: ee1769ff0209c104d8a05d6c59f79b24, type: 3}
-  - {fileID: 8892036537387892459, guid: 6b3b46e799760874da71851cb60b4cdc, type: 3}
-  - {fileID: 2533134233089307072, guid: a40b2d8811fe6064fb923d178031bd5b, type: 3}
-  - {fileID: 5729245817587807955, guid: e541153b3b5b70e49a597ff75deae6a8, type: 3}
-  - {fileID: 9050739656407581106, guid: 66e89dbd4ee934949a6c3ed6b7f6379b, type: 3}
+  InteractableMaterial: {fileID: 2100000, guid: f00d6f2cebb13d845ba86cca43079f16, type: 2}

@@ -28,7 +28,7 @@ public class PlayerAnimatorParamPropertyDrawer : PropertyDrawer
         {
             EditorGUI.BeginChangeCheck();
 
-            AnimatorController playerController = EditorContextData.instance.PlayerAnimatorController;
+            AnimatorController playerController = EditorReferenceHolder.instance.PlayerAnimatorController;
 
             string[] variables = playerController.parameters.Select(p => p.name).ToArray();
 
