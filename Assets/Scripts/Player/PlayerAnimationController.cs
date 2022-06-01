@@ -3,14 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.U2D.Animation;
 
 public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] Player player;
+    [SerializeField] SpriteLibrary library;
     [SerializeField, Foldout("AnimatorReferences")] Animator animator;
     [SerializeField, Foldout("AnimatorReferences"), AnimatorParam("animator")] string directionalVectorX, directionalVectorY, overrideParam;
-    [SerializeField] PlayerSkin[] skins;
-    [SerializeField] PlayerBodySpriteRenderers bodySpriteRendererReferences;
+    [SerializeField] SpriteResolver[] resolvers;
+    [SerializeField] GameObject astronautBackpack;
 
     private List<PlayerAnimationOverrider> playerAnimationOverrides = new List<PlayerAnimationOverrider>();
     private bool hasOverrides => playerAnimationOverrides.Count > 0;
@@ -46,36 +48,24 @@ public class PlayerAnimationController : MonoBehaviour
     }
     private void OnSkinChanged(PlayerSkinType newSkin)
     {
-        Sprite newSprite = null;
-
-        foreach (PlayerSkin skin in skins)
+        foreach (SpriteResolver resolver in resolvers)
         {
-            if (skin.Type == newSkin)
-            {
-                skin.Apply(bodySpriteRendererReferences);
-            }
+            string cat = resolver.GetCategory();
+            List<string> labels = new List<string>(library.spriteLibraryAsset.GetCategoryLabelNames(cat));
+            resolver.SetCategoryAndLabel(cat, labels[(int)newSkin]);
         }
 
-        /*
-        if (newSprite != null)
-            spriteRenderer.sprite = newSprite;
-        */
+        astronautBackpack.SetActive(newSkin == PlayerSkinType.Astronaut);
     }
 
     private void Update()
     {
-        Vector2 directionalVector =Vector2.Lerp(lastDirVector,  player.MoveModule.GetDirectionalMoveVector(), Time.deltaTime * 10f);
+        Vector2 directionalVector = Vector2.Lerp(lastDirVector, player.MoveModule.GetDirectionalMoveVector(), Time.deltaTime * 10f);
 
         animator.SetFloat(directionalVectorX, directionalVector.x);
         animator.SetFloat(directionalVectorY, directionalVector.y);
         transform.localScale = new Vector3(Mathf.Sign(directionalVector.x), 1, 1);
 
         lastDirVector = directionalVector;
-    }
-
-    [System.Serializable]
-    public class PlayerBodySpriteRenderers
-    {
-        public SpriteRenderer HeadRenderer, BodyRenderer, ArmLRenderer, ArmRRenderer, LegLRenderer, LegRRenderer;
     }
 }

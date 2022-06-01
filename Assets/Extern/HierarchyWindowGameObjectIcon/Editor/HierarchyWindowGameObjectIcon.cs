@@ -10,7 +10,7 @@ using UnityEngine;
 public static class HierarchyWindowGameObjectIcon
 {
     static HierarchyIconOverrideData overrides = null;
-    const string IgnoreIcons = "GameObject Icon, Prefab Icon, d_GameObject Icon, d_Prefab Icon";
+    const string IgnoreIcons = "GameObject Icon, Prefab Icon, d_GameObject Icon, d_Prefab Icon, d_PrefabVariant Icon";
 
     static HierarchyWindowGameObjectIcon()
     {

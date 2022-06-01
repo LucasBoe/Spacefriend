@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        SkinModule.SetSkinType(PlayerSkinType.Bed);
+        SkinModule.SetSkinType(PlayerSkinType.Sleepy);
     }
 
     private void Update()
@@ -69,7 +69,7 @@ public class PlayerMoveModule
 
     public void Update()
     {
-        if (MoveMode == PlayerMoveMode.SPACE && PlayerServiceProvider.GetPlayerSkin() == PlayerSkinType.Space)
+        if (MoveMode == PlayerMoveMode.SPACE && PlayerServiceProvider.GetPlayerSkin() == PlayerSkinType.Astronaut)
             spaceAgent.Move();
         else if (MoveMode == PlayerMoveMode.FREE)
             navigationAgent.Move();

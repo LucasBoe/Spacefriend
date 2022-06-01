@@ -48,7 +48,7 @@ public class Shower_Minigame : MinigamePhase
         base.EndPhase();
         slider.OnValueChanged.RemoveListener(OnValueChanged);
         emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(0);
-        PlayerServiceProvider.SetPlayerSkin(PlayerSkinType.Bath);
+        PlayerServiceProvider.SetPlayerSkin(PlayerSkinType.AfterShower);
         showerSound.Stop();
         showerAnimationOverrider.gameObject.SetActive(false);
         whistlingAudioSource.gameObject.SetActive(false);
