@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: AVatarSpriteLibrary
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: Clothes
+    m_Hash: -20673264
+    m_CategoryList:
+    - m_Name: Leg_L
+      m_Hash: 1476973793
+      m_Sprite: {fileID: -6497388405455153062, guid: e654c81b2ed3a264796e0e2611231cc4, type: 3}

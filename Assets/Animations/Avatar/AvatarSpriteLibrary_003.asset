@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: AvatarSpriteLibrary_003
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: Head
+    m_Hash: 130111906
+    m_CategoryList:
+    - m_Name: Nudy_Head
+      m_Hash: -604259948
+      m_Sprite: {fileID: -4022800743024637330, guid: e654c81b2ed3a264796e0e2611231cc4, type: 3}
+    - m_Name: Clothes_Head
+      m_Hash: 548737843
+      m_Sprite: {fileID: -5761406596588215771, guid: e654c81b2ed3a264796e0e2611231cc4, type: 3}
+  - m_Name: Body
+    m_Hash: 2073732236
+    m_CategoryList:
+    - m_Name: Nudy_Body
+      m_Hash: -1482668870
+      m_Sprite: {fileID: -908506564830081204, guid: e654c81b2ed3a264796e0e2611231cc4, type: 3}
+    - m_Name: Clothes_Head
+      m_Hash: 548737843
+      m_Sprite: {fileID: 2143834077221778844, guid: e654c81b2ed3a264796e0e2611231cc4, type: 3}
