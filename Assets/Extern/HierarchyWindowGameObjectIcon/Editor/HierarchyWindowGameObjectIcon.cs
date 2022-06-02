@@ -25,20 +25,32 @@ public static class HierarchyWindowGameObjectIcon
 
         var content = EditorGUIUtility.ObjectContent(obj, null);
 
+        if (overrides == null)
+            overrides = GetHierarchyIconOverrideData();
+
         Texture icon = null;
 
         if (content.image != null && !IgnoreIcons.Contains(content.image.name))
+        {
+
             icon = content.image;
+        }
         else
         {
-            if (overrides == null)
-                overrides = GetHierarchyIconOverrideData();
-            else if (overrides.Pairs != null)
+            if (obj.name.Contains("=="))
             {
-                foreach (StringIconPair pair in overrides.Pairs)
+                if (overrides != null)
+                    GUI.DrawTexture(new Rect(62, selectionRect.yMin, 16, 16), overrides.folderIconEditorSprite);
+            }
+            else
+            {
+                if (overrides != null && overrides.Pairs != null)
                 {
-                    if (obj.name.Contains(pair.String))
-                        icon = pair.Icon;
+                    foreach (StringIconPair pair in overrides.Pairs)
+                    {
+                        if (obj.name.Contains(pair.String))
+                            icon = pair.Icon;
+                    }
                 }
             }
         }

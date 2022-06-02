@@ -7,6 +7,7 @@ using UnityEngine;
 public class HierarchyIconOverrideData : ScriptableObject
 {
     [SerializeField] public StringIconPair[] Pairs;
+    [SerializeField] public Texture folderIconEditorSprite;
 }
 
 [System.Serializable]
