@@ -15,4 +15,4 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: cf864f55ed2adb94c8eac5a6da2f372d, type: 3}
   InHandOffset: {x: 0.21, y: -0.04, z: 0}
   InHandFlip: 1
-  HoldsCoffee: 1
+  HoldsCoffee: 0
