@@ -7,6 +7,7 @@ using SoundSystem;
 [RequireComponent(typeof(SpriteRendererMaterialInstanciator))]
 public class Door : MonoBehaviour
 {
+    
     Material material;
     [SerializeField] Sound doorSound;
     private void Awake()
