@@ -20,6 +20,26 @@ MonoBehaviour:
   pitch: 1
   pitchRange: {x: 0.75, y: 1.25}
   randomizePitch: 1
+--- !u!114 &-4103117567626393007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72527e59cbfe0e94e902be4c01aecd1b, type: 3}
+  m_Name: sliding
+  m_EditorClassIdentifier: 
+  _myLibrary: {fileID: 11400000}
+  clip: {fileID: 8300000, guid: c25a278556d88834999b3a80d5081c76, type: 3}
+  useMultipleClipVariants: 0
+  clips: []
+  volume: 0.5
+  pitch: 1
+  pitchRange: {x: 1.1932895, y: 1.3301151}
+  randomizePitch: 1
 --- !u!114 &-3835659345959758788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +148,7 @@ MonoBehaviour:
   - {fileID: 3404450531745126}
   - {fileID: -1278726064346379640}
   - {fileID: -4643175867225244500}
+  - {fileID: -4103117567626393007}
 --- !u!114 &3404450531745126
 MonoBehaviour:
   m_ObjectHideFlags: 0
