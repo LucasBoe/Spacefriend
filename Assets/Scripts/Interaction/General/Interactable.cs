@@ -7,7 +7,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public static System.Action<Interactable> BeginHoverInteractableEvent, EndHoverInteractableEvent, InteractEvent;
-    
+
     [Foldout("Settings")] public string DisplayName;
 
     [Foldout("Settings"), SerializeField] bool useCustomWalkTargetPoint = false;
@@ -16,14 +16,15 @@ public class Interactable : MonoBehaviour
     [Foldout("Settings"), SerializeField] bool isConditioned = false;
     [Foldout("Settings"), SerializeField, ShowIf("isConditioned")] InteractableConditionBase[] conditions;
 
-
-
     private IInteractionListener[] interactionListeners;
     private IInteractableHoverListener[] hoverListeners;
+    private Room room;
+
     private void Awake()
     {
         interactionListeners = GetComponentsInChildren<IInteractionListener>();
         hoverListeners = GetComponentsInChildren<IInteractableHoverListener>();
+        room = GetComponentInParent<Room>();
     }
 
     internal void BeginHover()
@@ -53,8 +54,11 @@ public class Interactable : MonoBehaviour
         InteractEvent?.Invoke(this);
     }
 
-    private bool CheckAllConditions()
+    public bool CheckAllConditions()
     {
+        if (!room.IsActive)
+            return false;
+
         if (isConditioned)
         {
             foreach (InteractableConditionBase condition in conditions)

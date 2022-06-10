@@ -15,6 +15,10 @@ public class NavigationAgent : MonoBehaviour
     float velocity = 0f;
     bool slidingDownBefore = false;
     public System.Action<bool> ChangeIsSlidingEvent;
+    public static System.Action<NavigationGrid> TriggerSwitchEvent;
+
+    private void OnEnable() => TriggerSwitchEvent += (value) => grid = value;
+    private void OnDisable() => TriggerSwitchEvent -= (value) => grid = value;
 
     internal void MoveTo(Vector3 target, Action _callback = null)
     {

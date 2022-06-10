@@ -34,10 +34,18 @@ public class InteractionHandler : MonoBehaviour
         pointerOverCloseUp = Physics2D.Raycast(point, Vector2.zero, float.MaxValue, layerMask: closeUpLayerMask).collider != null;
 
         // HOVER INTERACTABLE
-        RaycastHit2D hit = Physics2D.Raycast(point, Vector2.zero, float.MaxValue, layerMask: interactableLayerMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(point, Vector2.zero, float.MaxValue, layerMask: interactableLayerMask);
 
         Interactable hovered = null;
-        if (!pointerOverUI && hit.collider != null) hovered = hit.collider.GetComponent<Interactable>();
+        if (!pointerOverUI && hits.Length > 0)
+        {
+            foreach (RaycastHit2D hit in hits)
+            {
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null && interactable.CheckAllConditions())
+                    hovered = interactable;
+            }
+        }
 
         if (hovered != interactable)
         {

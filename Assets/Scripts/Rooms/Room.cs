@@ -5,8 +5,25 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    private RoomSpriteRenderer[] roomSpriteRenderers;
     public System.Action<bool> SetRoomStateEvent;
+    public static System.Action<Room> TriggerEnterRoomEvent;
+
+    private RoomSpriteRenderer[] roomSpriteRenderers;
+    public bool IsActive;
+
+    private void OnEnable()
+    {
+        TriggerEnterRoomEvent += OnEnterRoom;
+    }
+    private void OnDisable()
+    {
+        TriggerEnterRoomEvent -= OnEnterRoom;
+    }
+
+    private void OnEnterRoom(Room room)
+    {
+        SetRoomState(room == this);
+    }
 
     private void Start()
     {
@@ -18,22 +35,29 @@ public class Room : MonoBehaviour
     {
         RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
 
-        if (roomAgent != null)
-            SetRoomState(roomAgent, true);
+        if (roomAgent != null && !IsActive)
+            TriggerEnterRoomEvent(this);
     }
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
-
-        if (roomAgent != null)
-            SetRoomState(roomAgent, false);
+        //RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
+        //
+        //if (roomAgent != null)
+        //    SetRoomState(false);
     }
 
-    private void SetRoomState(RoomAgent roomAgent, bool isInRoom)
+    private void SetRoomState(bool isInRoom)
     {
         SetRoomStateEvent?.Invoke(isInRoom);
-        CoroutineUtil.ExecuteFloatRoutine(isInRoom ? 0f : 1f, isInRoom ? 1f : 0f, SetRoomSpriteRendererAlphas, this);
+        IsActive = isInRoom;
+
+        float duration = 0.5f;
+
+        if (!isInRoom)
+            CoroutineUtil.ExecuteFloatRoutine(1f, 0f, SetRoomSpriteRendererAlphas, this, duration);
+        else
+            CoroutineUtil.Delay(() => CoroutineUtil.ExecuteFloatRoutine(0f, 1f, SetRoomSpriteRendererAlphas, this, duration), this, 0);
     }
 
     private void SetRoomSpriteRendererAlphas(float alpha)

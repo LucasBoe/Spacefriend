@@ -23,7 +23,7 @@ public class CoroutineUtil
         function?.Invoke(max);
     }
 
-    public static void Delay(System.Action function, MonoBehaviour behaviour, float delay)
+    public static void Delay(System.Action function, MonoBehaviour behaviour, float delay = 1f)
     {
         behaviour.StartCoroutine(DelayRoutine(function, delay));
     }

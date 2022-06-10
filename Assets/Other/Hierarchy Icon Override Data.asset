@@ -23,4 +23,6 @@ MonoBehaviour:
     Icon: {fileID: 2800000, guid: 2f2e2190c36a7b54295d734e567b3e44, type: 3}
   - String: CloseUp_
     Icon: {fileID: 2800000, guid: 09996e28fa830fb4283b19f26584c9f2, type: 3}
+  - String: Navigation_
+    Icon: {fileID: 2800000, guid: 0f1c9a12872a30f45bab34f536332bb3, type: 3}
   folderIconEditorSprite: {fileID: 2800000, guid: ff531286d02effd4ca6cd1fe835ec8a5, type: 3}

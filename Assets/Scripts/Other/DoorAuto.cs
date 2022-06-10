@@ -5,7 +5,7 @@ using UnityEngine;
 using SoundSystem;
 
 [RequireComponent(typeof(SpriteRendererMaterialInstanciator))]
-public class Door : MonoBehaviour
+public class DoorAuto : MonoBehaviour
 {
     
     Material material;

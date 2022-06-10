@@ -62,6 +62,9 @@ TagManager:
   - name: spaceship-room-foreground
     uniqueID: 1344528553
     locked: 0
+  - name: spaceship-room-light
+    uniqueID: 1207029015
+    locked: 0
   - name: foreground-blend
     uniqueID: 2874404543
     locked: 0
