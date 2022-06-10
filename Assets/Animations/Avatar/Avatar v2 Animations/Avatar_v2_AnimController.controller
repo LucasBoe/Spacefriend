@@ -411,7 +411,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Avatar_Shower-Happy_001
+  m_Name: Avatar_Shower
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -425,7 +425,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 95908b71c15ecc449993465a957710af, type: 2}
+  m_Motion: {fileID: 7400000, guid: f32de1843c38ddf428ef0d6da3399bb4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -451,7 +451,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 40d5e3c61b1534745bb1ca01bb345328, type: 2}
+  m_Motion: {fileID: 7400000, guid: 86ea52d78deffac4ba384776439928c6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Plant
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: 12b1110a849b5904d9cfba4ce1b1dfd0, type: 3}
-  InHandOffset: {x: -0.51, y: 1.22, z: 0}
+  InHandOffset: {x: -0.12, y: 1.22, z: 0}
   InHandFlip: 1

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class ItemInHandController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ItemInHandController : MonoBehaviour
     [SerializeField, Foldout("Reference")] SpriteRenderer itemRenderer;
     [SerializeField, Foldout("Reference")] Transform readFlipTransform;
     [SerializeField, Foldout("Reference")] Transform targetPositionTransform, targetRotationTransform;
+    [SerializeField, Foldout("Reference")] LimbSolver2D limbSolver;
 
     [SerializeField, BoxGroup("Lerp")] bool lerpActive = false;
     [SerializeField, BoxGroup("Lerp")] TransformData lerpWith;
@@ -49,10 +51,12 @@ public class ItemInHandController : MonoBehaviour
         if (data == null)
         {
             itemRenderer.sprite = null;
+            CoroutineUtil.ExecuteFloatRoutine(0.75f, 0f, (value) => limbSolver.weight = value, this, 0.5f);
         }
         else
         {
             itemRenderer.sprite = data.Sprite;
+            CoroutineUtil.ExecuteFloatRoutine(0f, 0.75f, (value) => limbSolver.weight = value, this, 0.5f);
 
             float transitonDuration = 0.25f;
 
