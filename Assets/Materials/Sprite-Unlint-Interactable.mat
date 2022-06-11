@@ -57,7 +57,7 @@ Material:
     - _EnableExternalAlpha: 0
     m_Colors:
     - Color_7206461cc18e4bb0b5c660a7e9cad366: {r: 1, g: 1, b: 1, a: 1}
-    - Color_ca1347e54079490ab1ba80a92fee5dea: {r: 1, g: 0, b: 0, a: 1}
+    - Color_ca1347e54079490ab1ba80a92fee5dea: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

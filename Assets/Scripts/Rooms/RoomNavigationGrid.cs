@@ -21,7 +21,7 @@ public class RoomNavigationGrid : NavigationGrid
         room.SetRoomStateEvent -= OnSetRoomStateEvent;
     }
 
-    protected virtual void OnSetRoomStateEvent(bool roomActive)
+    private void OnSetRoomStateEvent(bool roomActive)
     {
         if (roomActive) NavigationAgent.TriggerSwitchEvent(this);
     }
