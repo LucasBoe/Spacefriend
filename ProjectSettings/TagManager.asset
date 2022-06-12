@@ -74,6 +74,9 @@ TagManager:
   - name: closeup-content
     uniqueID: 2680357939
     locked: 0
+  - name: spaceship-foreground
+    uniqueID: 2276211863
+    locked: 0
   - name: ui
     uniqueID: 883619511
     locked: 0
