@@ -19,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Tex1:
+        m_Texture: {fileID: 2800000, guid: 11766e1455e1c32459dc6839cd18a942, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Tex2:
+        m_Texture: {fileID: 2800000, guid: c876d5730d2abcf479bd6991f8b38a1d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_14490c18714e41d08a6453f8816d7354:
         m_Texture: {fileID: 2800000, guid: 171a2af9d2ad16b4994ae4f33d5928c1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -28,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c876d5730d2abcf479bd6991f8b38a1d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -37,6 +45,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VariantTex:
+        m_Texture: {fileID: 2800000, guid: 11766e1455e1c32459dc6839cd18a942, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
