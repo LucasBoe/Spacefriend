@@ -56,9 +56,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_f61598c966314099ae1d02b5b52cb422: 0
+    - Vector1_25cbe58d346d45b5abb0cae14845642a: 10
     - Vector1_853c8d4d312c468d8b262dbcd165a5aa: 0
     - _EnableExternalAlpha: 0
+    - _Open: 0.346
     m_Colors:
+    - Color_a65c6d17daca42f09ea6099bf1849955: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

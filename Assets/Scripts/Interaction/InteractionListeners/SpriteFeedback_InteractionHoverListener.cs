@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(InteractableSpriteRenderMaterialInstanciator))]
 public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteractableHoverListener
 {
     Material material;
     private void Awake()
     {
         material = GetComponent<SpriteRenderer>().material;
+        Debug.Log(material);
     }
     public void BeginHover()
     {
