@@ -101,19 +101,7 @@ public class InteractionHandler : MonoBehaviour
                     //notify closeUps to close
                     ClickOutsideOfCloseUpEvent?.Invoke();
 
-                    bool pointerOutsideOfRoom = true;
-
-                    //check for click outside of room
-                    RaycastHit2D[] roomHits = Physics2D.RaycastAll(cursorPoint, Vector2.zero, float.MaxValue, layerMask: roomLayerMask);
-
-                    Room current = PlayerServiceProvider.GetRoomAgent().CurrentRoom;
-                    foreach (RaycastHit2D hit in roomHits)
-                    {
-                        if (current == hit.collider.GetComponent<Room>())
-                            pointerOutsideOfRoom = false;
-                    }
-
-                    if (pointerOutsideOfRoom)
+                    if (IsPointOutsideOfCurrentRoom(cursorPoint, PlayerServiceProvider.GetRoomAgent().CurrentRoom))
                     {
                         //move and interact with closest door to leave room
                         MoveToAndInteractWith(PlayerServiceProvider.GetRoomAgent().GetClosestDoor(cursorPoint));
@@ -126,6 +114,19 @@ public class InteractionHandler : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool IsPointOutsideOfCurrentRoom(Vector3 cursorPoint, Room current)
+    {
+        RaycastHit2D[] roomHits = Physics2D.RaycastAll(cursorPoint, Vector2.zero, float.MaxValue, layerMask: roomLayerMask);
+
+        foreach (RaycastHit2D hit in roomHits)
+        {
+            if (current == hit.collider.GetComponent<Room>())
+                return false;
+        }
+
+        return true;
     }
 
     private static void MoveToAndInteractWith(Interactable target)

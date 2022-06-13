@@ -25,7 +25,7 @@ public class RoomAgent : MonoBehaviour
 
     internal Interactable GetClosestDoor(Vector3 cursorPoint)
     {
-        Door_InteractionListener[] doors = currentRoom.GetComponentsInChildren<Door_InteractionListener>();
+        ChangeRoom_InteractionListener[] doors = currentRoom.GetComponentsInChildren<ChangeRoom_InteractionListener>();
         return doors.OrderBy(door => Vector2.Distance(door.transform.position, cursorPoint)).First().GetComponent<Interactable>();
     }
 }
