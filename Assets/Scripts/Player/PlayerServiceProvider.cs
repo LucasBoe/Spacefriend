@@ -8,6 +8,7 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     Player player;
     Animator playerAimator;
     ItemInHandController itemInHandController;
+    RoomAgent roomAgent;
 
     protected override void Awake()
     {
@@ -15,6 +16,7 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
         player = FindObjectOfType<Player>();
         playerAimator = player.GetComponentInChildren<Animator>();
         itemInHandController = player.GetComponentInChildren<ItemInHandController>();
+        roomAgent = player.GetComponent<RoomAgent>();
     }
 
     public static void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.SetPositionOverride(playerPositionOverrider);
@@ -26,4 +28,5 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
     internal static void CollectItemToHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
     internal static void RemoveItemFromHand(Transform target) => Instance.itemInHandController.SetItemInHand(null, target);
+    internal static RoomAgent GetRoomAgent() => Instance.roomAgent;
 }

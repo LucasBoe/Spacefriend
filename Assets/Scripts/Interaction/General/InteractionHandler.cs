@@ -10,7 +10,7 @@ public class InteractionHandler : MonoBehaviour
     [SerializeField, ReadOnly, Foldout("Info")] Interactable interactable;
     [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverCloseUp;
 
-    int interactableLayerMask, closeUpLayerMask, totalShipLayerMask;
+    int roomLayerMask, interactableLayerMask, closeUpLayerMask, totalShipLayerMask;
     Camera mainCam;
 
     public static System.Action ClickOutsideOfCloseUpEvent;
@@ -18,6 +18,7 @@ public class InteractionHandler : MonoBehaviour
 
     private void Awake()
     {
+        roomLayerMask = LayerMask.GetMask("Room");
         interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast", "CloseUp", "TotalShip");
         closeUpLayerMask = LayerMask.GetMask("CloseUp");
         totalShipLayerMask = LayerMask.GetMask("TotalShip");
@@ -93,18 +94,42 @@ public class InteractionHandler : MonoBehaviour
                 if (interactable != null)
                 {
                     //click on interactable
-                    Interactable target = interactable;
-                    PlayerServiceProvider.GetMoveModule().WalkTo(target.GetPoint(), () => target.Interact());
+                    MoveToAndInteractWith(interactable);
                 }
                 else
                 {
                     //notify closeUps to close
                     ClickOutsideOfCloseUpEvent?.Invoke();
 
-                    //move to cursor positon
-                    PlayerServiceProvider.GetMoveModule().WalkTo(cursorPoint);
+                    bool pointerOutsideOfRoom = true;
+
+                    //check for click outside of room
+                    RaycastHit2D[] roomHits = Physics2D.RaycastAll(cursorPoint, Vector2.zero, float.MaxValue, layerMask: roomLayerMask);
+
+                    Room current = PlayerServiceProvider.GetRoomAgent().CurrentRoom;
+                    foreach (RaycastHit2D hit in roomHits)
+                    {
+                        if (current == hit.collider.GetComponent<Room>())
+                            pointerOutsideOfRoom = false;
+                    }
+
+                    if (pointerOutsideOfRoom)
+                    {
+                        //move and interact with closest door to leave room
+                        MoveToAndInteractWith(PlayerServiceProvider.GetRoomAgent().GetClosestDoor(cursorPoint));
+                    }
+                    else
+                    {
+                        //move to cursor positon
+                        PlayerServiceProvider.GetMoveModule().WalkTo(cursorPoint);
+                    }
                 }
             }
         }
+    }
+
+    private static void MoveToAndInteractWith(Interactable target)
+    {
+        PlayerServiceProvider.GetMoveModule().WalkTo(target.GetPoint(), () => target.Interact());
     }
 }

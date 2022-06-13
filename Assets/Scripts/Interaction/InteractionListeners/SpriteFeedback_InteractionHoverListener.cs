@@ -8,7 +8,6 @@ public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteracta
     private void Awake()
     {
         material = GetComponent<SpriteRenderer>().material;
-        Debug.Log(material);
     }
     public void BeginHover()
     {

@@ -1,18 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RoomAgent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Room currentRoom;
+    public Room CurrentRoom => currentRoom;
+
+    private void OnEnable()
     {
-        
+        Room.TriggerEnterRoomEvent += OnEnterRoom;
+    }
+    private void OnDisable()
+    {
+        Room.TriggerEnterRoomEvent -= OnEnterRoom;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnterRoom(Room room)
     {
-        
+        currentRoom = room;
+    }
+
+    internal Interactable GetClosestDoor(Vector3 cursorPoint)
+    {
+        Door_InteractionListener[] doors = currentRoom.GetComponentsInChildren<Door_InteractionListener>();
+        return doors.OrderBy(door => Vector2.Distance(door.transform.position, cursorPoint)).First().GetComponent<Interactable>();
     }
 }
