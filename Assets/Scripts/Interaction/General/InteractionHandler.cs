@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,15 +10,17 @@ public class InteractionHandler : MonoBehaviour
     [SerializeField, ReadOnly, Foldout("Info")] Interactable interactable;
     [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverCloseUp;
 
-    int interactableLayerMask, closeUpLayerMask;
+    int interactableLayerMask, closeUpLayerMask, totalShipLayerMask;
     Camera mainCam;
 
     public static System.Action ClickOutsideOfCloseUpEvent;
+    public static System.Action<bool> ClickedInTotalViewEvent;
 
     private void Awake()
     {
-        interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast", "CloseUp");
+        interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast", "CloseUp", "TotalShip");
         closeUpLayerMask = LayerMask.GetMask("CloseUp");
+        totalShipLayerMask = LayerMask.GetMask("TotalShip");
         mainCam = Camera.main;
     }
 
@@ -28,13 +31,30 @@ public class InteractionHandler : MonoBehaviour
         bool pointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
         //calculate cursor position
-        Vector3 point = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCam.transform.position.z));
+        Vector3 cursorPoint = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCam.transform.position.z));
 
+        if (GameModeManager.Current == GameMode.Play)
+            UpdatePlayModeInteractions(pointerOverUI, cursorPoint);
+        else if (GameModeManager.Current == GameMode.Total)
+            UpdateTotalModeInteractions(cursorPoint);
+    }
+
+    private void UpdateTotalModeInteractions(Vector3 cursorPoint)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            bool outsideOfShip = (Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: totalShipLayerMask).collider == null);
+            ClickedInTotalViewEvent?.Invoke(outsideOfShip);
+        }
+    }
+
+    private void UpdatePlayModeInteractions(bool pointerOverUI, Vector3 cursorPoint)
+    {
         // CLOSE UP CHECK
-        pointerOverCloseUp = Physics2D.Raycast(point, Vector2.zero, float.MaxValue, layerMask: closeUpLayerMask).collider != null;
+        pointerOverCloseUp = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: closeUpLayerMask).collider != null;
 
         // HOVER INTERACTABLE
-        RaycastHit2D[] hits = Physics2D.RaycastAll(point, Vector2.zero, float.MaxValue, layerMask: interactableLayerMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(cursorPoint, Vector2.zero, float.MaxValue, layerMask: interactableLayerMask);
 
         Interactable hovered = null;
         if (!pointerOverUI && hits.Length > 0)
@@ -82,7 +102,7 @@ public class InteractionHandler : MonoBehaviour
                     ClickOutsideOfCloseUpEvent?.Invoke();
 
                     //move to cursor positon
-                    PlayerServiceProvider.GetMoveModule().WalkTo(point);
+                    PlayerServiceProvider.GetMoveModule().WalkTo(cursorPoint);
                 }
             }
         }

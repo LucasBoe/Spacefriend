@@ -30,6 +30,9 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
         {
             current = (ZoomState)number;
             ChangedStateEvent?.Invoke(before, current);
+
+            if (current == ZoomState.TOTAL) GameModeManager.SetGameMode(GameMode.Total);
+            else if (current == ZoomState.ROOM) GameModeManager.SetGameMode(GameMode.Play);
         }
     }
 

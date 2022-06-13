@@ -9,6 +9,8 @@ public class ZoomController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameModeManager.Current != GameMode.Play && GameModeManager.Current != GameMode.Total) return;
+
         scrollDelta += Input.mouseScrollDelta.y;
 
         if (scrollDelta >= 1)

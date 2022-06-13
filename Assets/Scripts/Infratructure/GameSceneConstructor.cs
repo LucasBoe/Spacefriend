@@ -11,7 +11,9 @@ public class GameSceneConstructor : MonoBehaviour
         Transform marker = new GameObject("==SINGLETONS==").transform;
         foreach (GameObject gameObject in ToInstatiate)
         {
-            Instantiate(gameObject).transform.SetAsFirstSibling();
+            Transform newInstance = Instantiate(gameObject).transform;
+            newInstance.SetParent(marker);
+            newInstance.SetAsFirstSibling();
         }
         marker.SetAsFirstSibling();
 
