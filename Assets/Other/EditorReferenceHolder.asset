@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e62471d915f3c241b8640fe4e9a9662, type: 3}
   m_Name: EditorReferenceHolder
   m_EditorClassIdentifier: 
-  PlayerAnimatorController: {fileID: 9100000, guid: 2dc654cef2ccaef4b8eb26b7b62ee415, type: 2}
+  PlayerAnimatorController: {fileID: 9100000, guid: 3afe5b4cb1a9bc1469a5cb1b73aa9250, type: 2}

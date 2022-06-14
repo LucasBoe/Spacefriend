@@ -1150,7 +1150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170618174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.039, y: -2.2, z: 0}
+  m_LocalPosition: {x: 0.039, y: -2.642, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1659761164}
@@ -1901,7 +1901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285602710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 3.2500005, z: 0}
+  m_LocalPosition: {x: -0.471, y: 2.401, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 949410754}
@@ -2057,8 +2057,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 1
+      scalar: 3
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2609,7 +2609,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 180}
-    m_Scale: {x: 0.73, y: 1, z: 1}
+    m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -18466,7 +18466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791637446}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.04, y: 4.1, z: 0}
+  m_LocalPosition: {x: 43.203, y: 4.191, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 410244891}
@@ -18940,7 +18940,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949410753}
   m_LocalRotation: {x: -0, y: -0, z: 0.052992854, w: 0.99859494}
-  m_LocalPosition: {x: -0.054527164, y: -5.271853, z: 0}
+  m_LocalPosition: {x: -0.09, y: -4.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 285602711}
@@ -37911,7 +37911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRunning: 0
-  showerPhaseDuration: 20
+  showerPhaseDuration: 30
   slider: {fileID: 743517692}
   heatToParticleAmountCurve:
     serializedVersion: 2
@@ -38009,6 +38009,7 @@ MonoBehaviour:
   stinkyProperty: {fileID: 11400000, guid: 1baa5304d560a5849818b44a519ba7bf, type: 2}
   showerAnimationOverrider: {fileID: 285857228}
   whistlingAudioSource: {fileID: 259306190}
+  showerHeatAnimatorValue: ShowerHeatFeedback
   blurPropertyName: Blur
   showerSound: {fileID: -3835659345959758788, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
   freezingSound: {fileID: 3585583294298198007, guid: 2a792719e00ce154e95da466dff14b4c, type: 2}
@@ -44029,7 +44030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842536017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.740002, y: 4.1600003, z: 0}
+  m_LocalPosition: {x: 30.740002, y: 4.176, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 410244891}
@@ -44822,6 +44823,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4624862131060976297, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5201382532890519140, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -44924,7 +44929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5201382534700700849, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.11
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 5201382534700700849, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

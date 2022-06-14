@@ -16,6 +16,7 @@ public class Shower_Minigame : MinigamePhase
     [Foldout("References"), SerializeField] PlayerProperty stinkyProperty;
     [Foldout("References"), SerializeField] PlayerAnimationOverrider showerAnimationOverrider;
     [Foldout("References"), SerializeField] AudioSource whistlingAudioSource;
+    [Foldout("References"), SerializeField, PlayerAnimatorParam] string showerHeatAnimatorValue;
     [SerializeField] string blurPropertyName;
     [SerializeField] Sound showerSound, freezingSound;
     [SerializeField, Range(0, 1)] float freezingEdgeValue;
@@ -23,6 +24,7 @@ public class Shower_Minigame : MinigamePhase
     Material regularInteractableMaterial;
     ParticleSystem.EmissionModule emissionModule;
     ParticleSystem.MainModule mainModule;
+    Animator playerAnimator = null;
 
 
     protected override void Awake()
@@ -30,6 +32,7 @@ public class Shower_Minigame : MinigamePhase
         base.Awake();
         emissionModule = steamShowerParticles.emission;
         mainModule = steamShowerParticles.main;
+        playerAnimator = PlayerServiceProvider.GetPlayerAnimator();
     }
 
     public override void StartPhase()
@@ -60,6 +63,7 @@ public class Shower_Minigame : MinigamePhase
         emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(heatToParticleAmountCurve.Evaluate(heat));
         mainModule.startSize = new ParticleSystem.MinMaxCurve(heatToParticleSizeCurve.Evaluate(heat));
         whistlingAudioSource.volume = heatToWhistlingVolume.Evaluate(heat);
+        playerAnimator.SetFloat(showerHeatAnimatorValue, heat);
 
         bool shouldBeFreezing = heat < freezingEdgeValue;
 

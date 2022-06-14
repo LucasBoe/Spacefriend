@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Animations;
 
-[CreateAssetMenu]
+[FilePath("Other/EditorReferenceHolder.asset", FilePathAttribute.Location.PreferencesFolder)]
 public class EditorReferenceHolder : ScriptableSingleton<EditorReferenceHolder>
 {
     public AnimatorController PlayerAnimatorController;
