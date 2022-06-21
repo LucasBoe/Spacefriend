@@ -60,9 +60,41 @@ public class InteractionHandler : MonoBehaviour
 
     private void UpdatePlayModeInteractions(bool pointerOverUI, Vector3 cursorPoint)
     {
-        // CLOSE UP CHECK
-        pointerOverCloseUp = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: closeUpLayerMask).collider != null;
+        UpdateHover(pointerOverUI, cursorPoint);
+        if (pointerOverUI) return;
+        UpdateClick(cursorPoint);
+    }
 
+    private void UpdateClick(Vector3 cursorPoint)
+    {
+        Interactable target = interactable;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            // CLOSE UP CHECK
+            pointerOverCloseUp = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: closeUpLayerMask).collider != null;
+
+            if (pointerOverCloseUp)
+            {
+                //interactables that are part of closeups are interacted with directly
+                if (target != null) target.Interact();
+            }
+            else
+            {
+                //notify closeUps to close
+                ClickOutsideOfCloseUpEvent?.Invoke();
+
+                if (target != null)
+                    moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
+                else
+                    moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom));
+
+            }
+        }
+    }
+
+    private void UpdateHover(bool pointerOverUI, Vector3 cursorPoint)
+    {
         // HOVER INTERACTABLE
         RaycastHit2D[] hits = Physics2D.RaycastAll(cursorPoint, Vector2.zero, float.MaxValue, layerMask: interactableLayerMask);
 
@@ -86,40 +118,6 @@ public class InteractionHandler : MonoBehaviour
                 hovered.BeginHover();
         }
         interactable = hovered;
-
-        if (pointerOverUI) return;
-
-        // CLICK
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (pointerOverCloseUp)
-            {
-                //interactables that are part of closeups are interacted with directly
-                if (interactable != null)
-                    interactable.Interact();
-            }
-            else
-            {
-                if (interactable != null)
-                {
-                    //click on interactable
-                    Interactable target = interactable;
-                    moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
-                }
-                else
-                {
-                    //notify closeUps to close
-                    ClickOutsideOfCloseUpEvent?.Invoke();
-
-                    bool pointerOutsideOfCurrentRoom = IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom);
-
-                    Debug.Log("move to " + cursorPoint.ToString() + " (" + pointerOutsideOfCurrentRoom + ")");
-
-                    //move to cursor positon
-                    moveModule.MoveTo(cursorPoint, pointerOutsideOfCurrentRoom);
-                }
-            }
-        }
     }
 
     private bool IsPointOutsideOfCurrentRoom(Vector3 cursorPoint, Room current)

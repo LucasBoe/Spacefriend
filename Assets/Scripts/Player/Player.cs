@@ -92,7 +92,7 @@ public class PlayerMoveModule
         {
             if (pointerOutsideOfCurrentRoom)
             {
-                navigationAgent.MoveTo(point, () => PlayerServiceProvider.GetRoomAgent().GetClosestDoor(point).Interact());
+                navigationAgent.MoveTo(point, () => PlayerServiceProvider.GetRoomAgent().GetClosestRoomChangeInteractable(point).Interact());
             }
             else
             {

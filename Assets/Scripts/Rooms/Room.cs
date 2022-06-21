@@ -11,6 +11,11 @@ public class Room : MonoBehaviour
     private RoomSpriteRenderer[] roomSpriteRenderers;
     public bool IsActive;
 
+    private void Awake()
+    {
+        roomSpriteRenderers = GetComponentsInChildren<RoomSpriteRenderer>();
+    }
+
     private void OnEnable()
     {
         TriggerEnterRoomEvent += OnEnterRoom;
@@ -27,7 +32,6 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        roomSpriteRenderers = GetComponentsInChildren<RoomSpriteRenderer>();
         SetRoomSpriteRendererAlphas(0);
     }
 

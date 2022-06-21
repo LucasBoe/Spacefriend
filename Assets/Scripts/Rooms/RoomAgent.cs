@@ -6,8 +6,13 @@ using UnityEngine;
 
 public class RoomAgent : MonoBehaviour
 {
-    Room currentRoom;
+    [SerializeField] Room currentRoom;
     public Room CurrentRoom => currentRoom;
+
+    private void Start()
+    {
+        Room.TriggerEnterRoomEvent(currentRoom);
+    }
 
     private void OnEnable()
     {
@@ -23,7 +28,7 @@ public class RoomAgent : MonoBehaviour
         currentRoom = room;
     }
 
-    internal Interactable GetClosestDoor(Vector3 cursorPoint)
+    internal Interactable GetClosestRoomChangeInteractable(Vector3 cursorPoint)
     {
         ChangeRoom_InteractionListener[] doors = currentRoom.GetComponentsInChildren<ChangeRoom_InteractionListener>();
         return doors.OrderBy(door => Vector2.Distance(door.transform.position, cursorPoint)).First().GetComponent<Interactable>();
