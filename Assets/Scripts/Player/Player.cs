@@ -6,18 +6,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public PlayerMode Mode;
     public PlayerMoveModule MoveModule;
     public PlayerAnimationController AnimationController;
     public PlayerSkinModule SkinModule;
 
     private void OnEnable()
     {
-        MoveModule.OnEnable();
+        Mode.OnEnable();
     }
 
     private void OnDisable()
     {
-        MoveModule.OnDisable();
+        
+       Mode.OnDisable();
     }
 
     private void Start()
@@ -29,6 +31,32 @@ public class Player : MonoBehaviour
     {
         MoveModule.Update();
     }
+}
+
+
+[System.Serializable]
+public class PlayerMode
+{
+    [SerializeField] SpaceAgent spaceAgent;
+
+    [SerializeField, ReadOnly] PlayerModeType mode;
+    public bool IsOnShip => mode == PlayerModeType.SHIP;
+    public bool IsInSpace => mode == PlayerModeType.SPACE;
+
+    public void SetMode(PlayerModeType newMode)
+    {
+        mode = newMode;
+    }
+
+    public void OnEnable() => spaceAgent.ChangeSpaceModeEvent += SetSpaceModeActive;
+    public void OnDisable() => spaceAgent.ChangeSpaceModeEvent -= SetSpaceModeActive;
+    private void SetSpaceModeActive(bool spaceMode) => SetMode(spaceMode ? PlayerModeType.SPACE : PlayerModeType.SHIP);
+}
+
+public enum PlayerModeType
+{
+    SHIP,
+    SPACE,
 }
 
 [System.Serializable]
@@ -47,31 +75,37 @@ public class PlayerSkinModule
 [System.Serializable]
 public class PlayerMoveModule
 {
-    public PlayerMoveMode MoveMode;
+    private bool overridePosition = false;
     private PlayerPositionOverrider positionOverride;
     private Vector2 directionalVectorFromOverride;
     [SerializeField] Transform playerTransform;
 
     [SerializeField] SpaceAgent spaceAgent;
-    [SerializeField] NavigationAgent navigationAgent;
-
-    public void OnEnable() => spaceAgent.ChangeSpaceModeEvent += SetSpaceModeActive;
-    public void OnDisable() => spaceAgent.ChangeSpaceModeEvent -= SetSpaceModeActive;
-    private void SetSpaceModeActive(bool spaceMode) => MoveMode = spaceMode ? PlayerMoveMode.SPACE : PlayerMoveMode.SPACE;
-
-    public void WalkTo(Vector3 point, System.Action callback = null)
+    [SerializeField] NavigationAgent navigationAgent; 
+    internal void MoveTo(Vector3 point, bool pointerOutsideOfCurrentRoom, System.Action callback = null)
     {
-        if (MoveMode == PlayerMoveMode.SPACE)
+        if (PlayerServiceProvider.GetPlayerMode().IsInSpace)
+        {
             spaceAgent.MoveTo(point, callback);
+        }
         else
-            navigationAgent.MoveTo(point, callback);
+        {
+            if (pointerOutsideOfCurrentRoom)
+            {
+                navigationAgent.MoveTo(point, () => PlayerServiceProvider.GetRoomAgent().GetClosestDoor(point).Interact());
+            }
+            else
+            {
+                navigationAgent.MoveTo(point, callback);
+            }
+        }
     }
 
     public void Update()
     {
-        if (MoveMode == PlayerMoveMode.SPACE && PlayerServiceProvider.GetPlayerSkin() == PlayerSkinType.Astronaut)
+        if (PlayerServiceProvider.GetPlayerMode().IsInSpace && PlayerServiceProvider.GetPlayerSkin() == PlayerSkinType.Astronaut)
             spaceAgent.Move();
-        else if (MoveMode == PlayerMoveMode.FREE)
+        else if (!overridePosition)
             navigationAgent.Move();
         else
         {
@@ -92,22 +126,15 @@ public class PlayerMoveModule
     public void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider)
     {
         positionOverride = playerPositionOverrider;
-        MoveMode = PlayerMoveMode.OVERRIDEN;
+        overridePosition = true;
     }
     public void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider)
     {
         if (playerPositionOverrider == positionOverride)
         {
             positionOverride = null;
-            MoveMode = PlayerMoveMode.FREE;
+            overridePosition = false;
         }
     }
-
-    public Vector3 GetDirectionalMoveVector() => MoveMode == PlayerMoveMode.OVERRIDEN ? directionalVectorFromOverride : navigationAgent.DirectionalVector;
-    public enum PlayerMoveMode
-    {
-        FREE, //Tied to the nav grid, position is defined through the agent, interactions are possible
-        OVERRIDEN, //Movement and animation can be overwritten by an interaction, interactions are not possible
-        SPACE //Custom movement and animation, custom pyhsics and some interactions are blocked
-    }
+    public Vector3 GetDirectionalMoveVector() => overridePosition ? directionalVectorFromOverride : navigationAgent.DirectionalVector;
 }

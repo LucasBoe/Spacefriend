@@ -5,7 +5,6 @@ using NaughtyAttributes;
 
 public class SplineCreator : MonoBehaviour
 {
-    [SerializeField] Transform splineTarget;
     [SerializeField] LineRenderer lineRenderer;
 
     [Foldout("Info"), SerializeField, ReadOnly] Vector3[] previousPoints;
@@ -22,12 +21,9 @@ public class SplineCreator : MonoBehaviour
     [Foldout("Values"), SerializeField, Range(0, 1)] float globalCurveStrenthMultiplier = 0.1f;
     [Foldout("Values"), SerializeField, Range(0, 5)] int smoothLoopCount = 3;
 
-    private void Update()
+    public void DrawSpline(Vector2 start, Vector2 end)
     {
         List<Vector3> points = new List<Vector3>();
-
-        Vector2 start = transform.position;
-        Vector2 end = splineTarget.position;
 
         Vector2 forward = (end - start).normalized;
 

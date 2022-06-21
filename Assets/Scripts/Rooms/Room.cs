@@ -35,7 +35,7 @@ public class Room : MonoBehaviour
     {
         RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
 
-        if (roomAgent != null && !IsActive)
+        if (roomAgent != null && !IsActive && PlayerServiceProvider.GetPlayerMode().IsOnShip)
             TriggerEnterRoomEvent(this);
     }
 

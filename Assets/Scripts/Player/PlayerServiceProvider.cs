@@ -9,6 +9,8 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     Animator playerAimator;
     ItemInHandController itemInHandController;
     RoomAgent roomAgent;
+    SpaceAgent spaceAgent;
+    PlayerMode playerMode;
 
     protected override void Awake()
     {
@@ -17,8 +19,9 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
         playerAimator = player.GetComponentInChildren<Animator>();
         itemInHandController = player.GetComponentInChildren<ItemInHandController>();
         roomAgent = player.GetComponent<RoomAgent>();
+        spaceAgent = player.GetComponent<SpaceAgent>();
+        playerMode = player.Mode;
     }
-
     public static void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.SetPositionOverride(playerPositionOverrider);
     public static void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider) => Instance.player.MoveModule.RevokeOverridePosition(playerPositionOverrider);
     internal static PlayerMoveModule GetMoveModule() => Instance.player.MoveModule;
@@ -26,7 +29,10 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     public static ItemData GetPlayerItemInHand() => Instance.itemInHandController.Item;
     public static PlayerSkinType GetPlayerSkin() => Instance.player.SkinModule.SkinType;
     public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
-    internal static void CollectItemToHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
-    internal static void RemoveItemFromHand(Transform target) => Instance.itemInHandController.SetItemInHand(null, target);
-    internal static RoomAgent GetRoomAgent() => Instance.roomAgent;
+    public static void CollectItemToHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
+    public static void RemoveItemFromHand(Transform target) => Instance.itemInHandController.SetItemInHand(null, target);
+    public static RoomAgent GetRoomAgent() => Instance.roomAgent;
+    public static SpaceAgent GetSpaceAgent() => Instance.spaceAgent;
+    public static PlayerMode GetPlayerMode() => Instance.playerMode;
+    public static Transform GetPlayerTransform() => Instance.player.transform;
 }

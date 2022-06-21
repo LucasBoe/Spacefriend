@@ -13,6 +13,9 @@ public class InteractionHandler : MonoBehaviour
     int roomLayerMask, interactableLayerMask, closeUpLayerMask, totalShipLayerMask;
     Camera mainCam;
 
+    PlayerMoveModule moveModule;
+    RoomAgent roomAgent;
+
     public static System.Action ClickOutsideOfCloseUpEvent;
     public static System.Action<bool> ClickedInTotalViewEvent;
 
@@ -23,6 +26,12 @@ public class InteractionHandler : MonoBehaviour
         closeUpLayerMask = LayerMask.GetMask("CloseUp");
         totalShipLayerMask = LayerMask.GetMask("TotalShip");
         mainCam = Camera.main;
+    }
+
+    private void Start()
+    {
+        moveModule = PlayerServiceProvider.GetMoveModule();
+        roomAgent = PlayerServiceProvider.GetRoomAgent();
     }
 
     // Update is called once per frame
@@ -94,23 +103,20 @@ public class InteractionHandler : MonoBehaviour
                 if (interactable != null)
                 {
                     //click on interactable
-                    MoveToAndInteractWith(interactable);
+                    Interactable target = interactable;
+                    moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
                 }
                 else
                 {
                     //notify closeUps to close
                     ClickOutsideOfCloseUpEvent?.Invoke();
 
-                    if (IsPointOutsideOfCurrentRoom(cursorPoint, PlayerServiceProvider.GetRoomAgent().CurrentRoom))
-                    {
-                        //move and interact with closest door to leave room
-                        MoveToAndInteractWith(PlayerServiceProvider.GetRoomAgent().GetClosestDoor(cursorPoint));
-                    }
-                    else
-                    {
-                        //move to cursor positon
-                        PlayerServiceProvider.GetMoveModule().WalkTo(cursorPoint);
-                    }
+                    bool pointerOutsideOfCurrentRoom = IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom);
+
+                    Debug.Log("move to " + cursorPoint.ToString() + " (" + pointerOutsideOfCurrentRoom + ")");
+
+                    //move to cursor positon
+                    moveModule.MoveTo(cursorPoint, pointerOutsideOfCurrentRoom);
                 }
             }
         }
@@ -127,10 +133,5 @@ public class InteractionHandler : MonoBehaviour
         }
 
         return true;
-    }
-
-    private static void MoveToAndInteractWith(Interactable target)
-    {
-        PlayerServiceProvider.GetMoveModule().WalkTo(target.GetPoint(), () => target.Interact());
     }
 }
