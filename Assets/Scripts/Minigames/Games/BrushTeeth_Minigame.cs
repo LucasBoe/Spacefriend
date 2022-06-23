@@ -20,7 +20,6 @@ public class BrushTeeth_Minigame : MinigamePhase
     float newBrushDelta = 0f;
     float smoothedDelta;
     bool active = false;
-    bool holdingMouse = false;
 
     protected override void Awake()
     {

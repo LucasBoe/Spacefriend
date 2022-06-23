@@ -2,10 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableSpriteRenderMaterialInstanciator : SpriteRendererMaterialInstanciator
+[RequireComponent(typeof(SpriteRenderer))]
+public class InteractableSpriteRenderMaterialInstanciator : MonoBehaviour
 {
-    protected override Material GetMaterialToInstatiate()
+    [SerializeField] MaterialType materialType;
+
+    SpriteRenderer spriteRenderer;
+    private void Awake()
     {
-        return GameReferenceHolder.Instance.InteractableMaterial;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Material material = new Material(GetMaterialToInstatiate());
+        spriteRenderer.material = material;
+    }
+
+    private Material GetMaterialToInstatiate()
+    {
+        if (materialType == MaterialType.Interactable)
+            return GameReferenceHolder.Instance.InteractableMaterial;
+        else
+            return spriteRenderer.material;
+    }
+
+    private enum MaterialType
+    {
+        Interactable,
+        Local,
     }
 }
