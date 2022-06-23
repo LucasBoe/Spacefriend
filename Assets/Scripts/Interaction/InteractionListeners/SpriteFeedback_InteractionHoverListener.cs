@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteractableHoverListener
 {
     Material material;
-    private void Awake()
+    private void Start()
     {
         material = GetComponent<SpriteRenderer>().material;
     }

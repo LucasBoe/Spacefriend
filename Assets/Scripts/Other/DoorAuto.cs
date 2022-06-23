@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoundSystem;
 
-[RequireComponent(typeof(SpriteRendererMaterialInstanciator))]
 public class DoorAuto : MonoBehaviour
 {
     
     Material material;
     [SerializeField] Sound doorSound;
-    private void Awake()
+    private void Start()
     {
         material = GetComponent<SpriteRenderer>().material;
     }
