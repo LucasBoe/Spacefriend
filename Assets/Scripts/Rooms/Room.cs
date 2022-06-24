@@ -8,12 +8,17 @@ public class Room : MonoBehaviour
     public System.Action<bool> SetRoomStateEvent;
     public static System.Action<Room> TriggerEnterRoomEvent;
 
-    private RoomSpriteRenderer[] roomSpriteRenderers;
+    private List<RoomSpriteRenderer> roomSpriteRenderers;
     public bool IsActive;
 
     private void Awake()
     {
-        roomSpriteRenderers = GetComponentsInChildren<RoomSpriteRenderer>();
+        roomSpriteRenderers = new List<RoomSpriteRenderer>();
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer renderer in renderers)
+        {
+            roomSpriteRenderers.Add(renderer.gameObject.AddComponent<RoomSpriteRenderer>());
+        }
     }
 
     private void OnEnable()
