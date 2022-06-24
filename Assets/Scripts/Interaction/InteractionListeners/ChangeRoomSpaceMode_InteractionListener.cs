@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class SwitchRoomSpaceMode_InteractionListener : InteractableInteraction_BaseBehaviour
+public class ChangeRoomSpaceMode_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     //[SerializeField] SpaceTransitionRoom transitionRoom;
     [SerializeField] Room spaceRoom;
@@ -22,7 +22,7 @@ public class SwitchRoomSpaceMode_InteractionListener : InteractableInteraction_B
     }
 
 #if UNITY_EDITOR
-    public override string GetComponentName() => "Switch Room (Space Mode)";
+    public override string GetComponentName() => "Change Room (Space Mode)";
     public override void DrawInspector()
     {
         SerializedObject serializedObject = new SerializedObject(this);
@@ -32,6 +32,7 @@ public class SwitchRoomSpaceMode_InteractionListener : InteractableInteraction_B
         EditorGUILayout.PropertyField(spaceProperty);
         SerializedProperty addSpaceSuiteProperty = serializedObject.FindProperty("addSpaceSuite");
         EditorGUILayout.PropertyField(addSpaceSuiteProperty);
+        serializedObject.ApplyModifiedProperties();
     }
 #endif
 }

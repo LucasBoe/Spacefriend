@@ -28,16 +28,13 @@ public class InteractableEditor : Editor
     public override void OnInspectorGUI()
     {
         var rect = EditorGUILayout.GetControlRect(false, 0f);
-
-        EditorGUILayout.BeginHorizontal();
-        Texture2D editIcon = EditorGUIUtility.FindTexture("SceneViewTools@2x");
         float size = 0.8f * EditorGUIUtility.singleLineHeight;
         EditorGUIUtility.SetIconSize(new Vector2(size, size));
 
-        GUIStyle iconButtonStyle = new GUIStyle(GUI.skin.button);
-        int padding = Mathf.RoundToInt(size * 0.125f);
-        iconButtonStyle.padding = new RectOffset(padding, padding, padding, padding);
-        if (GUILayout.Button(new GUIContent("edit name", editIcon), iconButtonStyle))
+        EditorGUILayout.BeginHorizontal();
+        Texture2D editIcon = EditorGUIUtility.FindTexture("SceneViewTools@2x");
+
+        if (GUILayout.Button(new GUIContent("edit name", editIcon)))
         {
             editName = !editName;
         }

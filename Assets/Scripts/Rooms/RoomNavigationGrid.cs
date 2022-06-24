@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Hide all room navigation children game objects or make the whole structure mono behaviour indipendant
 public class RoomNavigationGrid : NavigationGrid
 {
     [SerializeField] Room room;

@@ -39,8 +39,14 @@ public static class HierarchyWindowGameObjectIcon
         {
             if (obj.name.Contains("=="))
             {
+                Texture2D overlayTex = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+                overlayTex.SetPixel(0, 0, new Color(0, 0, 1, 0.1f));
+                overlayTex.Apply();
+                GUI.DrawTexture(selectionRect, overlayTex, ScaleMode.StretchToFill);
+
                 if (overrides != null)
                     GUI.DrawTexture(new Rect(62, selectionRect.yMin, 16, 16), overrides.folderIconEditorSprite);
+
             }
             else
             {
