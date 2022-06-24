@@ -12071,8 +12071,8 @@ GameObject:
   - component: {fileID: 570487916}
   - component: {fileID: 570487919}
   - component: {fileID: 570487923}
-  - component: {fileID: 570487917}
   - component: {fileID: 570487921}
+  - component: {fileID: 570487917}
   m_Layer: 0
   m_Name: Interactable_SpaceButton
   m_TagString: Untagged
@@ -12147,7 +12147,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!114 &570487917
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12214,7 +12214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &570487922
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17586,7 +17586,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &663516144
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17705,7 +17705,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!114 &663516149
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -35631,7 +35631,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!114 &1422554089
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -35663,7 +35663,7 @@ MonoBehaviour:
   - {fileID: 1422554094}
 --- !u!114 &1422554091
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -36482,7 +36482,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1537430256
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -36661,7 +36661,7 @@ PolygonCollider2D:
       - {x: -2.1568751, y: -2.496875}
 --- !u!114 &1537430261
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -36881,12 +36881,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555896768}
+  - component: {fileID: 1555896773}
   - component: {fileID: 1555896774}
   - component: {fileID: 1555896769}
   - component: {fileID: 1555896770}
   - component: {fileID: 1555896772}
   - component: {fileID: 1555896771}
-  - component: {fileID: 1555896773}
   - component: {fileID: 1555896775}
   m_Layer: 0
   m_Name: Interactable_LadderDown
@@ -37673,7 +37673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1659761167
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -37777,7 +37777,7 @@ MonoBehaviour:
   outAnimation: {fileID: 7400000, guid: 2a09a0ac549b63049813e4f802d7c6d1, type: 2}
 --- !u!114 &1659761174
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -44487,7 +44487,7 @@ MonoBehaviour:
   outAnimation: {fileID: 7400000, guid: b94fae7bf6a287d4aa0bcb0d6b5accc8, type: 2}
 --- !u!114 &1977381690
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -50568,6 +50568,14 @@ PrefabInstance:
       propertyPath: closeUp
       value: 
       objectReference: {fileID: 1804746999}
+    - target: {fileID: 5133545602515711295, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
+      propertyPath: isConditioned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133545602515711295, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
+      propertyPath: useCustomWalkTargetPoint
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
 --- !u!1001 &7588027437103547258

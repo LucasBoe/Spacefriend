@@ -78,6 +78,9 @@ public interface IInteractionListenerBase
 #if UNITY_EDITOR
     string GetComponentName();
     void DrawInspector();
+    void RemoveComponent();
+    void SetVisible(bool visible);
+    bool GetVisible();
 #endif
 }
 

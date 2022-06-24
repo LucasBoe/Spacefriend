@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -12,26 +13,21 @@ public class InteractableEditor : Editor
     IInteractionListener[] interactListeners;
 
     bool editName = false;
+    bool showHoverListeners = true;
+    bool showInteractListeners = true;
+
+    static bool componentsVisible = false;
 
     private void OnEnable()
     {
         Interactable interactable = (Interactable)target;
         hoverListeners = interactable.GetComponents<IInteractableHoverListener>();
         interactListeners = interactable.GetComponents<IInteractionListener>();
-    }
-
-    protected override void OnHeaderGUI()
-    {
-        EditorGUILayout.LabelField("Header!");
+        SetComponentsVisible(componentsVisible);
     }
     public override void OnInspectorGUI()
     {
         var rect = EditorGUILayout.GetControlRect(false, 0f);
-
-
-        //serializedObject.Update();
-
-        //DrawDefaultInspector();
 
         EditorGUILayout.BeginHorizontal();
         Texture2D editIcon = EditorGUIUtility.FindTexture("SceneViewTools@2x");
@@ -56,7 +52,7 @@ public class InteractableEditor : Editor
 
         rect.height = EditorGUIUtility.singleLineHeight;
         rect.y -= rect.height * 1.35f;
-        rect.x = rect.width / 1.5f;
+        rect.x = rect.width / 2f;
 
         EditorGUI.LabelField(rect, nameProperty.stringValue, EditorStyles.boldLabel);
 
@@ -74,44 +70,73 @@ public class InteractableEditor : Editor
             serializedObject.ApplyModifiedProperties();
         }
 
+        if (GUILayout.Button(EditorGUIUtility.FindTexture(componentsVisible ? "d_scenevis_visible_hover@2x" : "d_scenevis_hidden_hover@2x")))
+        {
+            SetComponentsVisible(!componentsVisible);
+            EditorUtility.SetDirty((target as Interactable).gameObject);
+        }
+
         EditorGUILayout.EndHorizontal();
 
-        GUILayout.Label("HoverListeners", "PR Label");
-        EditorGUILayout.BeginVertical("helpBox");
-
-        int count = 0;
-
-        foreach (IInteractableHoverListener item in hoverListeners)
+        if (hoverListeners.Length > 0)
         {
-            count++;
+            showHoverListeners = EditorGUILayout.Foldout(showHoverListeners, "Hover Listeners (" + hoverListeners.Length + ")");
+            EditorGUILayout.BeginVertical("helpBox");
+            DrawListenerGUIs(hoverListeners);
+            EditorGUILayout.EndVertical();
+        }
+
+
+        if (interactListeners.Length > 0)
+        {
+            showInteractListeners = EditorGUILayout.Foldout(showInteractListeners, "Interaction Listeners (" + interactListeners.Length + ")");
+            EditorGUILayout.BeginVertical("helpBox");
+            DrawListenerGUIs(interactListeners);
+            EditorGUILayout.EndVertical();
+        }
+
+        //TODO: draw nice visualization for the custom walk target, maybe make it into a vector three with handle, so you don't need a transform, or hide the transform?
+        if (customTargetProperty.boolValue)
+        {
+            SerializedProperty targetProperty = serializedObject.FindProperty("customWalkTargetTransform");
+            EditorGUILayout.PropertyField(targetProperty);
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        if (isConditionedProperty.boolValue)
+        {
+            SerializedProperty targetProperty = serializedObject.FindProperty("conditions");
+            EditorGUILayout.PropertyField(targetProperty);
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+
+    private void SetComponentsVisible(bool visible)
+    {
+        componentsVisible = visible;
+        foreach (IInteractionListenerBase item in hoverListeners) item?.SetVisible(visible);
+        foreach (IInteractionListenerBase item in interactListeners) item?.SetVisible(visible);
+    }
+
+    private static void DrawListenerGUIs(IInteractionListenerBase[] toDraw)
+    {
+        for (int i = 0; i < toDraw.Length; i++)
+        {
+            IInteractionListenerBase item = toDraw[i];
             GUILayout.BeginHorizontal();
-            GUILayout.Label(count + ") " + item.GetComponentName(), "BoldLabel");
-            GUILayout.Button("x", GUILayout.Width(32));
+            GUILayout.Label((i + 1) + ") " + item.GetComponentName(), "BoldLabel");
+
+            GUIStyle iconButtonStyle = new GUIStyle(GUI.skin.button);
+            int padding = 0;
+            iconButtonStyle.padding = new RectOffset(padding, padding, padding, padding);
+
+            if (GUILayout.Button("x", GUILayout.Width(EditorGUIUtility.singleLineHeight)))
+                item.RemoveComponent();
+
             GUILayout.EndHorizontal();
             GUILayout.BeginVertical("helpBox");
             item.DrawInspector();
             GUILayout.EndVertical();
         }
-
-        EditorGUILayout.EndVertical();
-
-        GUILayout.Label("InteractionListeners", "PR Label");
-        EditorGUILayout.BeginVertical("helpBox");
-
-        count = 0;
-
-        foreach (IInteractionListener item in interactListeners)
-        {
-            count++;
-            GUILayout.BeginHorizontal();
-            GUILayout.Label(count + ") " + item.GetComponentName(), "BoldLabel");
-            GUILayout.Button("x", GUILayout.Width(32));
-            GUILayout.EndHorizontal();
-            GUILayout.BeginVertical("helpBox");
-            item.DrawInspector();
-            GUILayout.EndVertical();
-        }
-
-        EditorGUILayout.EndVertical();
     }
 }

@@ -33,5 +33,9 @@ public class SwitchRoomSpaceMode_InteractionListener : MonoBehaviour, IInteracti
         SerializedProperty addSpaceSuiteProperty = serializedObject.FindProperty("addSpaceSuite");
         EditorGUILayout.PropertyField(addSpaceSuiteProperty);
     }
+    public void RemoveComponent() => DestroyImmediate(this);
+    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
+
+    public bool GetVisible() => hideFlags == HideFlags.None;
 #endif
 }

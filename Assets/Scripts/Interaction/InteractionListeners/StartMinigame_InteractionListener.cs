@@ -21,5 +21,8 @@ public class StartMinigame_InteractionListener : MonoBehaviour, IInteractionList
         SerializedProperty minigameProperty = serializedObject.FindProperty("minigame");
         EditorGUILayout.PropertyField(minigameProperty);
     }
+    public void RemoveComponent() => DestroyImmediate(this);
+    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
+    public bool GetVisible() => hideFlags == HideFlags.None;
 #endif
 }

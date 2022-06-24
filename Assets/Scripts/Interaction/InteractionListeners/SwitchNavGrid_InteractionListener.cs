@@ -21,5 +21,10 @@ public class SwitchNavGrid_InteractionListener : MonoBehaviour, IInteractionList
         SerializedProperty navGridProperty = serializedObject.FindProperty("navGrid");
         EditorGUILayout.PropertyField(navGridProperty);
     }
+
+    public void RemoveComponent() => DestroyImmediate(this);
+    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
+    public bool GetVisible() => hideFlags == HideFlags.None;
+
 #endif
 }

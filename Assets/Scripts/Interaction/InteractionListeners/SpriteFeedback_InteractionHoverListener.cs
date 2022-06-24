@@ -28,5 +28,9 @@ public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteracta
 #if UNITY_EDITOR
     public string GetComponentName() => "SpriteFeedback";
     public void DrawInspector() { }
+    public void RemoveComponent() => DestroyImmediate(this);
+    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
+
+    public bool GetVisible() =>  hideFlags == HideFlags.None;
 #endif
 }

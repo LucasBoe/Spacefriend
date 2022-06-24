@@ -31,6 +31,10 @@ public class CarryItem_InteractionListener : MonoBehaviour, IInteractionListener
         SerializedProperty disableInsteadOfDestroyProperty = serializedObject.FindProperty("disableInsteadOfDestroy");
         EditorGUILayout.PropertyField(disableInsteadOfDestroyProperty);
     }
+    public void RemoveComponent() => DestroyImmediate(this);
+    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
+
+    public bool GetVisible() => hideFlags == HideFlags.None;
 
 #endif
 }

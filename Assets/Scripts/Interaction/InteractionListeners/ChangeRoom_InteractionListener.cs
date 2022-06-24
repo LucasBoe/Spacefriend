@@ -22,6 +22,9 @@ public class ChangeRoom_InteractionListener : MonoBehaviour, IInteractionListene
         SerializedProperty roomProperty = serializedObject.FindProperty("room");
         EditorGUILayout.PropertyField(roomProperty);
     }
+    public void RemoveComponent() => DestroyImmediate(this);
+    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
 
+    public bool GetVisible() => hideFlags == HideFlags.None;
 #endif
 }
