@@ -8,4 +8,9 @@ public class DebugLog_InteractionListener : MonoBehaviour, IInteractionListener
     {
         Debug.Log(name);
     }
+
+#if UNITY_EDITOR
+    public string GetComponentName() => "Debug Log";
+    public void DrawInspector() { }
+#endif
 }

@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -72,13 +73,21 @@ public class Interactable : MonoBehaviour
     }
 }
 
-public interface IInteractableHoverListener
+public interface IInteractionListenerBase
+{
+#if UNITY_EDITOR
+    string GetComponentName();
+    void DrawInspector();
+#endif
+}
+
+public interface IInteractableHoverListener : IInteractionListenerBase
 {
     void BeginHover();
     void EndHover();
 }
 
-public interface IInteractionListener
+public interface IInteractionListener : IInteractionListenerBase
 {
     void Interact();
 }

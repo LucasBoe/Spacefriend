@@ -39,9 +39,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5133545602515711235}
+  - component: {fileID: 5133545602515711295}
   - component: {fileID: 5133545602515711292}
   - component: {fileID: 5133545602515711232}
-  - component: {fileID: 5133545602515711295}
   - component: {fileID: 6387430896293140888}
   - component: {fileID: 8299706146237872236}
   - component: {fileID: 2887549258815472550}
@@ -68,6 +68,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5133545602515711295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133545602515711234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e02536da6515166478032957816be76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayName: Emergency Kit
+  useCustomWalkTargetPoint: 1
+  customWalkTargetTransform: {fileID: 4127657949996503943}
+  isConditioned: 0
+  conditions: []
 --- !u!114 &5133545602515711292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,23 +149,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5133545602515711295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5133545602515711234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e02536da6515166478032957816be76d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DisplayName: emergency kit
-  useCustomWalkTargetPoint: 1
-  customWalkTargetTransform: {fileID: 4127657949996503943}
-  isConditioned: 0
-  conditions: []
 --- !u!60 &6387430896293140888
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3952c8aa8ec4246b23c0130907a6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialType: 0
 --- !u!114 &2887549258815472550
 MonoBehaviour:
   m_ObjectHideFlags: 0

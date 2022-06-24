@@ -1,6 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteractableHoverListener
 {
@@ -18,4 +23,10 @@ public class SpriteFeedback_InteractionHoverListener : MonoBehaviour, IInteracta
     {
         material.SetFloat("Hover", 0);
     }
+
+
+#if UNITY_EDITOR
+    public string GetComponentName() => "SpriteFeedback";
+    public void DrawInspector() { }
+#endif
 }
