@@ -5,26 +5,21 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class ToggleCloseUp_InteractionListener : MonoBehaviour, IInteractionListener
+public class ToggleCloseUp_InteractionListener : InteractionListenerBaseBehaviour
 {
     [SerializeField] CloseUp closeUp;
 
-    public void Interact()
+    public override void Interact()
     {
         closeUp.Toggle();
     }
 
 #if UNITY_EDITOR
-    public string GetComponentName() => "ToggleCloseUp";
-    public void DrawInspector()
+    public override void DrawInspector()
     {
         SerializedObject serializedObject = new SerializedObject(this);
         SerializedProperty closeUpProperty = serializedObject.FindProperty("closeUp");
         EditorGUILayout.PropertyField(closeUpProperty);
     }
-    public void RemoveComponent() => DestroyImmediate(this);
-    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
-
-    public bool GetVisible() => hideFlags == HideFlags.None;
 #endif
 }

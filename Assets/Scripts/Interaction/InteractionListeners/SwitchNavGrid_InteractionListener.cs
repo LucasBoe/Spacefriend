@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class SwitchNavGrid_InteractionListener : MonoBehaviour, IInteractionListener
+public class SwitchNavGrid_InteractionListener : InteractionListenerBaseBehaviour
 {
     [SerializeField] NavigationGrid navGrid;
-    public void Interact()
+    public override void Interact()
     {
         NavigationAgent.TriggerSwitchEvent?.Invoke(navGrid);
     }

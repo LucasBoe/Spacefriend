@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class SwitchRoomSpaceMode_InteractionListener : MonoBehaviour, IInteractionListener
+public class SwitchRoomSpaceMode_InteractionListener : InteractionListenerBaseBehaviour
 {
     //[SerializeField] SpaceTransitionRoom transitionRoom;
     [SerializeField] Room spaceRoom;
     [SerializeField] bool space = true;
     [SerializeField] bool addSpaceSuite = true;
 
-    public void Interact()
+    public override void Interact()
     {
         SpaceAgent spaceAgent = PlayerServiceProvider.GetSpaceAgent();
         spaceAgent.SetSpaceMode(space);
@@ -22,8 +22,8 @@ public class SwitchRoomSpaceMode_InteractionListener : MonoBehaviour, IInteracti
     }
 
 #if UNITY_EDITOR
-    public string GetComponentName() => "Switch Room (Space Mode)";
-    public void DrawInspector()
+    public override string GetComponentName() => "Switch Room (Space Mode)";
+    public override void DrawInspector()
     {
         SerializedObject serializedObject = new SerializedObject(this);
         SerializedProperty spaceRoomProperty = serializedObject.FindProperty("spaceRoom");
@@ -33,9 +33,5 @@ public class SwitchRoomSpaceMode_InteractionListener : MonoBehaviour, IInteracti
         SerializedProperty addSpaceSuiteProperty = serializedObject.FindProperty("addSpaceSuite");
         EditorGUILayout.PropertyField(addSpaceSuiteProperty);
     }
-    public void RemoveComponent() => DestroyImmediate(this);
-    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
-
-    public bool GetVisible() => hideFlags == HideFlags.None;
 #endif
 }

@@ -5,26 +5,21 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class ChangeRoom_InteractionListener : MonoBehaviour, IInteractionListener
+public class ChangeRoom_InteractionListener : InteractionListenerBaseBehaviour
 {
     [SerializeField] Room room;
 
-    public void Interact()
+    public override void Interact()
     {
         Room.TriggerEnterRoomEvent(room);
     }
 
 #if UNITY_EDITOR
-    public string GetComponentName() => "Change Room";
-    public void DrawInspector()
+    public override void DrawInspector()
     {
         SerializedObject serializedObject = new SerializedObject(this);
         SerializedProperty roomProperty = serializedObject.FindProperty("room");
         EditorGUILayout.PropertyField(roomProperty);
     }
-    public void RemoveComponent() => DestroyImmediate(this);
-    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
-
-    public bool GetVisible() => hideFlags == HideFlags.None;
 #endif
 }

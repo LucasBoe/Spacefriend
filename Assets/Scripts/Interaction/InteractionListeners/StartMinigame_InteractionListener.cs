@@ -5,24 +5,21 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class StartMinigame_InteractionListener : MonoBehaviour, IInteractionListener
+public class StartMinigame_InteractionListener : InteractionListenerBaseBehaviour
 {
     [SerializeField] Minigame minigame;
-    public void Interact()
+    public override void Interact()
     {
         minigame.StartMinigame();
     }
 
 #if UNITY_EDITOR
-    public string GetComponentName() => "Start Minigame";
-    public void DrawInspector()
+    public override void DrawInspector()
     {
         SerializedObject serializedObject = new SerializedObject(this);
         SerializedProperty minigameProperty = serializedObject.FindProperty("minigame");
         EditorGUILayout.PropertyField(minigameProperty);
     }
-    public void RemoveComponent() => DestroyImmediate(this);
-    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
-    public bool GetVisible() => hideFlags == HideFlags.None;
+
 #endif
 }

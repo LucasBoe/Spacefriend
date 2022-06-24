@@ -5,12 +5,12 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class CarryItem_InteractionListener : MonoBehaviour, IInteractionListener
+public class CarryItem_InteractionListener : InteractionListenerBaseBehaviour
 {
     [SerializeField] ItemData data;
     [SerializeField] bool disableInsteadOfDestroy = false;
 
-    public void Interact()
+    public override void Interact()
     {
         PlayerServiceProvider.CollectItemToHand(data, transform);
 
@@ -21,8 +21,7 @@ public class CarryItem_InteractionListener : MonoBehaviour, IInteractionListener
     }
 
 #if UNITY_EDITOR
-    public string GetComponentName() => "Carry Item";
-    public void DrawInspector()
+    public override void DrawInspector()
     {
         SerializedObject serializedObject = new SerializedObject(this);
         SerializedProperty dataProperty = serializedObject.FindProperty("data");
@@ -31,10 +30,6 @@ public class CarryItem_InteractionListener : MonoBehaviour, IInteractionListener
         SerializedProperty disableInsteadOfDestroyProperty = serializedObject.FindProperty("disableInsteadOfDestroy");
         EditorGUILayout.PropertyField(disableInsteadOfDestroyProperty);
     }
-    public void RemoveComponent() => DestroyImmediate(this);
-    public void SetVisible(bool visible) => hideFlags = visible ? HideFlags.None : HideFlags.HideInInspector;
-
-    public bool GetVisible() => hideFlags == HideFlags.None;
 
 #endif
 }
