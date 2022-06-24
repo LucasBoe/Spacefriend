@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class ToggleCloseUp_InteractionListener : InteractionListenerBaseBehaviour
+public class ToggleCloseUp_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     [SerializeField] CloseUp closeUp;
 

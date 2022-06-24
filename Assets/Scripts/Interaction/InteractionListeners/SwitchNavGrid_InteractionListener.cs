@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class SwitchNavGrid_InteractionListener : InteractionListenerBaseBehaviour
+public class SwitchNavGrid_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     [SerializeField] NavigationGrid navGrid;
     public override void Interact()

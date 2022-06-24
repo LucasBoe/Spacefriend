@@ -10,20 +10,20 @@ using UnityEngine.UIElements;
 public class InteractableEditor : Editor
 {
     IInteractableHoverListener[] hoverListeners;
-    IInteractionListener[] interactListeners;
+    IInteractableInteractionListener[] interactionListeners;
 
     bool editName = false;
     bool showHoverListeners = true;
-    bool showInteractListeners = true;
+    bool showInteractionListeners = true;
 
-    static bool componentsVisible = false;
+    static bool originalComponentsVisible = false;
 
     private void OnEnable()
     {
         Interactable interactable = (Interactable)target;
         hoverListeners = interactable.GetComponents<IInteractableHoverListener>();
-        interactListeners = interactable.GetComponents<IInteractionListener>();
-        SetComponentsVisible(componentsVisible);
+        interactionListeners = interactable.GetComponents<IInteractableInteractionListener>();
+        SetComponentsVisible(originalComponentsVisible);
     }
     public override void OnInspectorGUI()
     {
@@ -70,9 +70,9 @@ public class InteractableEditor : Editor
             serializedObject.ApplyModifiedProperties();
         }
 
-        if (GUILayout.Button(EditorGUIUtility.FindTexture(componentsVisible ? "d_scenevis_visible_hover@2x" : "d_scenevis_hidden_hover@2x")))
+        if (GUILayout.Button(EditorGUIUtility.FindTexture(originalComponentsVisible ? "d_scenevis_visible_hover@2x" : "d_scenevis_hidden_hover@2x")))
         {
-            SetComponentsVisible(!componentsVisible);
+            SetComponentsVisible(!originalComponentsVisible);
             EditorUtility.SetDirty((target as Interactable).gameObject);
         }
 
@@ -87,11 +87,11 @@ public class InteractableEditor : Editor
         }
 
 
-        if (interactListeners.Length > 0)
+        if (interactionListeners.Length > 0)
         {
-            showInteractListeners = EditorGUILayout.Foldout(showInteractListeners, "Interaction Listeners (" + interactListeners.Length + ")");
+            showInteractionListeners = EditorGUILayout.Foldout(showInteractionListeners, "Interaction Listeners (" + interactionListeners.Length + ")");
             EditorGUILayout.BeginVertical("helpBox");
-            DrawListenerGUIs(interactListeners);
+            DrawListenerGUIs(interactionListeners);
             EditorGUILayout.EndVertical();
         }
 
@@ -113,16 +113,16 @@ public class InteractableEditor : Editor
 
     private void SetComponentsVisible(bool visible)
     {
-        componentsVisible = visible;
-        foreach (IInteractionListenerBase item in hoverListeners) item?.SetVisible(visible);
-        foreach (IInteractionListenerBase item in interactListeners) item?.SetVisible(visible);
+        originalComponentsVisible = visible;
+        foreach (IInteractableListenerBase item in hoverListeners) item?.SetVisible(visible);
+        foreach (IInteractableListenerBase item in interactionListeners) item?.SetVisible(visible);
     }
 
-    private static void DrawListenerGUIs(IInteractionListenerBase[] toDraw)
+    private static void DrawListenerGUIs(IInteractableListenerBase[] toDraw)
     {
         for (int i = 0; i < toDraw.Length; i++)
         {
-            IInteractionListenerBase item = toDraw[i];
+            IInteractableListenerBase item = toDraw[i];
             GUILayout.BeginHorizontal();
             GUILayout.Label((i + 1) + ") " + item.GetComponentName(), "BoldLabel");
 

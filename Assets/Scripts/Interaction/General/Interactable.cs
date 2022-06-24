@@ -17,13 +17,13 @@ public class Interactable : MonoBehaviour
     [Foldout("Settings"), SerializeField] bool isConditioned = false;
     [Foldout("Settings"), SerializeField, ShowIf("isConditioned")] InteractableConditionBase[] conditions;
 
-    private IInteractionListener[] interactionListeners;
+    private IInteractableInteractionListener[] interactionListeners;
     private IInteractableHoverListener[] hoverListeners;
     private Room room;
 
     private void Awake()
     {
-        interactionListeners = GetComponentsInChildren<IInteractionListener>();
+        interactionListeners = GetComponentsInChildren<IInteractableInteractionListener>();
         hoverListeners = GetComponentsInChildren<IInteractableHoverListener>();
         room = GetComponentInParent<Room>();
     }
@@ -51,7 +51,7 @@ public class Interactable : MonoBehaviour
 
         EndHover();
 
-        foreach (IInteractionListener listener in interactionListeners) listener.Interact();
+        foreach (IInteractableInteractionListener listener in interactionListeners) listener.Interact();
         InteractEvent?.Invoke(this);
     }
 
@@ -73,7 +73,7 @@ public class Interactable : MonoBehaviour
     }
 }
 
-public interface IInteractionListenerBase
+public interface IInteractableListenerBase
 {
 #if UNITY_EDITOR
     string GetComponentName();
@@ -84,13 +84,13 @@ public interface IInteractionListenerBase
 #endif
 }
 
-public interface IInteractableHoverListener : IInteractionListenerBase
+public interface IInteractableHoverListener : IInteractableListenerBase
 {
     void BeginHover();
     void EndHover();
 }
 
-public interface IInteractionListener : IInteractionListenerBase
+public interface IInteractableInteractionListener : IInteractableListenerBase
 {
     void Interact();
 }

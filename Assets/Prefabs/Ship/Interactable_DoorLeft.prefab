@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 272070072652974190}
-  - component: {fileID: 2041613434}
   - component: {fileID: 2041613435}
+  - component: {fileID: 2041613434}
   - component: {fileID: 272070072652974187}
   - component: {fileID: 272070072652974191}
   - component: {fileID: 272070072652974185}
@@ -37,19 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2041613434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 272070072652974188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a7fa3be186160643a75750048daddc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  room: {fileID: 0}
 --- !u!114 &2041613435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +54,19 @@ MonoBehaviour:
   customWalkTargetTransform: {fileID: 0}
   isConditioned: 0
   conditions: []
+--- !u!114 &2041613434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272070072652974188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7fa3be186160643a75750048daddc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 0}
 --- !u!114 &272070072652974187
 MonoBehaviour:
   m_ObjectHideFlags: 0

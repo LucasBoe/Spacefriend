@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class StartMinigame_InteractionListener : InteractionListenerBaseBehaviour
+public class StartMinigame_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     [SerializeField] Minigame minigame;
     public override void Interact()

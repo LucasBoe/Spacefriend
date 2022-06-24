@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class SwitchRoomSpaceMode_InteractionListener : InteractionListenerBaseBehaviour
+public class SwitchRoomSpaceMode_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     //[SerializeField] SpaceTransitionRoom transitionRoom;
     [SerializeField] Room spaceRoom;

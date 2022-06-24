@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class ChangeRoom_InteractionListener : InteractionListenerBaseBehaviour
+public class ChangeRoom_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     [SerializeField] Room room;
 

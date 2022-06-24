@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractionListenerBaseBehaviour : MonoBehaviour, IInteractionListener
+public abstract class InteractableInteraction_BaseBehaviour : MonoBehaviour, IInteractableInteractionListener
 {
     public abstract void Interact();
 

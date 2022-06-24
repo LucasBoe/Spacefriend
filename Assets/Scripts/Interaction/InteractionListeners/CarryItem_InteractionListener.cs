@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class CarryItem_InteractionListener : InteractionListenerBaseBehaviour
+public class CarryItem_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     [SerializeField] ItemData data;
     [SerializeField] bool disableInsteadOfDestroy = false;
