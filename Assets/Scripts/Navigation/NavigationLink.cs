@@ -12,7 +12,7 @@ public class NavigationLink : MonoBehaviour
     {
         if (points[0] != null && points[1] != null)
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.yellow;
             Gizmos.DrawLine(points[0].transform.position, points[1].transform.position);
         }
     }

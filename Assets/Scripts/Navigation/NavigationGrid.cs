@@ -156,12 +156,12 @@ public class NavigationGrid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.cyan;
         if (debugPoints != null && debugPoints.Length != 0)
         {
             for (int i = 1; i < debugPoints.Length - 1; i++)
             {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(debugPoints[i- 1], debugPoints[i]);
+                Gizmos.DrawLine(debugPoints[i - 1], debugPoints[i]);
             }
         }
     }

@@ -16,6 +16,13 @@ public class InteractableEditor : Editor
     bool showHoverListeners = true;
     bool showInteractionListeners = true;
 
+    SerializedProperty hasCustomTargetProperty;
+    SerializedProperty customTargetProperty;
+    SerializedProperty hasCondititionsProperty;
+    SerializedProperty conditionsProperty;
+
+    Transform targetTransform;
+
     static bool originalComponentsVisible = false;
 
     private void OnEnable()
@@ -24,6 +31,12 @@ public class InteractableEditor : Editor
         hoverListeners = interactable.GetComponents<IInteractableHoverListener>();
         interactionListeners = interactable.GetComponents<IInteractableInteractionListener>();
         SetComponentsVisible(originalComponentsVisible);
+
+        hasCustomTargetProperty = serializedObject.FindProperty("useCustomWalkTargetPoint");
+        customTargetProperty = serializedObject.FindProperty("customWalkTargetTransform");
+        hasCondititionsProperty = serializedObject.FindProperty("isConditioned");
+        conditionsProperty = serializedObject.FindProperty("conditions");
+        targetTransform = (target as Interactable).transform;
     }
     public override void OnInspectorGUI()
     {
@@ -53,17 +66,16 @@ public class InteractableEditor : Editor
 
         EditorGUI.LabelField(rect, nameProperty.stringValue, EditorStyles.boldLabel);
 
-        SerializedProperty customTargetProperty = serializedObject.FindProperty("useCustomWalkTargetPoint");
-        if (GUILayout.Button("use custom walk target : " + customTargetProperty.boolValue.ToString()))
+
+        if (GUILayout.Button("use custom walk target : " + hasCustomTargetProperty.boolValue.ToString()))
         {
-            customTargetProperty.boolValue = !customTargetProperty.boolValue;
+            hasCustomTargetProperty.boolValue = !hasCustomTargetProperty.boolValue;
             serializedObject.ApplyModifiedProperties();
         }
 
-        SerializedProperty isConditionedProperty = serializedObject.FindProperty("isConditioned");
-        if (GUILayout.Button("use conditions : " + isConditionedProperty.boolValue.ToString()))
+        if (GUILayout.Button("use conditions : " + hasCondititionsProperty.boolValue.ToString()))
         {
-            isConditionedProperty.boolValue = !isConditionedProperty.boolValue;
+            hasCondititionsProperty.boolValue = !hasCondititionsProperty.boolValue;
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -93,17 +105,17 @@ public class InteractableEditor : Editor
         }
 
         //TODO: draw nice visualization for the custom walk target, maybe make it into a vector three with handle, so you don't need a transform, or hide the transform?
-        if (customTargetProperty.boolValue)
+        if (hasCustomTargetProperty.boolValue)
         {
-            SerializedProperty targetProperty = serializedObject.FindProperty("customWalkTargetTransform");
-            EditorGUILayout.PropertyField(targetProperty);
+
+            EditorGUILayout.PropertyField(customTargetProperty);
             serializedObject.ApplyModifiedProperties();
         }
 
-        if (isConditionedProperty.boolValue)
+        if (hasCondititionsProperty.boolValue)
         {
-            SerializedProperty targetProperty = serializedObject.FindProperty("conditions");
-            EditorGUILayout.PropertyField(targetProperty);
+
+            EditorGUILayout.PropertyField(conditionsProperty);
             serializedObject.ApplyModifiedProperties();
         }
     }

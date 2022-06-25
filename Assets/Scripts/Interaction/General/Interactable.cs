@@ -71,6 +71,16 @@ public class Interactable : MonoBehaviour
 
         return true;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (customWalkTargetTransform != null)
+        {
+            Gizmos.DrawIcon(customWalkTargetTransform.position, "Assets/Sprites/Editor/interactable-target-icon-editor.png", true);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, customWalkTargetTransform.position);
+        }
+    }
 }
 
 public interface IInteractableListenerBase
