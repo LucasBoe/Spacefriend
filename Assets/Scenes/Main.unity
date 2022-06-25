@@ -1281,6 +1281,10 @@ PrefabInstance:
       propertyPath: closeUp
       value: 
       objectReference: {fileID: 1804746999}
+    - target: {fileID: 5133545602515711295, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
+      propertyPath: walkTargetOffset.y
+      value: -2.0495715
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
@@ -12174,8 +12178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: switch to space mode
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!114 &570487922
@@ -17625,8 +17629,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: Coffee machine
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!61 &663516148
@@ -19216,36 +19220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsActive: 0
---- !u!1 &1077065620
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1077065621}
-  m_Layer: 6
-  m_Name: walkTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1077065621
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077065620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.752, y: -0.315, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1977381686}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089869207
 GameObject:
   m_ObjectHideFlags: 0
@@ -35570,8 +35544,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: plant in pot
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 1
   conditions:
   - {fileID: 1422554094}
@@ -35759,8 +35733,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: sink
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!114 &1436297255
@@ -36287,36 +36261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1491446102}
---- !u!1 &1494269820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1494269821}
-  m_Layer: 0
-  m_Name: goDownTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1494269821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494269820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.68, y: -14, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1555896768}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537430254
 GameObject:
   m_ObjectHideFlags: 0
@@ -36445,8 +36389,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: coffee machine
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 1
   conditions:
   - {fileID: 1537430262}
@@ -36767,8 +36711,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 18.04, y: -1.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1494269821}
+  m_Children: []
   m_Father: {fileID: 658424219}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36838,7 +36781,7 @@ MonoBehaviour:
   materialType: 0
 --- !u!114 &1555896772
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -36861,13 +36804,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: ladder
-  useCustomWalkTargetPoint: 1
-  customWalkTargetTransform: {fileID: 1494269821}
+  useWalkTargetOffset: 1
+  walkTargetOffset: {x: 0, y: -7, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!114 &1555896774
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -37559,8 +37502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: shower
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!114 &1659761171
@@ -37784,7 +37727,7 @@ Transform:
   m_Children:
   - {fileID: 955231574}
   m_Father: {fileID: 1977381686}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1663778902
 MonoBehaviour:
@@ -38231,8 +38174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: 
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!1 &1767833991
@@ -38694,8 +38637,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: 
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!114 &1808297464
@@ -43935,8 +43878,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: Vent
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!212 &1941021642
@@ -44195,7 +44138,6 @@ Transform:
   - {fileID: 231540509}
   - {fileID: 883748144}
   - {fileID: 2037410008}
-  - {fileID: 1077065621}
   - {fileID: 1663778901}
   m_Father: {fileID: 658424219}
   m_RootOrder: 3
@@ -44213,8 +44155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: Clothing cabinet
-  useCustomWalkTargetPoint: 1
-  customWalkTargetTransform: {fileID: 1077065621}
+  useWalkTargetOffset: 1
+  walkTargetOffset: {x: -2.752, y: -0.315, z: 0}
   isConditioned: 1
   conditions:
   - {fileID: 1977381692}
@@ -50335,10 +50277,6 @@ PrefabInstance:
       propertyPath: closeUp
       value: 
       objectReference: {fileID: 1804746999}
-    - target: {fileID: 5133545602515711295, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
-      propertyPath: isConditioned
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5133545602515711295, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}
       propertyPath: useCustomWalkTargetPoint
       value: 1

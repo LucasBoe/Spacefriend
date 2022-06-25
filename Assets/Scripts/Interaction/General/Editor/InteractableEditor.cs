@@ -13,11 +13,12 @@ public class InteractableEditor : Editor
     IInteractableInteractionListener[] interactionListeners;
 
     bool editName = false;
+    bool editTargetOffset = false;
     bool showHoverListeners = true;
     bool showInteractionListeners = true;
 
-    SerializedProperty hasCustomTargetProperty;
-    SerializedProperty customTargetProperty;
+    SerializedProperty hasTargetOffset;
+    SerializedProperty walkTargetOffsetProperty;
     SerializedProperty hasCondititionsProperty;
     SerializedProperty conditionsProperty;
 
@@ -32,10 +33,10 @@ public class InteractableEditor : Editor
         interactionListeners = interactable.GetComponents<IInteractableInteractionListener>();
         SetComponentsVisible(originalComponentsVisible);
 
-        hasCustomTargetProperty = serializedObject.FindProperty("useCustomWalkTargetPoint");
-        customTargetProperty = serializedObject.FindProperty("customWalkTargetTransform");
+        hasTargetOffset = serializedObject.FindProperty("useWalkTargetOffset");
         hasCondititionsProperty = serializedObject.FindProperty("isConditioned");
         conditionsProperty = serializedObject.FindProperty("conditions");
+        walkTargetOffsetProperty = serializedObject.FindProperty("walkTargetOffset");
         targetTransform = (target as Interactable).transform;
     }
     public override void OnInspectorGUI()
@@ -67,9 +68,9 @@ public class InteractableEditor : Editor
         EditorGUI.LabelField(rect, nameProperty.stringValue, EditorStyles.boldLabel);
 
 
-        if (GUILayout.Button("use custom walk target : " + hasCustomTargetProperty.boolValue.ToString()))
+        if (GUILayout.Button("use custom walk target : " + hasTargetOffset.boolValue.ToString()))
         {
-            hasCustomTargetProperty.boolValue = !hasCustomTargetProperty.boolValue;
+            hasTargetOffset.boolValue = !hasTargetOffset.boolValue;
             serializedObject.ApplyModifiedProperties();
         }
 
@@ -104,12 +105,18 @@ public class InteractableEditor : Editor
             EditorGUILayout.EndVertical();
         }
 
-        //TODO: draw nice visualization for the custom walk target, maybe make it into a vector three with handle, so you don't need a transform, or hide the transform?
-        if (hasCustomTargetProperty.boolValue)
+        if (hasTargetOffset.boolValue)
         {
-
-            EditorGUILayout.PropertyField(customTargetProperty);
+            EditorGUILayout.BeginHorizontal();
+            GUI.enabled = editTargetOffset;
+            EditorGUILayout.PropertyField(walkTargetOffsetProperty);
             serializedObject.ApplyModifiedProperties();
+            GUI.enabled = true;
+
+            if (GUILayout.Button(new GUIContent(editTargetOffset ? "stop editing offset" : "edit offset", editIcon)))
+                editTargetOffset = !editTargetOffset;
+
+            EditorGUILayout.EndHorizontal();
         }
 
         if (hasCondititionsProperty.boolValue)
@@ -117,6 +124,21 @@ public class InteractableEditor : Editor
 
             EditorGUILayout.PropertyField(conditionsProperty);
             serializedObject.ApplyModifiedProperties();
+        }
+    }
+
+    private void OnSceneGUI()
+    {
+        if (editTargetOffset)
+        {
+            EditorGUI.BeginChangeCheck();
+            Vector3 globalAfter = Handles.DoPositionHandle(targetTransform.TransformPoint(walkTargetOffsetProperty.vector3Value), Quaternion.identity);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(target, "Changed Walk Target Offset");
+                Interactable interactable = target as Interactable;
+                interactable.walkTargetOffset = targetTransform.InverseTransformPoint(globalAfter);
+            }
         }
     }
 

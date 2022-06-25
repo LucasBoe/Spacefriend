@@ -11,8 +11,8 @@ public class Interactable : MonoBehaviour
 
     [Foldout("Settings")] public string DisplayName;
 
-    [Foldout("Settings"), SerializeField] bool useCustomWalkTargetPoint = false;
-    [Foldout("Settings"), SerializeField, ShowIf("useCustomWalkTargetPoint")] Transform customWalkTargetTransform;
+    [Foldout("Settings"), SerializeField] bool useWalkTargetOffset = false;
+    [Foldout("Settings"), SerializeField, ShowIf("useCustomWalkTargetPoint")] public Vector3 walkTargetOffset;
 
     [Foldout("Settings"), SerializeField] bool isConditioned = false;
     [Foldout("Settings"), SerializeField, ShowIf("isConditioned")] InteractableConditionBase[] conditions;
@@ -44,7 +44,7 @@ public class Interactable : MonoBehaviour
         EndHoverInteractableEvent?.Invoke(this);
     }
 
-    internal Vector3 GetPoint() => (useCustomWalkTargetPoint ? customWalkTargetTransform : transform).position;
+    internal Vector3 GetPoint() => useWalkTargetOffset ? transform.TransformPoint(walkTargetOffset) : transform.position;
     internal void Interact()
     {
         if (!CheckAllConditions()) return;
@@ -74,11 +74,12 @@ public class Interactable : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (customWalkTargetTransform != null)
+        if (useWalkTargetOffset)
         {
-            Gizmos.DrawIcon(customWalkTargetTransform.position, "Assets/Sprites/Editor/interactable-target-icon-editor.png", true);
+            Vector3 pos = transform.TransformPoint(walkTargetOffset);
+            Gizmos.DrawIcon(pos, "Assets/Sprites/Editor/interactable-target-icon-editor.png", true);
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, customWalkTargetTransform.position);
+            Gizmos.DrawLine(transform.position, pos);
         }
     }
 }
