@@ -84,6 +84,7 @@ public class InteractionHandler : MonoBehaviour
                 //notify closeUps to close
                 ClickOutsideOfCloseUpEvent?.Invoke();
 
+                //TODO: Add different input for space mode
                 if (target != null)
                     moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
                 else
