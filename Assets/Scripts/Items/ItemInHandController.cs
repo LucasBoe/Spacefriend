@@ -44,28 +44,37 @@ public class ItemInHandController : MonoBehaviour
         };
     }
 
-    internal void SetItemInHand(ItemData data, Transform origin)
+    internal float SetItemInHand(ItemData data, Transform origin)
     {
-        item = data;
 
-        if (data == null)
+        float transitonDuration = 0.25f;
+        bool removeItem = data == null;
+
+        if (removeItem)
         {
-            itemRenderer.sprite = null;
-            CoroutineUtil.ExecuteFloatRoutine(0.75f, 0f, (value) => limbSolver.weight = value, this, 0.5f);
+            CoroutineUtil.Delay(() =>
+            {
+                item = null;
+                itemRenderer.sprite = null;
+            }, this, transitonDuration);
         }
         else
         {
+            item = data;
             itemRenderer.sprite = data.Sprite;
-            CoroutineUtil.ExecuteFloatRoutine(0f, 0.75f, (value) => limbSolver.weight = value, this, 0.5f);
-
-            float transitonDuration = 0.25f;
-
-            lerpWith = new TransformData() { Position = origin.position, Rotation = origin.rotation };
-            CoroutineUtil.ExecuteFloatRoutine(1f, 0f, (float lerp) => lerpValue = lerp, this, transitonDuration);
-
-            lerpActive = true;
-            CoroutineUtil.Delay(() => lerpActive = false, this, transitonDuration);
         }
+
+        CoroutineUtil.ExecuteFloatRoutine(removeItem ? 0.75f : 0f, removeItem ? 0f : 0.75f, (value) => limbSolver.weight = value, this, 0.5f);
+
+
+        lerpWith = new TransformData() { Position = origin.position, Rotation = origin.rotation };
+        CoroutineUtil.ExecuteFloatRoutine(removeItem ? 0f : 1f, removeItem ? 1f : 0f, (float lerp) => lerpValue = lerp, this, transitonDuration);
+
+        lerpActive = true;
+        CoroutineUtil.Delay(() => lerpActive = false, this, transitonDuration);
+
+
+        return transitonDuration;
     }
 
     private Vector3 GetOffset(Transform handTransform, bool flipped, ItemData item)
@@ -74,6 +83,7 @@ public class ItemInHandController : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class TransformData
 {
     public Vector3 Position;

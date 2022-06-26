@@ -30,7 +30,7 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     public static PlayerSkinType GetPlayerSkin() => Instance.player.SkinModule.SkinType;
     public static void SetPlayerSkin(PlayerSkinType skin) => Instance.player.SkinModule.SetSkinType(skin);
     public static void CollectItemToHand(ItemData data, Transform origin) => Instance.itemInHandController.SetItemInHand(data, origin);
-    public static void RemoveItemFromHand(Transform target) => Instance.itemInHandController.SetItemInHand(null, target);
+    public static float RemoveItemFromHand(Transform target) => Instance.itemInHandController.SetItemInHand(null, target);
     public static RoomAgent GetRoomAgent() => Instance.roomAgent;
     public static SpaceAgent GetSpaceAgent() => Instance.spaceAgent;
     public static PlayerMode GetPlayerMode() => Instance.playerMode;
