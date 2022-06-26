@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class NavigationGrid : MonoBehaviour
 {
-    NavigationLink[] links;
+    protected INavigationLink[] links;
     Vector3[] debugPoints;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        links = GetComponentsInChildren<NavigationLink>();
+        links = GetComponentsInChildren<INavigationLink>();
     }
 
     internal List<Vector3> GetPath(Vector3 start, Vector3 target)
     {
 
-        NavigationLink startLink = GetClosestLinkTo(start);
-        NavigationLink targetLink = GetClosestLinkTo(target);
+        INavigationLink startLink = GetClosestLinkTo(start);
+        INavigationLink targetLink = GetClosestLinkTo(target);
 
         List<Vector3> path = new List<Vector3>();
 
@@ -43,16 +43,16 @@ public class NavigationGrid : MonoBehaviour
             {
                 if (current.Parent != null)
                 {
-                    NavigationPoint previous = current.GetSharedPoint(current.Parent);
-                    path.Add(previous.transform.position);
+                    INavigationPoint previous = current.GetSharedPoint(current.Parent);
+                    path.Add(previous.Position);
 
                     current = current.Parent;
 
                     while (current.Link != startLink)
                     {
-                        NavigationPoint next = current.Link.GetOtherPoint(previous);
+                        INavigationPoint next = current.Link.GetOtherPoint(previous);
 
-                        path.Add(next.transform.position);
+                        path.Add(next.Position);
                         previous = next;
                         current = current.Parent;
                     }
@@ -85,17 +85,17 @@ public class NavigationGrid : MonoBehaviour
 
         return path;
     }
-    private List<NavigationNode> GetNeightbours(NavigationNode node, NavigationLink[] links)
+    private List<NavigationNode> GetNeightbours(NavigationNode node, INavigationLink[] links)
     {
         List<NavigationNode> list = new List<NavigationNode>();
 
-        HashSet<NavigationPoint> points = new HashSet<NavigationPoint>(node.Link.Points);
+        HashSet<INavigationPoint> points = new HashSet<INavigationPoint>(node.Link.Points);
 
-        foreach (NavigationLink link in links)
+        foreach (INavigationLink link in links)
         {
             if (link != node.Link)
             {
-                foreach (NavigationPoint point in link.Points)
+                foreach (INavigationPoint point in link.Points)
                 {
                     if (points.Contains(point))
                         list.Add(new NavigationNode() { Link = link });
@@ -106,12 +106,12 @@ public class NavigationGrid : MonoBehaviour
         return list;
     }
 
-    private NavigationLink GetClosestLinkTo(Vector3 point)
+    private INavigationLink GetClosestLinkTo(Vector3 point)
     {
         float dist = float.MaxValue;
-        NavigationLink link = null;
+        INavigationLink link = null;
 
-        foreach (NavigationLink l in links)
+        foreach (INavigationLink l in links)
         {
             float distance = Vector2.Distance(point, l.ToLine(point));
 
@@ -130,21 +130,21 @@ public class NavigationGrid : MonoBehaviour
 
     private class NavigationNode
     {
-        public NavigationLink Link;
+        public INavigationLink Link;
         public float GCost, HCost;
         public float FCost => GCost + HCost;
         public NavigationNode Parent;
 
-        internal float GetDistance(NavigationLink neightbour)
+        internal float GetDistance(INavigationLink neightbour)
         {
-            return Vector2.Distance(Vector2.Lerp(Link.Points[0].transform.position, Link.Points[1].transform.position, 0.5f), Vector2.Lerp(neightbour.Points[0].transform.position, neightbour.Points[1].transform.position, 0.5f));
+            return Vector2.Distance(Vector2.Lerp(Link.Points[0].Position, Link.Points[1].Position, 0.5f), Vector2.Lerp(neightbour.Points[0].Position, neightbour.Points[1].Position, 0.5f));
         }
 
-        internal NavigationPoint GetSharedPoint(NavigationNode parent)
+        internal INavigationPoint GetSharedPoint(NavigationNode parent)
         {
-            foreach (NavigationPoint point in Link.Points)
+            foreach (INavigationPoint point in Link.Points)
             {
-                foreach (NavigationPoint p in parent.Link.Points)
+                foreach (INavigationPoint p in parent.Link.Points)
                 {
                     if (p == point) return point;
                 }
@@ -154,15 +154,23 @@ public class NavigationGrid : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        if (debugPoints != null && debugPoints.Length != 0)
-        {
-            for (int i = 1; i < debugPoints.Length - 1; i++)
-            {
-                Gizmos.DrawLine(debugPoints[i - 1], debugPoints[i]);
-            }
-        }
+        foreach (INavigationLink links in GetComponentsInChildren<INavigationLink>())
+            Gizmos.DrawLine(links.Points[0].Position, links.Points[1].Position);
     }
+}
+
+public interface INavigationLink
+{
+    INavigationPoint[] Points { get; }
+
+    INavigationPoint GetOtherPoint(INavigationPoint previous);
+    Vector3 ToLine(Vector3 target);
+}
+
+public interface INavigationPoint
+{
+    Vector3 Position { get; }
 }

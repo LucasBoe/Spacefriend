@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NavigationLink : MonoBehaviour
+public class NavigationLinkBehaviour : MonoBehaviour, INavigationLink
 {
-    [SerializeField] NavigationPoint[] points = new NavigationPoint[2];
-    public NavigationPoint[] Points => points;
+    [SerializeField] NavigationPointBehaviour[] points = new NavigationPointBehaviour[2];
 
-    private void OnDrawGizmos()
-    {
-        if (points[0] != null && points[1] != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(points[0].transform.position, points[1].transform.position);
-        }
-    }
+    INavigationPoint[] INavigationLink.Points => points;
 
-    internal Vector3 ToLine(Vector3 target)
+    //private void OnDrawGizmos()
+    //{
+    //    if (points[0] != null && points[1] != null)
+    //    {
+    //        Gizmos.color = Color.yellow;
+    //        Gizmos.DrawLine(points[0].transform.position, points[1].transform.position);
+    //    }
+    //}
+
+    public Vector3 ToLine(Vector3 target)
     {
         Vector2 vector2 = Vector2Util.GetClosestPointOnLineSegment(points[0].transform.position, points[1].transform.position, target);
         return new Vector3(vector2.x, vector2.y, 0);
@@ -38,7 +39,7 @@ public class NavigationLink : MonoBehaviour
 
     }
 
-    internal NavigationPoint GetFurthestPoint(Vector3 target)
+    internal NavigationPointBehaviour GetFurthestPoint(Vector3 target)
     {
         if (Vector2.Distance(target, points[0].transform.position) < Vector2.Distance(target, points[1].transform.position))
             return points[1];
@@ -46,9 +47,9 @@ public class NavigationLink : MonoBehaviour
             return points[0];
     }
 
-    internal NavigationPoint GetOtherPoint(NavigationPoint previous)
+    public INavigationPoint GetOtherPoint(INavigationPoint previous)
     {
-        if (points[0] == previous)
+        if (points[0].Position == previous.Position)
             return points[1];
         else
             return points[0];
