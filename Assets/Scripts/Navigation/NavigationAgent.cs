@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NavigationAgent : MonoBehaviour
 {
-    [SerializeField] NavigationGrid grid;
+    [SerializeField] NavigationGrid currentGrid;
     [SerializeField] float speedRegular = 3.5f, speedDown = 5f;
     List<Vector3> currentPath = new List<Vector3>();
     Action callback;
@@ -15,14 +15,14 @@ public class NavigationAgent : MonoBehaviour
     float velocity = 0f;
     bool slidingDownBefore = false;
     public System.Action<bool> ChangeIsSlidingEvent;
-    public static System.Action<NavigationGrid> TriggerSwitchEvent;
+    public static System.Action<NavigationGrid> TriggerSwitchGridEvent;
 
-    private void OnEnable() => TriggerSwitchEvent += (value) => grid = value;
-    private void OnDisable() => TriggerSwitchEvent -= (value) => grid = value;
+    private void OnEnable() => TriggerSwitchGridEvent += (value) => currentGrid = value;
+    private void OnDisable() => TriggerSwitchGridEvent -= (value) => currentGrid = value;
 
     internal void MoveTo(Vector3 target, Action _callback = null)
     {
-        currentPath = grid.GetPath(transform.position, target);
+        currentPath = currentGrid.GetPath(transform.position, target);
         callback = _callback;
     }
 
@@ -80,5 +80,10 @@ public class NavigationAgent : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(transform.position + Vector3.up, transform.position + Vector3.up + (Vector3)DirectionalVector);
+    }
+
+    internal void TeleportTo(Vector3 pos)
+    {
+        PlayerServiceProvider.GetPlayerTransform().position = currentGrid.GetClosestPointOnGrid(pos);
     }
 }

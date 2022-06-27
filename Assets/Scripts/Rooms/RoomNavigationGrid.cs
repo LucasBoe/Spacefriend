@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class RoomNavigationGrid : NavigationGrid
 {
-    [SerializeField] Room room;
+    [SerializeField] RoomBehaviour room;
     [SerializeField] bool useEdgeColliderOverride = false;
     [ShowIf("useEdgeColliderOverride"), SerializeField] EdgeCollider2D edgeColliderOverride;
 
@@ -36,7 +36,7 @@ public class RoomNavigationGrid : NavigationGrid
 
     private void OnValidate()
     {
-        room = GetComponentInParent<Room>();
+        room = GetComponentInParent<RoomBehaviour>();
     }
 
     private void OnEnable()
@@ -51,7 +51,7 @@ public class RoomNavigationGrid : NavigationGrid
 
     private void OnSetRoomStateEvent(bool roomActive)
     {
-        if (roomActive) NavigationAgent.TriggerSwitchEvent(this);
+        if (roomActive) NavigationAgent.TriggerSwitchGridEvent(this);
     }
 
     private class NavigationPointInfo : INavigationPoint

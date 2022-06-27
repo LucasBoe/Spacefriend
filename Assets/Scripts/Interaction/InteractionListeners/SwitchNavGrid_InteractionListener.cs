@@ -10,7 +10,7 @@ public class SwitchNavGrid_InteractionListener : InteractableInteraction_BaseBeh
     [SerializeField] NavigationGrid navGrid;
     public override void Interact()
     {
-        NavigationAgent.TriggerSwitchEvent?.Invoke(navGrid);
+        NavigationAgent.TriggerSwitchGridEvent?.Invoke(navGrid);
     }
 
 #if UNITY_EDITOR

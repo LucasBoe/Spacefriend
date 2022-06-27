@@ -3,34 +3,61 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class RoomAgent : MonoBehaviour
 {
-    [SerializeField] Room currentRoom;
-    public Room CurrentRoom => currentRoom;
+    [SerializeField] RoomInfo currentRoom;
+    public RoomInfo CurrentRoom => currentRoom;
 
     private void Start()
     {
-        Room.TriggerEnterRoomEvent(currentRoom);
+#if UNITY_EDITOR
+        int index = EditorStartScenePreProcessor.SceneStartedFromBuildIndex;
+        if (index != 0)
+        {
+            RoomBehaviour[] rooms = FindObjectsOfType<RoomBehaviour>();
+            foreach (RoomBehaviour room in rooms)
+            {
+                Debug.Log(room);
+                int roomDataIndex = room.Data.SceneIndex;
+                if (roomDataIndex == index)
+                {
+                    currentRoom = new RoomInfo() { Data = room.Data, SceneBehaviour = room };
+#endif
+                    RoomManager.TriggerEnterRoomEvent(currentRoom.Data);
+#if UNITY_EDITOR
+                    Interactable closestDoor = GetClosestRoomChangeInteractable(transform.position);
+                    if (closestDoor != null)
+                        PlayerServiceProvider.GetMoveModule().TeleportTo(closestDoor.GetPoint());
+                }
+            }
+        }
+        else
+        {
+            RoomManager.TriggerEnterRoomEvent(currentRoom.Data);
+        }
+#endif
     }
 
     private void OnEnable()
     {
-        Room.TriggerEnterRoomEvent += OnEnterRoom;
+        RoomManager.OnChangeRoomEvent += OnChangeRoom;
     }
     private void OnDisable()
     {
-        Room.TriggerEnterRoomEvent -= OnEnterRoom;
+        RoomManager.OnChangeRoomEvent -= OnChangeRoom;
     }
 
-    private void OnEnterRoom(Room room)
+    private void OnChangeRoom(RoomInfo info)
     {
-        currentRoom = room;
+        currentRoom = info;
     }
 
     internal Interactable GetClosestRoomChangeInteractable(Vector3 cursorPoint)
     {
-        ChangeRoom_InteractionListener[] doors = currentRoom.GetComponentsInChildren<ChangeRoom_InteractionListener>();
-        return doors.OrderBy(door => Vector2.Distance(door.transform.position, cursorPoint)).First().GetComponent<Interactable>();
+        return currentRoom.SceneBehaviour.Doors.OrderBy(door => Vector2.Distance(door.transform.position, cursorPoint)).First().GetComponent<Interactable>();
     }
 }

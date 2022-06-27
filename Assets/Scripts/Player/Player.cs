@@ -137,4 +137,9 @@ public class PlayerMoveModule
         }
     }
     public Vector3 GetDirectionalMoveVector() => overridePosition ? directionalVectorFromOverride : navigationAgent.DirectionalVector;
+
+    internal void TeleportTo(Vector3 pos)
+    {
+        navigationAgent.TeleportTo(pos);
+    }
 }

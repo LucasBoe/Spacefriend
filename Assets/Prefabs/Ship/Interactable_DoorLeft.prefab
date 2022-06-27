@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: door
-  useCustomWalkTargetPoint: 0
-  customWalkTargetTransform: {fileID: 0}
+  useWalkTargetOffset: 0
+  walkTargetOffset: {x: 0, y: 0, z: 0}
   isConditioned: 0
   conditions: []
 --- !u!114 &2041613434

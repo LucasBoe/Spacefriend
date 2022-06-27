@@ -7,11 +7,11 @@ using UnityEditor;
 
 public class ChangeRoom_InteractionListener : InteractableInteraction_BaseBehaviour
 {
-    [SerializeField] Room room;
+    [SerializeField] RoomData room;
 
     public override void Interact()
     {
-        Room.TriggerEnterRoomEvent(room);
+        RoomManager.TriggerEnterRoomEvent(room);
     }
 
 #if UNITY_EDITOR
@@ -20,6 +20,7 @@ public class ChangeRoom_InteractionListener : InteractableInteraction_BaseBehavi
         SerializedObject serializedObject = new SerializedObject(this);
         SerializedProperty roomProperty = serializedObject.FindProperty("room");
         EditorGUILayout.PropertyField(roomProperty);
+        serializedObject.ApplyModifiedProperties();
     }
 #endif
 }

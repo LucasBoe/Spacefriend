@@ -13,6 +13,11 @@ public class NavigationGrid : MonoBehaviour
         links = GetComponentsInChildren<INavigationLink>();
     }
 
+    public Vector3 GetClosestPointOnGrid(Vector3 target)
+    {
+        return GetClosestLinkTo(target).ToLine(target);
+    }
+
     internal List<Vector3> GetPath(Vector3 start, Vector3 target)
     {
 

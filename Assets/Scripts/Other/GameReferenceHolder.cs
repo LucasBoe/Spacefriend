@@ -6,8 +6,13 @@ using UnityEngine;
 public class GameReferenceHolder : SingletonBehaviour<GameReferenceHolder>
 {
     public Material InteractableMaterial;
-
     public SoundReferences Sounds;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Debug.Log("GameReferenceHolder: Awake");
+    }
 
     [System.Serializable]
     public class SoundReferences

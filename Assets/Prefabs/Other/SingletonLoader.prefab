@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1763409508273524560}
-  - component: {fileID: 8269263756719575743}
+  - component: {fileID: 3399781518489085878}
   m_Layer: 0
-  m_Name: GameSceneConstructor
+  m_Name: SingletonLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8269263756719575743
+--- !u!114 &3399781518489085878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1763409508273524563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ce768ee7953f04ab10e94482b0538a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4802b8988f5637343abfcbf8d3a8a0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ToInstatiate:
@@ -51,3 +51,4 @@ MonoBehaviour:
   - {fileID: 5729245817587807955, guid: e541153b3b5b70e49a597ff75deae6a8, type: 3}
   - {fileID: 9050739656407581106, guid: 66e89dbd4ee934949a6c3ed6b7f6379b, type: 3}
   - {fileID: 8660719420799815879, guid: 31c2e24b1b8b6bf45b6cc8ade9b68490, type: 3}
+  - {fileID: 8992460670091751387, guid: 94a01f0a5c9d23d48a17522eb14149ac, type: 3}

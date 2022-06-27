@@ -7,7 +7,7 @@ using Cinemachine;
 [RequireComponent(typeof(CinemachineVirtualCamera))]
 public class RoomCamera : MonoBehaviour
 {
-    [SerializeField] Room room;
+    [SerializeField] RoomBehaviour room;
     CinemachineVirtualCamera virtualCamera;
 
     private void Awake()

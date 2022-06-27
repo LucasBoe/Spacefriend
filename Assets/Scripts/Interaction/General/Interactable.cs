@@ -19,13 +19,13 @@ public class Interactable : MonoBehaviour
 
     private IInteractableInteractionListener[] interactionListeners;
     private IInteractableHoverListener[] hoverListeners;
-    private Room room;
+    private RoomBehaviour room;
 
     private void Awake()
     {
         interactionListeners = GetComponentsInChildren<IInteractableInteractionListener>();
         hoverListeners = GetComponentsInChildren<IInteractableHoverListener>();
-        room = GetComponentInParent<Room>();
+        room = GetComponentInParent<RoomBehaviour>();
     }
 
     internal void BeginHover()

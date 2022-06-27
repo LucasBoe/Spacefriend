@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceTransitionRoom : Room
+public class SpaceTransitionRoom : RoomBehaviour
 {
     List<SpaceRoomObject> spaceRoomObjects = new List<SpaceRoomObject>();
 

@@ -88,7 +88,7 @@ public class InteractionHandler : MonoBehaviour
                 if (target != null)
                     moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
                 else
-                    moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom));
+                    moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom.SceneBehaviour));
 
             }
         }
@@ -121,13 +121,13 @@ public class InteractionHandler : MonoBehaviour
         interactable = hovered;
     }
 
-    private bool IsPointOutsideOfCurrentRoom(Vector3 cursorPoint, Room current)
+    private bool IsPointOutsideOfCurrentRoom(Vector3 cursorPoint, RoomBehaviour current)
     {
         RaycastHit2D[] roomHits = Physics2D.RaycastAll(cursorPoint, Vector2.zero, float.MaxValue, layerMask: roomLayerMask);
 
         foreach (RaycastHit2D hit in roomHits)
         {
-            if (current == hit.collider.GetComponent<Room>())
+            if (current == hit.collider.GetComponent<RoomBehaviour>())
                 return false;
         }
 

@@ -64,6 +64,7 @@ public class ItemInHandController : MonoBehaviour
             itemRenderer.sprite = data.Sprite;
         }
 
+        //TODO: Move the two Routines into one
         CoroutineUtil.ExecuteFloatRoutine(removeItem ? 0.75f : 0f, removeItem ? 0f : 0.75f, (value) => limbSolver.weight = value, this, 0.5f);
 
 

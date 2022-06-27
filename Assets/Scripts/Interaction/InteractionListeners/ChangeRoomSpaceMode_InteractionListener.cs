@@ -8,7 +8,7 @@ using UnityEditor;
 public class ChangeRoomSpaceMode_InteractionListener : InteractableInteraction_BaseBehaviour
 {
     //[SerializeField] SpaceTransitionRoom transitionRoom;
-    [SerializeField] Room spaceRoom;
+    [SerializeField] RoomData spaceRoom;
     [SerializeField] bool space = true;
     [SerializeField] bool addSpaceSuite = true;
 
@@ -17,7 +17,7 @@ public class ChangeRoomSpaceMode_InteractionListener : InteractableInteraction_B
         SpaceAgent spaceAgent = PlayerServiceProvider.GetSpaceAgent();
         spaceAgent.SetSpaceMode(space);
         //transitionRoom.SetRoomState(isSpace: space);
-        Room.TriggerEnterRoomEvent?.Invoke(spaceRoom);
+        RoomManager.TriggerEnterRoomEvent?.Invoke(spaceRoom);
         if (addSpaceSuite) PlayerServiceProvider.SetPlayerSkin(space ? PlayerSkinType.Astronaut : PlayerSkinType.Clothes);
     }
 
