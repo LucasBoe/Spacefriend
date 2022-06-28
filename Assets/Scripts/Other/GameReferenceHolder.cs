@@ -7,6 +7,7 @@ public class GameReferenceHolder : SingletonBehaviour<GameReferenceHolder>
 {
     public Material InteractableMaterial;
     public SoundReferences Sounds;
+    public AnimationCurve UiScaleInOutAnimationCurve;
 
     protected override void Awake()
     {

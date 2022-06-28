@@ -7,7 +7,7 @@ using UnityEngine;
 public abstract class UIBehaviour : MonoBehaviour
 {
     protected bool IsActive = false;
-    private const float TRANSITION_DURATION = 1f;
+    private const float TRANSITION_DURATION = 0.3f;
 
     public void SetActive(bool active)
     {
@@ -18,20 +18,28 @@ public abstract class UIBehaviour : MonoBehaviour
 
     private IEnumerator BlendingRoutine(float duration, bool active)
     {
-        if (!active) SetInteractable(false);
+        if (active)
+            SetHidden(false);
+        else
+            SetInteractable(false);
+
 
         float t = 0;
         while (t < duration)
         {
             t += Time.deltaTime;
-            SetAlpha(active ? t / duration : 1f - (t / duration));
+            SetVisibilityAmount(active ? t / duration : 1f - (t / duration));
             yield return null;
         }
 
-        if (active) SetInteractable(true);
+        if (active)
+            SetInteractable(true);
+        else
+            SetHidden(false);
     }
     protected abstract void SetInteractable(bool active);
-    protected abstract void SetAlpha(float v);
+    protected abstract void SetHidden(bool hidden);
+    protected abstract void SetVisibilityAmount(float v);
 
     [Button]
     private void SetActive_TEMP()

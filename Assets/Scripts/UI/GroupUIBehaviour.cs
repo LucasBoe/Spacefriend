@@ -11,7 +11,7 @@ public class GroupUIBehaviour : UIBehaviour
         group = GetComponent<CanvasGroup>();
         group.alpha = 0f;
     }
-    protected override void SetAlpha(float alpha)
+    protected override void SetVisibilityAmount(float alpha)
     {
         group.alpha = alpha;
     }
@@ -19,5 +19,10 @@ public class GroupUIBehaviour : UIBehaviour
     protected override void SetInteractable(bool interactable)
     {
         group.interactable = interactable;
+    }
+
+    protected override void SetHidden(bool hidden)
+    {
+        //
     }
 }

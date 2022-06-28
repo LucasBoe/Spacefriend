@@ -1191,11 +1191,27 @@ PrefabInstance:
     m_TransformParent: {fileID: 1663778901}
     m_Modifications:
     - target: {fileID: 4624862130526174560, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624862130526174560, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624862130922362819, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4624862130922362819, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624862130922362819, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624862131060976279, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5201382532890519140, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
@@ -1305,6 +1321,14 @@ PrefabInstance:
     - target: {fileID: 5201382534700700853, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
       propertyPath: m_Name
       value: MinigameSliderCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201382534700700853, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201382534700700855, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68415f29b0cd1ee4493eb2d0d7f72ec4, type: 3}
