@@ -7,10 +7,10 @@ public class MainMenu : SingletonBehaviour<MainMenu>
 {
     [SerializeField] CanvasGroup canvasGroup;
 
-    private void Awake()
+    protected override void Awake()
     {
         canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
+        SetInteractabe(false);
     }
 
     private void OnEnable()
@@ -32,8 +32,14 @@ public class MainMenu : SingletonBehaviour<MainMenu>
     public void SetActive(bool active)
     {
         CoroutineUtil.ExecuteFloatRoutine(active ? 0f : 1f, active ? 1f : 0f, SetAlpha, this, 0.5f);
-        if (!active) canvasGroup.interactable = false;
-        else CoroutineUtil.Delay(() => canvasGroup.interactable = true, this, 0.5f);
+        if (!active) SetInteractabe(false);
+        else CoroutineUtil.Delay(() => SetInteractabe(true), this, 0.5f);
+    }
+
+    private void SetInteractabe(bool interactable)
+    {
+        canvasGroup.interactable = interactable;
+        canvasGroup.blocksRaycasts = interactable;
     }
 
     private void SetAlpha(float alpha)

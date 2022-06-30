@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 public class SliderUIBehaviour : UIBehaviour
 {
-    [SerializeField] protected Slider slider;
+    [SerializeField, Foldout("Reference")] protected Slider slider;
     AnimationCurve scaleCurve;
 
     private void Start()

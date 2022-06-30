@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class SmoothSliderUIBehaviour : SliderUIBehaviour
 {
-    [SerializeField] Slider sliderDirect;
-    [SerializeField] Sprite sliderFillDashed, sliderFillFull;
-    [SerializeField] Image sliderFillImageSmooth, sliderFillImageDirect;
+    [SerializeField, Foldout("Reference")] Slider sliderDirect;
+    [SerializeField, Foldout("Reference")] Sprite sliderFillDashed, sliderFillFull;
+    [SerializeField, Foldout("Reference")] Image sliderFillImageSmooth, sliderFillImageDirect;
 
-    [SerializeField] float sliderFillDuration = 4;
+    [SerializeField, Range(0.25f, 10f)] float sliderFillDuration = 4;
 
     [SerializeField, ReadOnly] bool isMoving = false;
     [SerializeField, ReadOnly] float target = 0;

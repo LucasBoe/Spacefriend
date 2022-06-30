@@ -8,22 +8,23 @@ using UnityEngine.EventSystems;
 public class InteractionHandler : MonoBehaviour
 {
     [SerializeField, ReadOnly, Foldout("Info")] Interactable interactable;
-    [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverCloseUp;
+    [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverPanel;
 
-    int roomLayerMask, interactableLayerMask, closeUpLayerMask, totalShipLayerMask;
+    int roomLayerMask, interactableLayerMask, panelLayerMask, totalShipLayerMask;
     Camera mainCam;
 
     PlayerMoveModule moveModule;
     RoomAgent roomAgent;
 
+
     public static System.Action ClickOutsideOfCloseUpEvent;
     public static System.Action<bool> ClickedInTotalViewEvent;
 
-    private void Awake()
+    protected void Awake()
     {
         roomLayerMask = LayerMask.GetMask("Room");
         interactableLayerMask = ~LayerMask.GetMask("Room", "Ignore Raycast", "CloseUp", "TotalShip");
-        closeUpLayerMask = LayerMask.GetMask("CloseUp");
+        panelLayerMask = LayerMask.GetMask("Panel");
         totalShipLayerMask = LayerMask.GetMask("TotalShip");
         mainCam = Camera.main;
     }
@@ -72,9 +73,9 @@ public class InteractionHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             // CLOSE UP CHECK
-            pointerOverCloseUp = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: closeUpLayerMask).collider != null;
+            pointerOverPanel = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: panelLayerMask).collider != null;
 
-            if (pointerOverCloseUp)
+            if (pointerOverPanel)
             {
                 //interactables that are part of closeups are interacted with directly
                 if (target != null) target.Interact();

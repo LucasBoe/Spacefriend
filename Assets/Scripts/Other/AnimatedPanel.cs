@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(BoxCollider2D))]
 public class AnimatedPanel : MonoBehaviour
 {
     private static AnimationCurve easeInOutCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
@@ -13,6 +15,7 @@ public class AnimatedPanel : MonoBehaviour
 
     protected virtual void Awake()
     {
+        gameObject.layer = LayerMask.NameToLayer("Panel");
         open = true;
         Close();
     }
