@@ -8,6 +8,8 @@ public class SliderPanel_Minigame : MinigamePhase
     [SerializeField] SliderUIBehaviour slider;
     [SerializeField] AnimatedPanel panel;
     [SerializeField] float targetValue;
+    [SerializeField] float panelCloseDelay;
+    [SerializeField] float panelOpenDelay;
 
     private void OnEnable()
     {
@@ -27,12 +29,26 @@ public class SliderPanel_Minigame : MinigamePhase
     public override void StartPhase()
     {
         base.StartPhase();
-        panel.Open();
+        if (panelOpenDelay > 0)
+        {
+            CoroutineUtil.Delay(() => panel.Open(), this, panelOpenDelay);
+        }
+        else
+        {
+            panel.Open();
+        }
     }
 
     public override void EndPhase()
     {
         base.EndPhase();
-        panel.Close();
+        if (panelCloseDelay > 0)
+        {
+            CoroutineUtil.Delay(() => panel.Close(), this, panelCloseDelay);
+        }
+        else
+        {
+            panel.Close();
+        }
     }
 }

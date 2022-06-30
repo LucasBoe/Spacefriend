@@ -14,6 +14,7 @@ public class LerpPositionOnSliderValueChanged : MonoBehaviour
     {
         startPos = startTransform.position;
         endPos = endTransform.position;
+        transform.position = startPos;
     }
 
     private void OnEnable()

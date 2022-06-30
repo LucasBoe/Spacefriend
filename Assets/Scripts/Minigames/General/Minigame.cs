@@ -10,6 +10,8 @@ public class Minigame : MonoBehaviour
     [SerializeField] private bool hasAnimations = false;
     [SerializeField, ShowIf("hasAnimations")] Animator animator;
     [SerializeField, ShowIf("hasAnimations")] AnimationClip inAnimation, outAnimation;
+    [SerializeField] bool doDelayBetweenPhases = false;
+    [SerializeField, ShowIf("doDelayBetweenPhases")] float delayBetweenPhases = 0f;
 
     private bool running = false;
     private int phaseIndex = 0;
@@ -64,7 +66,12 @@ public class Minigame : MonoBehaviour
         }
         else
         {
-            Phases[phaseIndex].StartPhase();
+            MinigamePhase phase = Phases[phaseIndex];
+
+            if (doDelayBetweenPhases)
+                CoroutineUtil.Delay(phase.StartPhase, this, delayBetweenPhases);
+            else
+                phase.StartPhase();
         }
     }
 }
