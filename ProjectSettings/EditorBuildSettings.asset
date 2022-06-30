@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 6ffe1a71c738fc24288b2defb4606ca8
   - enabled: 1
+    path: Assets/Scenes/MainMenue.unity
+    guid: 6e4b3af2b84e47f478978553db89fc1c
+  - enabled: 1
     path: Assets/Scenes/Room_Bath.unity
     guid: 0c23b698f9808064dae503a32d1a2870
   - enabled: 1

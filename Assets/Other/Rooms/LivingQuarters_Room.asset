@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9e93dcf1b4a5e4797b901baec44b43, type: 3}
   m_Name: LivingQuarters_Room
   m_EditorClassIdentifier: 
-  SceneIndex: 3
+  SceneIndex: 4
