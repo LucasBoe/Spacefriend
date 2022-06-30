@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SliderUIBehaviour : UIBehaviour
 {
-    [SerializeField] Slider slider;
+    [SerializeField] protected Slider slider;
     AnimationCurve scaleCurve;
 
     private void Start()
@@ -15,7 +15,7 @@ public class SliderUIBehaviour : UIBehaviour
         SetHidden(true);
     }
 
-    public Slider.SliderEvent OnValueChanged => slider.onValueChanged;
+    public virtual Slider.SliderEvent OnValueChanged => slider.onValueChanged;
 
     public void SetValue(float value) => slider.value = value;
 

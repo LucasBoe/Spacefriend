@@ -22,7 +22,7 @@ public class SliderPanel_Minigame : MinigamePhase
 
     private void OnValueChanged(float value)
     {
-        if (IsRunning && value == targetValue)
+        if (IsRunning && Mathf.Abs(value - targetValue) < 0.05f)
             EndPhase();
     }
 
