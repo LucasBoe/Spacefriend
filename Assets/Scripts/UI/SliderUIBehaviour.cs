@@ -12,6 +12,7 @@ public class SliderUIBehaviour : UIBehaviour
     private void Start()
     {
         scaleCurve = GameReferenceHolder.Instance.UiScaleInOutAnimationCurve;
+        SetHidden(true);
     }
 
     public Slider.SliderEvent OnValueChanged => slider.onValueChanged;

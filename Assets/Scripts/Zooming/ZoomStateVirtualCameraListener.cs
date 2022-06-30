@@ -24,6 +24,6 @@ public class ZoomStateVirtualCameraListener : ZoomStateListenerBase
 
     protected override void OnChangedState(ZoomState previous, ZoomState newState)
     {
-        virtualCamera.Priority = state == newState ? 10 : 0;
+        virtualCamera.Priority = state == newState ? 10 : 1;
     }
 }

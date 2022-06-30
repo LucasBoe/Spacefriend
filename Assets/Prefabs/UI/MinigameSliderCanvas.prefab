@@ -164,19 +164,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6520774988574296007, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6520774988574296007, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6520774988574296007, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6520774988737952403, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_Name
       value: DefaultSliderUIElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520774988737952403, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6520774988737952428, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_Pivot.x
@@ -268,11 +272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6520774989272755556, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6520774989272755556, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6520774989272755556, guid: 3c9f1053642113b469bad02b066d6d50, type: 3}
       propertyPath: m_SizeDelta.x

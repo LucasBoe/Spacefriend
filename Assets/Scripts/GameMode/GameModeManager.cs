@@ -11,11 +11,12 @@ public class GameModeManager : SingletonBehaviour<GameModeManager>
     private void Start()
     {
         if (currentGameMode == GameMode.StartUp)
-            SetGameMode(GameMode.MainMenu);
+            SetGameMode(GameMode.Play);
     }
 
     public static void SetGameMode(GameMode newGameMode)
     {
+        Debug.Log("Change Game Mode To: " + newGameMode);
         GameMode before = Instance.currentGameMode;
         Instance.currentGameMode = newGameMode;
         GameModeChangedEvent?.Invoke(before, newGameMode);

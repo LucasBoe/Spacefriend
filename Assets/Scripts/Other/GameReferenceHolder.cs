@@ -19,6 +19,6 @@ public class GameReferenceHolder : SingletonBehaviour<GameReferenceHolder>
     public class SoundReferences
     {
         public Sound PointerDownSound, PointerUpSound;
-        public Sound PopupOpenSound, PopupCloseSound;
+        public Sound PanelOpenSound, PanelCloseSound;
     }
 }

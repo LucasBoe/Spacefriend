@@ -14,6 +14,8 @@ public class Minigame : MonoBehaviour
     private bool running = false;
     private int phaseIndex = 0;
     public bool IsRunning => running;
+
+    [Button]
     public void StartMinigame()
     {
         foreach (MinigamePhase phase in Phases) phase.EndPhaseEvent += NextPhase;
@@ -24,6 +26,7 @@ public class Minigame : MonoBehaviour
         StartCoroutine(MinigameRoutine());
     }
 
+    [Button]
     public void EndMinigame()
     {
         foreach (MinigamePhase phase in Phases) phase.EndPhaseEvent -= NextPhase;

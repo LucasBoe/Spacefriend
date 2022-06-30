@@ -10,11 +10,11 @@ public class EndMinigameOnCloseUpClose : MonoBehaviour
 
     private void OnEnable()
     {
-        closeUp.ChangeCloseUpOpenEvent += OnChangeCloseUpOpen;
+        closeUp.ChangePanelOpenEvent += OnChangeCloseUpOpen;
     }
     private void OnDisable()
     {
-        closeUp.ChangeCloseUpOpenEvent -= OnChangeCloseUpOpen;
+        closeUp.ChangePanelOpenEvent -= OnChangeCloseUpOpen;
     }
 
     private void OnChangeCloseUpOpen(bool open)

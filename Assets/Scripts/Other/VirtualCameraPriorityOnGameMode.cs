@@ -27,6 +27,8 @@ public class VirtualCameraPriorityOnGameMode : MonoBehaviour
     }
     private void OnChangedGameMode(GameMode from, GameMode to)
     {
-        virtualCamera.Priority = (to == gameMode) ? truePrio : falsePrio;
+        var prio = (to == gameMode) ? truePrio : falsePrio;
+        Debug.Log("set prio to: " + prio);
+        virtualCamera.Priority = prio;
     }
 }

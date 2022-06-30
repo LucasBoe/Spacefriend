@@ -3,21 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using NaughtyAttributes;
 
 public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 {
-    ZoomState current = ZoomState.TOTAL;
+    [SerializeField, ReadOnly] ZoomState current = ZoomState.TOTAL;
 
     public static ZoomState CurrentZoom => Instance.current;
 
-    public static System.Action<ZoomState,ZoomState> ChangedStateEvent;
+    public static System.Action<ZoomState, ZoomState> ChangedStateEvent;
 
     private bool isZooming = false;
+
+    private void OnEnable()
+    {
+        GameModeManager.GameModeChangedEvent += OnGameModeChanged;
+    }
+    private void OnDisable()
+    {
+        GameModeManager.GameModeChangedEvent -= OnGameModeChanged;
+    }
+
+
+    private void OnGameModeChanged(GameMode from, GameMode to)
+    {
+        ZoomState before = current;
+        current = to == GameMode.Total ? ZoomState.TOTAL : ZoomState.ROOM;
+        if (before != current) ChangedStateEvent?.Invoke(before, current);
+    }
 
     [ContextMenu("NextState")]
     public void TryZoom(int change)
     {
-        ZoomState before = current;
         int number = (int)current;
 
         number += change;
@@ -28,13 +45,14 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 
         if (number != (int)current)
         {
-            current = (ZoomState)number;
-            ChangedStateEvent?.Invoke(before, current);
+            ZoomState newState = (ZoomState)number;
 
-            if (current == ZoomState.TOTAL) GameModeManager.SetGameMode(GameMode.Total);
-            else if (current == ZoomState.ROOM) GameModeManager.SetGameMode(GameMode.Play);
+            if (newState == ZoomState.TOTAL) GameModeManager.SetGameMode(GameMode.Total);
+            else if (newState == ZoomState.ROOM) GameModeManager.SetGameMode(GameMode.Play);
         }
     }
+
+
 
     public void TryZoomOut()
     {

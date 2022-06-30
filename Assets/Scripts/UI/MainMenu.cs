@@ -7,6 +7,12 @@ public class MainMenu : SingletonBehaviour<MainMenu>
 {
     [SerializeField] CanvasGroup canvasGroup;
 
+    private void Awake()
+    {
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+    }
+
     private void OnEnable()
     {
         GameModeManager.GameModeChangedEvent += OnGameModeChanged;

@@ -5,27 +5,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CloseUp))]
-public class CloseUpSoundPlayerOpenClose : MonoBehaviour
+public class PanelOpenCloseSoundPlayer : MonoBehaviour
 {
     CloseUp closeUp;
     Sound openSound, closeSound;
     private void Awake()
     {
         closeUp = GetComponent<CloseUp>();
-        openSound = GameReferenceHolder.Instance.Sounds.PopupOpenSound;
-        closeSound = GameReferenceHolder.Instance.Sounds.PopupCloseSound;
+        openSound = GameReferenceHolder.Instance.Sounds.PanelOpenSound;
+        closeSound = GameReferenceHolder.Instance.Sounds.PanelCloseSound;
     }
 
     private void OnEnable()
     {
-        closeUp.ChangeCloseUpOpenEvent += OnChangeCloseUpOpen;
+        closeUp.ChangePanelOpenEvent += OnChangeCloseUpOpen;
         openSound.Play();
     }
 
 
     private void OnDisable()
     {
-        closeUp.ChangeCloseUpOpenEvent -= OnChangeCloseUpOpen;
+        closeUp.ChangePanelOpenEvent -= OnChangeCloseUpOpen;
     }
 
     private void OnChangeCloseUpOpen(bool open)
