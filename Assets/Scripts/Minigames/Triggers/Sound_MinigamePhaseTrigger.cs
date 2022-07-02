@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MinigamePhase))]
-public class MinigamePhaseTrigger_Sound : MinigamePhaseTriggerBase
+public class Sound_MinigamePhaseTrigger : MinigamePhaseTriggerBase
 {
 
     [SerializeField] ActionType action;

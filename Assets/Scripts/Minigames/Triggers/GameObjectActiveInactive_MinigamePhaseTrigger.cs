@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinigamePhaseTrigger_GameObjectActiveInactive : MinigamePhaseTriggerBase
+public class GameObjectActiveInactive_MinigamePhaseTrigger : MinigamePhaseTriggerBase
 {
     [SerializeField] GameObject toSetActive;
     [SerializeField] bool active;

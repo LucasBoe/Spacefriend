@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LerpPositionOnSliderValueChanged : MonoBehaviour
+public class LerpPosition_OnSliderValueChanged : OnSliderValueChangedBase
 {
-    [SerializeField] SliderUIBehaviour slider;
     [SerializeField] Transform startTransform, endTransform;
     [SerializeField, CurveRange(0, 0, 1, 1)] AnimationCurve lerpValueCurve;
     Vector3 startPos, endPos;
@@ -17,16 +16,7 @@ public class LerpPositionOnSliderValueChanged : MonoBehaviour
         transform.position = startPos;
     }
 
-    private void OnEnable()
-    {
-        slider.OnValueChanged.AddListener(OnValueChanged);
-    }
-    private void OnDisable()
-    {
-        slider.OnValueChanged.RemoveListener(OnValueChanged);
-    }
-
-    private void OnValueChanged(float value)
+    protected override void OnValueChanged(float value)
     {
         float lerp = lerpValueCurve.Evaluate(value);
         transform.position = Vector3.Lerp(startPos, endPos, lerp);
