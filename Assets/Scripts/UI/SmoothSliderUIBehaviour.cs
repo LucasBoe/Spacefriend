@@ -13,7 +13,22 @@ public class SmoothSliderUIBehaviour : SliderUIBehaviour
     [SerializeField, Range(0.25f, 10f)] float sliderFillDuration = 4;
 
     [SerializeField, ReadOnly] bool isMoving = false;
+    private bool IsMoving
+    {
+        get { return isMoving; }
+        set
+        {
+            bool before = isMoving;
+            isMoving = value;
+
+            if (isMoving != before)
+                ChangedMovingEvent?.Invoke(isMoving);
+        }
+    } 
+
     [SerializeField, ReadOnly] float target = 0;
+
+    public System.Action<bool> ChangedMovingEvent;
 
     public override Slider.SliderEvent OnValueChanged => sliderDirect.onValueChanged;
 
@@ -28,13 +43,13 @@ public class SmoothSliderUIBehaviour : SliderUIBehaviour
 
     private void OnTargetValueChanged(float value)
     {
-        isMoving = true;
+        IsMoving = true;
         target = value;
     } 
 
     private void Update()
     {
-        if (!isMoving) return;
+        if (!IsMoving) return;
 
         float before = sliderDirect.value;
         float sliderValue = Mathf.MoveTowards(before, target, Time.deltaTime / sliderFillDuration);
@@ -49,7 +64,7 @@ public class SmoothSliderUIBehaviour : SliderUIBehaviour
         if (Mathf.Abs(difference) < 0.01f)
         {
             Debug.Log(difference);
-            isMoving = false;
+            IsMoving = false;
         }
     }
 }
