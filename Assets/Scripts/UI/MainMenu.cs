@@ -49,6 +49,6 @@ public class MainMenu : SingletonBehaviour<MainMenu>
 
     public void MenueOption_Continue()
     {
-        GameModeManager.SetGameMode(GameMode.Total);
+        GameModeManager.SetGameMode(GameMode.Play);
     }
 }

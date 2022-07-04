@@ -16,6 +16,7 @@ public class AnimatedPanel : MonoBehaviour
     protected virtual void Awake()
     {
         gameObject.layer = LayerMask.NameToLayer("Panel");
+        gameObject.AddComponent<PanelOpenCloseSoundPlayer>();
         open = true;
         Close();
     }

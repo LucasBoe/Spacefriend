@@ -14,6 +14,7 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
     public static System.Action<ZoomState, ZoomState> ChangedStateEvent;
 
     private bool isZooming = false;
+    private bool zoomingAllowed = true;
 
     private void OnEnable()
     {
@@ -28,7 +29,8 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
     private void OnGameModeChanged(GameMode from, GameMode to)
     {
         ZoomState before = current;
-        current = to == GameMode.Total ? ZoomState.TOTAL : ZoomState.ROOM;
+        current = to == GameMode.Play ? ZoomState.ROOM : ZoomState.TOTAL;
+        Debug.Log("Changed from: " + from + " to " + to);
         if (before != current) ChangedStateEvent?.Invoke(before, current);
     }
 
@@ -56,7 +58,7 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 
     public void TryZoomOut()
     {
-        if (isZooming) return;
+        if (!zoomingAllowed || isZooming) return;
 
         TryZoom(-1);
 
@@ -66,7 +68,7 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
 
     public void TryZoomIn()
     {
-        if (isZooming) return;
+        if (!zoomingAllowed || isZooming) return;
 
         TryZoom(1);
 
@@ -74,6 +76,11 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
         CoroutineUtil.Delay(() => isZooming = false, this, 2f);
     }
 
+
+    public static void SetZoomAllowed(bool allowed)
+    {
+        Instance.zoomingAllowed = allowed;
+    }
 }
 
 [System.Serializable]

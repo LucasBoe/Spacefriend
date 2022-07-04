@@ -11,7 +11,7 @@ public class GameModeManager : SingletonBehaviour<GameModeManager>
     private void Start()
     {
         if (currentGameMode == GameMode.StartUp)
-            SetGameMode(GameMode.Play);
+            SetGameMode(GameMode.MainMenu);
     }
 
     public static void SetGameMode(GameMode newGameMode)
@@ -27,6 +27,7 @@ public enum GameMode
 {
     StartUp,
     MainMenu,
+    TotalSequence,
     Total,
     Play,
     PauseMenu,

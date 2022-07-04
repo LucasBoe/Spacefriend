@@ -1362,7 +1362,6 @@ GameObject:
   - component: {fileID: 647956640}
   - component: {fileID: 647956642}
   - component: {fileID: 647956644}
-  - component: {fileID: 647956641}
   m_Layer: 0
   m_Name: Panel_Blinds
   m_TagString: Untagged
@@ -1390,18 +1389,6 @@ Transform:
   m_Father: {fileID: 266150827}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &647956641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647956639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6334f004edb554b96cb9af748c30c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &647956642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,7 +1638,6 @@ GameObject:
   - component: {fileID: 867761713}
   - component: {fileID: 867761717}
   - component: {fileID: 867761714}
-  - component: {fileID: 867761715}
   m_Layer: 0
   m_Name: Panel_Alarm
   m_TagString: Untagged
@@ -1740,18 +1726,6 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
---- !u!114 &867761715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867761711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6334f004edb554b96cb9af748c30c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &867761717
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5055,7 +5029,6 @@ GameObject:
   - component: {fileID: 2123786150}
   - component: {fileID: 2123786151}
   - component: {fileID: 2123786154}
-  - component: {fileID: 2123786152}
   m_Layer: 0
   m_Name: Panel_Eyes
   m_TagString: Untagged
@@ -5093,18 +5066,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
---- !u!114 &2123786152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123786149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c6334f004edb554b96cb9af748c30c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2123786154
 BoxCollider2D:
   m_ObjectHideFlags: 0

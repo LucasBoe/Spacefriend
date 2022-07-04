@@ -40,6 +40,26 @@ MonoBehaviour:
   pitch: 1
   pitchRange: {x: 0.75, y: 1.25}
   randomizePitch: 0
+--- !u!114 &-7869086758517740668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72527e59cbfe0e94e902be4c01aecd1b, type: 3}
+  m_Name: spaceship-takeoff
+  m_EditorClassIdentifier: 
+  _myLibrary: {fileID: 11400000}
+  clip: {fileID: 8300000, guid: 13a8e40622745764bbb6ea6b751cd5d6, type: 3}
+  useMultipleClipVariants: 0
+  clips: []
+  volume: 0.5
+  pitch: 1
+  pitchRange: {x: 0.75, y: 1.25}
+  randomizePitch: 0
 --- !u!114 &-4643175867225244500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +235,7 @@ MonoBehaviour:
   - {fileID: -8137843733324602013}
   - {fileID: -2875393823119507010}
   - {fileID: 4926931753052594003}
+  - {fileID: -7869086758517740668}
 --- !u!114 &3404450531745126
 MonoBehaviour:
   m_ObjectHideFlags: 0

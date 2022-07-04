@@ -58,6 +58,7 @@ public class RoomAgent : MonoBehaviour
 
     internal Interactable GetClosestRoomChangeInteractable(Vector3 cursorPoint)
     {
+        Debug.LogWarning(currentRoom.SceneBehaviour);
         return currentRoom.SceneBehaviour.Doors.OrderBy(door => Vector2.Distance(door.transform.position, cursorPoint)).First().GetComponent<Interactable>();
     }
 }
