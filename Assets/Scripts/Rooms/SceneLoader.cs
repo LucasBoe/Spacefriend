@@ -5,32 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    SceneLoader instance;
-    private void Awake()
+    public void LoadAllScenes()
     {
-        if (instance == null)
+        Debug.Log("Start: SceneLoader");
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            instance = this;
-
-            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            Scene scene = SceneManager.GetSceneByBuildIndex(i);
+            if (!scene.IsValid())
             {
-                Scene scene = SceneManager.GetSceneByBuildIndex(i);
-                if (!scene.IsValid())
-                {
-                    Debug.Log("Load scene " + i + " => " + scene.path);
-                    SceneManager.LoadScene(i, LoadSceneMode.Additive);
-                }
-                else
-                {
-                    Debug.LogWarning("Did not load scene " + i + " => " + scene.name + " (already open)");
-                }
+                Debug.Log("Load scene " + i + " => " + scene.path);
+                SceneManager.LoadScene(i, LoadSceneMode.Additive);
             }
+            else
+            {
+                Debug.LogWarning("Did not load scene " + i + " => " + scene.name + " (already open)");
+            }
+        }
 
-            Destroy(gameObject, 1);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Debug.Log("End: SceneLoader");
+        Destroy(gameObject, 1);
     }
 }

@@ -50,7 +50,7 @@ public class StartSequenceController : MonoBehaviour
     private IEnumerator SequenceRoutine()
     {
         ZoomHandler.SetZoomAllowed(false);
-        GameModeManager.SetGameMode(GameMode.TotalSequence);
+        GameModeManager.SetGameMode(GameMode.Sequence);
         vCamAnimator.enabled = true;
 
         yield return new WaitForSeconds(10f);

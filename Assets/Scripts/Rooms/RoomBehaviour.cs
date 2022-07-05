@@ -10,6 +10,8 @@ public class RoomBehaviour : MonoBehaviour
     [SerializeField] RoomData roomData;
     public RoomData Data => roomData;
     private List<RoomSpriteRenderer> roomSpriteRenderers;
+    private PlayerSpawnPoint spawnPoint;
+    public PlayerSpawnPoint SpawnPoint => spawnPoint;
     public bool IsActive;
 
     private ChangeRoom_InteractionListener[] doors;
@@ -20,6 +22,7 @@ public class RoomBehaviour : MonoBehaviour
         RoomManager.Instance.RegisterRoom(this, roomData);
         roomSpriteRenderers = new List<RoomSpriteRenderer>();
         doors = GetComponentsInChildren<ChangeRoom_InteractionListener>();
+        spawnPoint = GetComponentInChildren<PlayerSpawnPoint>();
         Debug.Log("Get doors from children");
         SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer renderer in renderers)

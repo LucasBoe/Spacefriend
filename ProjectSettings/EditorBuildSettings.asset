@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room_Space.unity
     guid: dfe51e198c7a921409361e8db74b879b
+  - enabled: 1
+    path: Assets/Scenes/Room_StartSpaceStation.unity
+    guid: 447cc6bee0ca2ae4aa242ee833a34754
   m_configObjects: {}

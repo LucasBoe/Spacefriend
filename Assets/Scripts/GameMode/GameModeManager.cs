@@ -19,9 +19,9 @@ public class GameModeManager : SingletonBehaviour<GameModeManager>
             fromStart = EditorPersistentDataStorage.TestFromStart;
 #endif
             if (fromStart)
-                SetGameMode(GameMode.MainMenu);
+                SetGameMode(GameMode.Menu);
             else
-                SetGameMode(GameMode.Total);
+                SetGameMode(GameMode.Play);
         }
     }
 
@@ -37,10 +37,9 @@ public class GameModeManager : SingletonBehaviour<GameModeManager>
 public enum GameMode
 {
     StartUp,
-    MainMenu,
-    TotalSequence,
+    Menu,
+    Sequence,
     Total,
     Play,
-    PauseMenu,
 }
 

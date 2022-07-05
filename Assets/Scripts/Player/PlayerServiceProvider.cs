@@ -15,7 +15,7 @@ public class PlayerServiceProvider : SingletonBehaviour<PlayerServiceProvider>
     protected override void Awake()
     {
         base.Awake();
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<Player>(true);
         playerAimator = player.GetComponentInChildren<Animator>();
         itemInHandController = player.GetComponentInChildren<ItemInHandController>();
         roomAgent = player.GetComponent<RoomAgent>();

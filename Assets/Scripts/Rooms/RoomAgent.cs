@@ -14,30 +14,53 @@ public class RoomAgent : MonoBehaviour
 
     private void Start()
     {
+        PlayerMoveModule moveModule = PlayerServiceProvider.GetMoveModule();
+
 #if UNITY_EDITOR
+        bool startFromStart = EditorPersistentDataStorage.TestFromStart;
         int index = EditorPersistentDataStorage.SceneStartedFromBuildIndex;
-        if (index != 0)
+        if (!startFromStart && index != 0)
         {
             RoomBehaviour[] rooms = FindObjectsOfType<RoomBehaviour>();
+
+            Debug.LogWarning("Found" + rooms.Length + " rooms.");
+
             foreach (RoomBehaviour room in rooms)
             {
-                Debug.Log(room);
                 int roomDataIndex = room.Data.SceneIndex;
                 if (roomDataIndex == index)
                 {
                     currentRoom = new RoomInfo() { Data = room.Data, SceneBehaviour = room };
-#endif
                     RoomManager.TriggerEnterRoomEvent(currentRoom.Data);
-#if UNITY_EDITOR
-                    Interactable closestDoor = GetClosestRoomChangeInteractable(transform.position);
-                    if (closestDoor != null)
-                        PlayerServiceProvider.GetMoveModule().TeleportTo(closestDoor.GetPoint());
+
+                    Debug.LogWarning(room);
+
+                    PlayerSpawnPoint spawnPoint = room.SpawnPoint;
+
+
+                    if (spawnPoint != null)
+                    {
+                        Debug.Log(spawnPoint.GetPoint());
+                        moveModule.TeleportTo(spawnPoint.GetPoint());
+                    }
+                    else
+                    {
+                        Interactable closestDoor = GetClosestRoomChangeInteractable(transform.position);
+                        if (closestDoor != null)
+                            moveModule.TeleportTo(closestDoor.GetPoint());
+                    }
                 }
             }
         }
         else
         {
+#endif
+            PlayerSpawnPoint point = PlayerSpawnPoint.GetPlayerSpawnPoint();
+            currentRoom = point.GetRoom();
+            Debug.LogWarning("TriggerEnterRoomEvent");
             RoomManager.TriggerEnterRoomEvent(currentRoom.Data);
+            moveModule.TeleportTo(point.GetPoint());
+#if UNITY_EDITOR
         }
 #endif
     }

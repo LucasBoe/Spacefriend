@@ -6,8 +6,9 @@ public class SingletonLoader : MonoBehaviour
 {
     public GameObject[] ToInstatiate;
 
-    private void Awake()
+    public void CreateAllSingletons()
     {
+        Debug.Log("Start: SingletonLoader");
         //Spawn instances
         Transform marker = new GameObject("==SINGLETONS==").transform;
         foreach (GameObject gameObject in ToInstatiate)
@@ -19,6 +20,8 @@ public class SingletonLoader : MonoBehaviour
 
         Debug.Log("Loaded singletons");
         marker.SetAsFirstSibling();
+
+        Debug.Log("End: SingletonLoader");
         Destroy(gameObject);
     }
 }

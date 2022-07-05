@@ -25,8 +25,8 @@ public class MainMenu : SingletonBehaviour<MainMenu>
 
     private void OnGameModeChanged(GameMode before, GameMode after)
     {
-        if (before == GameMode.MainMenu) SetActive(false);
-        if (after == GameMode.MainMenu) SetActive(true);
+        if (before == GameMode.Menu) SetActive(false);
+        if (after == GameMode.Menu) SetActive(true);
     }
 
     public void SetActive(bool active)
