@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 687263155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36, y: -8, z: -131}
+  m_LocalPosition: {x: -36, y: -8, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1313636105}
@@ -521,7 +521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457965650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36, y: -8, z: -131}
+  m_LocalPosition: {x: -36, y: -8, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1313636105}
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457965650}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -604,6 +604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987007012}
   - component: {fileID: 1987007013}
+  - component: {fileID: 1987007014}
   m_Layer: 0
   m_Name: BootRoutine
   m_TagString: Untagged
@@ -637,7 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cc37b56f354bf46933084269c71852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bootEvents:
+  awakeEvents:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 753864563}
@@ -666,6 +667,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  startEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1987007014}
+        m_TargetAssemblyTypeName: PlayFlowManager, Assembly-CSharp
+        m_MethodName: StartHandelingFlow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3284776779830781566}
@@ -680,6 +696,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1457965655}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1987007014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987007011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de44e2f1212dc44912628cd881019b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateSpaceStationContentEvent: {fileID: 11400000, guid: 40d3eb619b83f404a9db6561808dd780, type: 2}
+  deactivateSpaceStationContentEvent: {fileID: 11400000, guid: c20c820dcef78254aa4658f1d3623d85, type: 2}
+  activateFlightContentEvent: {fileID: 11400000, guid: a57170f49801c724189a3794c13dc15d, type: 2}
+  deactivateFlightContentEvent: {fileID: 11400000, guid: 6b394994cfc633d4e8886641884e339e, type: 2}
 --- !u!1001 &3284776779830781565
 PrefabInstance:
   m_ObjectHideFlags: 0

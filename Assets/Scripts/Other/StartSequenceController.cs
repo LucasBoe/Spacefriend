@@ -12,7 +12,6 @@ public class StartSequenceController : MonoBehaviour
     [SerializeField] Animator vCamAnimator;
     [SerializeField] Minigame startMinigame;
 
-    bool played = false;
     bool finishedStartMinigame = false;
 
     private void Awake()
@@ -25,26 +24,6 @@ public class StartSequenceController : MonoBehaviour
 
         if (!shouldPlay)
             gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        GameModeManager.GameModeChangedEvent += OnGameModeChanged;
-    }
-    private void OnDisable()
-    {
-        GameModeManager.GameModeChangedEvent -= OnGameModeChanged;
-    }
-    private void OnGameModeChanged(GameMode previous, GameMode next)
-    {
-        if (played) return;
-
-        if (next == GameMode.Play)
-        {
-            played = true;
-            StopAllCoroutines();
-            StartCoroutine(SequenceRoutine());
-        }
     }
 
     private IEnumerator SequenceRoutine()

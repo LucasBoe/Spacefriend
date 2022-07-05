@@ -5,14 +5,21 @@ using UnityEngine.Events;
 
 public class BootRoutine : MonoBehaviour
 {
-    public UnityEvent[] bootEvents;
-    // Start is called before the first frame update
-    void Awake()
+    public UnityEvent[] awakeEvents, startEvents;
+
+    void Awake() =>  HandleEventArray(awakeEvents);
+
+    private void Start()
     {
-        foreach (UnityEvent ev in bootEvents)
+        HandleEventArray(startEvents);
+        Destroy(gameObject);
+    }
+
+    private void HandleEventArray(UnityEvent[] array)
+    {
+        foreach (UnityEvent ev in array)
         {
             ev?.Invoke();
         }
-        Destroy(gameObject);
     }
 }
