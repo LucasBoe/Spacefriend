@@ -15,7 +15,7 @@ public class RoomAgent : MonoBehaviour
     private void Start()
     {
 #if UNITY_EDITOR
-        int index = EditorStartScenePreProcessor.SceneStartedFromBuildIndex;
+        int index = EditorPersistentDataStorage.SceneStartedFromBuildIndex;
         if (index != 0)
         {
             RoomBehaviour[] rooms = FindObjectsOfType<RoomBehaviour>();

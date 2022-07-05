@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Tools;
 
 public class GameModeManager : SingletonBehaviour<GameModeManager>
 {
@@ -11,7 +12,17 @@ public class GameModeManager : SingletonBehaviour<GameModeManager>
     private void Start()
     {
         if (currentGameMode == GameMode.StartUp)
-            SetGameMode(GameMode.MainMenu);
+        {
+            bool fromStart = true;
+
+#if UNITY_EDITOR
+            fromStart = EditorPersistentDataStorage.TestFromStart;
+#endif
+            if (fromStart)
+                SetGameMode(GameMode.MainMenu);
+            else
+                SetGameMode(GameMode.Total);
+        }
     }
 
     public static void SetGameMode(GameMode newGameMode)

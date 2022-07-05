@@ -14,6 +14,19 @@ public class StartSequenceController : MonoBehaviour
 
     bool played = false;
     bool finishedStartMinigame = false;
+
+    private void Awake()
+    {
+        bool shouldPlay = true;
+#if UNITY_EDITOR
+
+        shouldPlay = EditorPersistentDataStorage.TestFromStart;
+#endif
+
+        if (!shouldPlay)
+            gameObject.SetActive(false);
+    }
+
     private void OnEnable()
     {
         GameModeManager.GameModeChangedEvent += OnGameModeChanged;
@@ -21,10 +34,6 @@ public class StartSequenceController : MonoBehaviour
     private void OnDisable()
     {
         GameModeManager.GameModeChangedEvent -= OnGameModeChanged;
-    }
-    void Start()
-    {
-
     }
     private void OnGameModeChanged(GameMode previous, GameMode next)
     {

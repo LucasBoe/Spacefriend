@@ -8,9 +8,9 @@ using UnityEditor;
 namespace Tools
 {
     [ExecuteInEditMode]
-    public class UnityEditorTestHelper : MonoBehaviour
+    public class UnityEditorTestHelper : SingletonBehaviour<UnityEditorTestHelper>
     {
-        
+        [SerializeField] EditorPersistentDataStorage storage;
         void Start()
         {
             LoadEditorSelectionDelayed();
@@ -21,10 +21,15 @@ namespace Tools
         {
             CoroutineUtil.Delay(() =>
             {
-                string name = EditorStartScenePreProcessor.GetSelected();
+                string name = EditorPersistentDataStorage.LastSelectedObjectName;
                 GameObject toSelect = GameObject.Find(name);
                 Selection.activeObject = toSelect;
             }, this, 0.5f);
+        }
+
+        private void OnDestroy()
+        {
+            EditorPersistentDataStorage.EndSession();
         }
     }
 }

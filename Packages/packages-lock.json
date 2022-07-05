@@ -16,6 +16,13 @@
       },
       "hash": "ed4985bd1fe285057f7206d43bb9cb736367e95c"
     },
+    "com.marijnzwemmer.unity-toolbar-extender": {
+      "version": "https://github.com/marijnz/unity-toolbar-extender.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dbd76ed996483d219c39d240f785b1790aa039ed"
+    },
     "com.unity.2d.animation": {
       "version": "5.1.1",
       "depth": 0,
