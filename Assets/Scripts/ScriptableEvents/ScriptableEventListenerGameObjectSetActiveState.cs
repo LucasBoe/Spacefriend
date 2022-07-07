@@ -7,6 +7,10 @@ public class ScriptableEventListenerGameObjectSetActiveState : MonoBehaviour
     [SerializeField] ScriptableEvent scriptableEvent;
     [SerializeField] bool active;
 
+#if UNITY_EDITOR
+    [SerializeField] bool log;
+#endif
+
     private void OnEnable()
     {
         scriptableEvent.AddListener(SetActive);
@@ -19,7 +23,9 @@ public class ScriptableEventListenerGameObjectSetActiveState : MonoBehaviour
 
     private void SetActive()
     {
-        Debug.Log("Event called: " + scriptableEvent.name);
+#if UNITY_EDITOR
+        if (log) Debug.Log("Event called: " + scriptableEvent.name);
+#endif
         gameObject.SetActive(active);
     }
 }

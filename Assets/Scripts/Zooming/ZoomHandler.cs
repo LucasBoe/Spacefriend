@@ -30,7 +30,6 @@ public class ZoomHandler : SingletonBehaviour<ZoomHandler>
     {
         ZoomState before = current;
         current = to == GameMode.Play ? ZoomState.ROOM : ZoomState.TOTAL;
-        Debug.Log("Changed from: " + from + " to " + to);
         if (before != current) ChangedStateEvent?.Invoke(before, current);
     }
 

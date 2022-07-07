@@ -23,6 +23,7 @@ public class PlayerSpawnPoint : MonoBehaviour
 
     public Vector3 GetPoint()
     {
+        Debug.Log("Teleport Player to " + name);
         return transform.position;
     }
 

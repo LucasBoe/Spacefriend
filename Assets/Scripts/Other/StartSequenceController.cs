@@ -28,12 +28,6 @@ public class StartSequenceController : MonoBehaviour
 
     private IEnumerator SequenceRoutine()
     {
-        ZoomHandler.SetZoomAllowed(false);
-        GameModeManager.SetGameMode(GameMode.Sequence);
-        vCamAnimator.enabled = true;
-
-        yield return new WaitForSeconds(10f);
-
         startMinigame.StartMinigame();
 
         while (!finishedStartMinigame) yield return null;

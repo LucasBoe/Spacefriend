@@ -51,8 +51,6 @@ public class RoomNavigationGrid : NavigationGrid
 
     private void OnSetRoomStateEvent(bool roomActive)
     {
-        Debug.Log("Active Grid: " + name);
-
         if (roomActive) NavigationAgent.TriggerSwitchGridEvent(this);
     }
 

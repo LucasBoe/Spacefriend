@@ -8,7 +8,6 @@ public class ScriptableEvent : ScriptableObject
     private System.Action _event;
     public void AddListener(System.Action listener)
     {
-        Debug.Log("AddListener to " + name);
         _event += listener;
     }
 

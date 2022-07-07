@@ -22,8 +22,6 @@ public class RoomManager : SingletonBehaviour<RoomManager>
 
     private void ChangeRoom(RoomData data)
     {
-        Debug.Log("Change Room: " + data.name);
-
         foreach (RoomInfo roomInfo in roomInfos)
         {
             if (roomInfo.Data == data)
@@ -35,7 +33,6 @@ public class RoomManager : SingletonBehaviour<RoomManager>
 
     public void RegisterRoom(RoomBehaviour roomBehaviour, RoomData roomData)
     {
-        Debug.Log("Registered room " + roomBehaviour.name);
         roomInfos.Add(new RoomInfo() { Data = roomData, SceneBehaviour = roomBehaviour });
     }
 

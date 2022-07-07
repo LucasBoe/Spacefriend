@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayFlowManager : MonoBehaviour
 {
     [SerializeField] ScriptableEvent activateSpaceStationContentEvent, deactivateSpaceStationContentEvent, activateFlightContentEvent, deactivateFlightContentEvent;
+    [SerializeField] RoomData spaceStationData;
     public void StartHandelingFlow()
     {
         bool startFromBeginning = true;
 
 #if UNITY_EDITOR
-        startFromBeginning = EditorPersistentDataStorage.TestFromStart;
+        startFromBeginning = EditorPersistentDataStorage.TestFromStart || EditorPersistentDataStorage.SceneStartedFromBuildIndex == spaceStationData.SceneIndex;
 #endif
 
         if (startFromBeginning)

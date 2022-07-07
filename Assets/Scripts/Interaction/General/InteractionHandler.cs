@@ -9,6 +9,8 @@ public class InteractionHandler : MonoBehaviour
 {
     [SerializeField, ReadOnly, Foldout("Info")] Interactable interactable;
     [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverPanel;
+    [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverUI;
+    [ShowNativeProperty] GameMode gameMode => GameModeManager.Current;
 
     int roomLayerMask, interactableLayerMask, panelLayerMask, totalShipLayerMask;
     Camera mainCam;
@@ -39,7 +41,7 @@ public class InteractionHandler : MonoBehaviour
     void Update()
     {
         //pointer is over ui;
-        bool pointerOverUI = EventSystem.current.IsPointerOverGameObject();
+        pointerOverUI = EventSystem.current.IsPointerOverGameObject();
 
         //calculate cursor position
         Vector3 cursorPoint = mainCam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -mainCam.transform.position.z));

@@ -23,7 +23,6 @@ public class RoomBehaviour : MonoBehaviour
         roomSpriteRenderers = new List<RoomSpriteRenderer>();
         doors = GetComponentsInChildren<ChangeRoom_InteractionListener>();
         spawnPoint = GetComponentInChildren<PlayerSpawnPoint>();
-        Debug.Log("Get doors from children");
         SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer renderer in renderers)
         {

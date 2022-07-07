@@ -7,13 +7,11 @@ public class SceneLoader : MonoBehaviour
 {
     public void LoadAllScenes()
     {
-        Debug.Log("Start: SceneLoader");
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             Scene scene = SceneManager.GetSceneByBuildIndex(i);
             if (!scene.IsValid())
             {
-                Debug.Log("Load scene " + i + " => " + scene.path);
                 SceneManager.LoadScene(i, LoadSceneMode.Additive);
             }
             else
@@ -21,9 +19,6 @@ public class SceneLoader : MonoBehaviour
                 Debug.LogWarning("Did not load scene " + i + " => " + scene.name + " (already open)");
             }
         }
-
-
-        Debug.Log("End: SceneLoader");
         Destroy(gameObject, 1);
     }
 }

@@ -19,11 +19,10 @@ public class RoomAgent : MonoBehaviour
 #if UNITY_EDITOR
         bool startFromStart = EditorPersistentDataStorage.TestFromStart;
         int index = EditorPersistentDataStorage.SceneStartedFromBuildIndex;
+
         if (!startFromStart && index != 0)
         {
             RoomBehaviour[] rooms = FindObjectsOfType<RoomBehaviour>();
-
-            Debug.LogWarning("Found" + rooms.Length + " rooms.");
 
             foreach (RoomBehaviour room in rooms)
             {

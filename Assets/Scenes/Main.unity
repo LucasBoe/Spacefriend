@@ -726,6 +726,7 @@ MonoBehaviour:
   deactivateSpaceStationContentEvent: {fileID: 11400000, guid: c20c820dcef78254aa4658f1d3623d85, type: 2}
   activateFlightContentEvent: {fileID: 11400000, guid: a57170f49801c724189a3794c13dc15d, type: 2}
   deactivateFlightContentEvent: {fileID: 11400000, guid: 6b394994cfc633d4e8886641884e339e, type: 2}
+  spaceStationData: {fileID: 11400000, guid: e61b5af3459a0454cb532542e7331de2, type: 2}
 --- !u!1001 &3284776779830781565
 PrefabInstance:
   m_ObjectHideFlags: 0
