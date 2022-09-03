@@ -23,4 +23,12 @@ public static class EnumeranleUtil
     {
         return list[list.Count - 1];
     }
+
+    public static void Each<T> (this IEnumerable list, System.Action<T> function)
+    {
+        foreach (T item in list)
+        {
+            function?.Invoke(item);
+        }
+    }
 }

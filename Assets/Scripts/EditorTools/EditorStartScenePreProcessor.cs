@@ -12,9 +12,11 @@ namespace Tools
     {
         static EditorStartScenePreProcessor()
         {
-            var scenePath = "Assets/Scenes/Main.unity";
-            EditorPersistentDataStorage.SceneStartedFromBuildIndex = EditorSceneManager.GetActiveScene().buildIndex;
-            EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath);
+            int index = EditorSceneManager.GetActiveScene().buildIndex;
+            var mainPath = "Assets/Scenes/Main.unity";
+            var ownPath = EditorSceneManager.GetActiveScene().path;
+            EditorPersistentDataStorage.SceneStartedFromBuildIndex = index;
+            EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(index < 0 ? ownPath: mainPath);
         }
     }
 }
