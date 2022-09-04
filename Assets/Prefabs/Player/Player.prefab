@@ -5143,7 +5143,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    WalkTargetVelocity: 8
+    WalkTargetVelocity: 6
     WalkAccelration: 0.1
     WalkDecelleration: 0.8
     DistanceToGround: 0

@@ -72,26 +72,31 @@ public class InteractionHandler : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // CLOSE UP CHECK
-            pointerOverPanel = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: panelLayerMask).collider != null;
+            if (target != null) target.Interact();
+            /*
+             CLOSE UP CHECK
+             pointerOverPanel = Physics2D.Raycast(cursorPoint, Vector2.zero, float.MaxValue, layerMask: panelLayerMask).collider != null;
 
-            if (pointerOverPanel)
-            {
-                //interactables that are part of closeups are interacted with directly
-                if (target != null) target.Interact();
-            }
-            else
-            {
-                //notify closeUps to close
-                ClickOutsideOfCloseUpEvent?.Invoke();
 
-                //TODO: Add different input for space mode
-                //if (target != null)
-                //    moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
-                //else
-                //    moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom.SceneBehaviour));
 
-            }
+             if (pointerOverPanel)
+             {
+                 //interactables that are part of closeups are interacted with directly
+                 ...
+             }
+             else
+             {
+                 notify closeUps to close
+                 ClickOutsideOfCloseUpEvent?.Invoke();
+
+                 TODO: Add different input for space mode
+                 if (target != null)
+                     moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
+                 else
+                     moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom.SceneBehaviour));
+
+             }
+            */
         }
     }
 

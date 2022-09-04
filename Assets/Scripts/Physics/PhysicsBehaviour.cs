@@ -9,7 +9,7 @@ namespace Sprouts.Physics
     public class PhysicsBehaviour : MonoBehaviour
     {
         [Foldout("References")] [SerializeField] protected Rigidbody2D Rigidbody;
-        private const float GRAVITY_UPDATE_ADDITIONAL_FORCE_MULTIPLIER = 0.05f;
+        private const float GRAVITY_UPDATE_ADDITIONAL_FORCE_MULTIPLIER = 0.5f;
 
         private void OnValidate()
         {
@@ -23,7 +23,7 @@ namespace Sprouts.Physics
             float distance = roomCenter.y - transform.position.y;
             float yForce = Mathf.Pow(distance, 2f) * GRAVITY_UPDATE_ADDITIONAL_FORCE_MULTIPLIER * Mathf.Sign(distance);
 
-            Rigidbody.velocity += new Vector2(0, yForce);
+            Rigidbody.AddForceIgnoreMass(new Vector2(0, yForce));
             Rigidbody.AddTorque(Rand.om(-yForce, yForce));
         }
     }
