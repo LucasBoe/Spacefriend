@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 647375889}
   - component: {fileID: 647375887}
   - component: {fileID: 647375888}
+  - component: {fileID: 647375890}
   m_Layer: 6
   m_Name: ROOM_Kitchen
   m_TagString: Untagged
@@ -462,7 +463,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 39.30235, y: 0.22852659}
+  m_Offset: {x: 39.613163, y: 0.22852659}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -473,7 +474,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.140268, y: 5.923421}
+  m_Size: {x: 16.51864, y: 5.923421}
   m_EdgeRadius: 0
 --- !u!4 &647375889
 Transform:
@@ -494,6 +495,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &647375890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647375886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5d2e63628b1b045b61764f44c5132e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomBoundaries:
+  - {x: 28.964775, y: 3.228749}
+  - {x: 47.84018, y: 3.2216327}
+  - {x: 47.94638, y: -2.7804675}
+  - {x: 29.001213, y: -2.6769269}
+  RoomCenter: {x: 0, y: 0}
+  edgeCollider: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  gravity: 0
+  roomBehaviour: {fileID: 0}
 --- !u!1 &660104919
 GameObject:
   m_ObjectHideFlags: 0
@@ -11568,6 +11591,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   inAnimation: {fileID: 0}
   outAnimation: {fileID: 0}
+  doDelayBetweenPhases: 0
+  delayBetweenPhases: 0
 --- !u!114 &1931366902
 MonoBehaviour:
   m_ObjectHideFlags: 0

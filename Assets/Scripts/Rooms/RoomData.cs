@@ -6,7 +6,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class RoomData : ScriptableObject
 {
-	[Scene]
-	public int SceneIndex;
-	public RoomBehaviour CurrentSceneBehaviour => RoomManager.Instance.GetRoomInstanceByData(this);
+    [Scene]
+    public int SceneIndex;
+    public RoomBehaviour CurrentSceneBehaviour => RoomManager.Instance.GetRoomInstanceByData(this);
+    public bool IsSpace;
 }

@@ -1439,6 +1439,7 @@ GameObject:
   - component: {fileID: 658424219}
   - component: {fileID: 658424221}
   - component: {fileID: 658424220}
+  - component: {fileID: 658424222}
   m_Layer: 6
   m_Name: ROOM_LivingQuarters
   m_TagString: Untagged
@@ -1504,9 +1505,8 @@ PolygonCollider2D:
     - - {x: 3.8781543, y: 5.7155814}
       - {x: 10.724811, y: 5.59444}
       - {x: 10.726068, y: -2.6403606}
-      - {x: 32.63191, y: -2.61642}
-      - {x: 32.69522, y: 3.9607272}
-      - {x: 32.672535, y: 11.545288}
+      - {x: 30.743782, y: -2.6468737}
+      - {x: 30.845314, y: 11.545288}
       - {x: 3.8491063, y: 11.645722}
 --- !u!114 &658424221
 MonoBehaviour:
@@ -1522,6 +1522,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomData: {fileID: 11400000, guid: 790a5afa79d2fae41a5457b6ca699004, type: 2}
   IsActive: 0
+--- !u!114 &658424222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658424218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5d2e63628b1b045b61764f44c5132e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomBoundaries:
+  - {x: 10.76123, y: -2.6463637}
+  - {x: 10.7815, y: 3.494668}
+  - {x: 25.896847, y: 3.3573394}
+  - {x: 25.930172, y: 4.13672}
+  - {x: 12.575309, y: 4.1514406}
+  - {x: 10.849317, y: 5.635802}
+  - {x: 3.8442936, y: 5.6875668}
+  - {x: 3.8308516, y: 11.637647}
+  - {x: 32.569782, y: 11.60143}
+  - {x: 32.660927, y: -2.65524}
+  RoomCenter: {x: 0, y: 0}
+  edgeCollider: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  gravity: 0
+  roomBehaviour: {fileID: 0}
 --- !u!4 &733909469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5133545602515711235, guid: 40562c25498b3c24d9c871eef91c520d, type: 3}

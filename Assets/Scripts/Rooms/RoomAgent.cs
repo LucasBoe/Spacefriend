@@ -14,8 +14,6 @@ public class RoomAgent : MonoBehaviour
 
     private void Start()
     {
-        PlayerMoveModule moveModule = PlayerServiceProvider.GetMoveModule();
-
 #if UNITY_EDITOR
         bool startFromStart = EditorPersistentDataStorage.TestFromStart;
         int index = EditorPersistentDataStorage.SceneStartedFromBuildIndex;
@@ -40,13 +38,13 @@ public class RoomAgent : MonoBehaviour
                     if (spawnPoint != null)
                     {
                         Debug.Log(spawnPoint.GetPoint());
-                        moveModule.TeleportTo(spawnPoint.GetPoint());
+                        PlayerServiceProvider.TeleportTo(spawnPoint.GetPoint());
                     }
                     else
                     {
                         Interactable closestDoor = GetClosestRoomChangeInteractable(transform.position);
                         if (closestDoor != null)
-                            moveModule.TeleportTo(closestDoor.GetPoint());
+                            PlayerServiceProvider.TeleportTo(closestDoor.GetPoint());
                     }
                 }
             }
@@ -58,7 +56,7 @@ public class RoomAgent : MonoBehaviour
             currentRoom = point.GetRoom();
             Debug.LogWarning("TriggerEnterRoomEvent");
             RoomManager.TriggerEnterRoomEvent(currentRoom.Data);
-            moveModule.TeleportTo(point.GetPoint());
+            PlayerServiceProvider.TeleportTo(point.GetPoint());
 #if UNITY_EDITOR
         }
 #endif
@@ -75,6 +73,7 @@ public class RoomAgent : MonoBehaviour
 
     private void OnChangeRoom(RoomInfo info)
     {
+        transform.parent = info.SceneBehaviour.transform;
         currentRoom = info;
     }
 

@@ -43,8 +43,6 @@ namespace Sprouts.Physics.Edit
                         deleteMode = false;
                     else if (!deleteMode && e.type == EventType.KeyDown)
                         deleteMode = true;
-
-                    Debug.Log(deleteMode);
                 }
 
 

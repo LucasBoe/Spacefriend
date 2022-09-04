@@ -7,28 +7,44 @@ using UnityEngine;
 
 namespace Sprouts.Physics
 {
+    [RequireComponent(typeof(RoomBehaviour))]
     public class RoomPhysics : MonoBehaviour
     {
         [ReadOnly] public List<Vector2> RoomBoundaries = new List<Vector2>();
-        [ReadOnly] private Vector2 RoomCenter = Vector2.zero;
+        [SerializeField, ReadOnly] private Vector2 RoomCenter = Vector2.zero;
+        [SerializeField, ReadOnly] private EdgeCollider2D edgeCollider;
         [SerializeField] LineRenderer lineRenderer;
         [SerializeField, Range(-3, 3)] float gravity;
+        [SerializeField, ReadOnly] RoomBehaviour roomBehaviour;
+        private void Awake()
+        {
+            roomBehaviour = GetComponent<RoomBehaviour>();
+
+            Setup();
+
+            gravity = 1f;
+            UpdateGravity();
+        }
+        private void OnEnable() => roomBehaviour.SetRoomStateEvent += OnRoomStateChanged;
+        private void OnDisable() => roomBehaviour.SetRoomStateEvent -= OnRoomStateChanged;
         public void UpdateGravity()
         {
             PhysicsBehaviour[] physicsBehavioursInRoom = GetComponentsInChildren<PhysicsBehaviour>();
             physicsBehavioursInRoom.Each<PhysicsBehaviour>(p => p.UpdateGravity(gravity, RoomCenter));
         }
 
-        private void Start()
+        private void OnRoomStateChanged(bool isActive)
         {
-            Setup();
+            edgeCollider.enabled = isActive;
         }
 
         private void Setup()
         {
             RoomCenter = CalculateRoomCenter(RoomBoundaries);
-            AddEdgeCollider(RoomBoundaries);
-            lineRenderer.UpdatePoints(RoomBoundaries);
+            edgeCollider = AddEdgeCollider(RoomBoundaries);
+
+            if (lineRenderer != null)
+                lineRenderer.UpdatePoints(RoomBoundaries);
         }
 
         private Vector2 CalculateRoomCenter(List<Vector2> roomBoundaries)
@@ -41,10 +57,13 @@ namespace Sprouts.Physics
             return center /= roomBoundaries.Count;
         }
 
-        private void AddEdgeCollider(List<Vector2> roomBoundaries)
+        private EdgeCollider2D AddEdgeCollider(List<Vector2> roomBoundaries)
         {
             roomBoundaries.Add(roomBoundaries[0]);
-            gameObject.AddChildWithComponent<EdgeCollider2D>("Boundaries").SetPoints(roomBoundaries);
+            EdgeCollider2D edgeCollider = gameObject.AddChildWithComponent<EdgeCollider2D>("Room_EdgeCollider");
+            edgeCollider.SetPoints(roomBoundaries);
+            edgeCollider.gameObject.layer = LayerMask.NameToLayer("Room");
+            return edgeCollider;
         }
 
         private void OnDrawGizmosSelected()

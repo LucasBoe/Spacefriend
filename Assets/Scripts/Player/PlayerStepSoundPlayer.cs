@@ -7,15 +7,23 @@ public class PlayerStepSoundPlayer : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] Sound neutralWalk, ladder;
+
+    PlayerStates states;
+   
+
+    private void Start()
+    {
+        states = PlayerServiceProvider.GetPlayerStates();
+    }
     public void Step()
     {
-        if (Mathf.Abs(player.MoveModule.GetDirectionalMoveVector().x) > 0.5f)
+        if (states.WalkState.IsActive && PlayerServiceProvider.Info.IsMoving())
             neutralWalk.Play();
     }
 
     public void Ladder()
     {
-        if (Mathf.Abs(player.MoveModule.GetDirectionalMoveVector().y) > 0.5f)
+        if (states.LadderState.IsActive && PlayerServiceProvider.Info.IsMoving())
             ladder.Play();
     }
 }

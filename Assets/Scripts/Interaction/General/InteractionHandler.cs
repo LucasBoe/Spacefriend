@@ -15,7 +15,6 @@ public class InteractionHandler : MonoBehaviour
     int roomLayerMask, interactableLayerMask, panelLayerMask, totalShipLayerMask;
     Camera mainCam;
 
-    PlayerMoveModule moveModule;
     RoomAgent roomAgent;
 
 
@@ -33,7 +32,6 @@ public class InteractionHandler : MonoBehaviour
 
     private void Start()
     {
-        moveModule = PlayerServiceProvider.GetMoveModule();
         roomAgent = PlayerServiceProvider.GetRoomAgent();
     }
 
@@ -88,10 +86,10 @@ public class InteractionHandler : MonoBehaviour
                 ClickOutsideOfCloseUpEvent?.Invoke();
 
                 //TODO: Add different input for space mode
-                if (target != null)
-                    moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
-                else
-                    moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom.SceneBehaviour));
+                //if (target != null)
+                //    moveModule.MoveTo(target.GetPoint(), false, () => target.Interact());
+                //else
+                //    moveModule.MoveTo(cursorPoint, IsPointOutsideOfCurrentRoom(cursorPoint, roomAgent.CurrentRoom.SceneBehaviour));
 
             }
         }

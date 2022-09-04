@@ -60,7 +60,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update()
     {
-        Vector2 directionalVector = Vector2.Lerp(lastDirVector, player.MoveModule.GetDirectionalMoveVector(), Time.deltaTime * 10f);
+        Vector2 directionalVector = Vector2.Lerp(lastDirVector, player.PhysicsModule.GetDirectionalMoveVector(), Time.deltaTime * 10f);
 
         animator.SetFloat(directionalVectorX, directionalVector.x);
         animator.SetFloat(directionalVectorY, directionalVector.y);

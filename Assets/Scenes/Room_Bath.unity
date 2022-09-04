@@ -10407,6 +10407,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   inAnimation: {fileID: 0}
   outAnimation: {fileID: 0}
+  doDelayBetweenPhases: 0
+  delayBetweenPhases: 0
 --- !u!82 &382254785
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11508,6 +11510,8 @@ MonoBehaviour:
   animator: {fileID: 1659761172}
   inAnimation: {fileID: 7400000, guid: 85fa28cf48019e548954568d9a3b5e9c, type: 2}
   outAnimation: {fileID: 7400000, guid: 2a09a0ac549b63049813e4f802d7c6d1, type: 2}
+  doDelayBetweenPhases: 0
+  delayBetweenPhases: 0
 --- !u!114 &1659761174
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -11661,6 +11665,7 @@ GameObject:
   - component: {fileID: 1767833994}
   - component: {fileID: 1767833992}
   - component: {fileID: 1767833993}
+  - component: {fileID: 1767833995}
   m_Layer: 6
   m_Name: ROOM_Bath
   m_TagString: Untagged
@@ -11708,18 +11713,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 8.040688, y: -1.1812997}
-      - {x: 7.7031517, y: 1.0848155}
-      - {x: 6.728153, y: 2.623221}
-      - {x: 6.2159195, y: 3.090527}
+      - {x: 7.7031517, y: 1.084816}
+      - {x: 6.728153, y: 2.6232204}
+      - {x: 6.2159195, y: 3.0905266}
       - {x: 5.1806984, y: 3.400323}
-      - {x: -4.4509163, y: 3.3915944}
-      - {x: -5.353834, y: 3.326302}
-      - {x: -6.431794, y: 2.869362}
-      - {x: -7.3172283, y: 1.6864886}
-      - {x: -7.788755, y: 0.17111456}
-      - {x: -8.072395, y: -1.4052048}
-      - {x: -8.033377, y: -3.3093536}
-      - {x: 8.012008, y: -3.2914672}
+      - {x: -4.4509163, y: 3.391594}
+      - {x: -5.353834, y: 3.3263016}
+      - {x: -5.8277626, y: 3.2049341}
+      - {x: -5.7962246, y: -3.3540967}
+      - {x: 8.012009, y: -3.2914672}
 --- !u!4 &1767833994
 Transform:
   m_ObjectHideFlags: 0
@@ -11743,6 +11745,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767833995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767833991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5d2e63628b1b045b61764f44c5132e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomBoundaries:
+  - {x: 43.816025, y: 9.964479}
+  - {x: 42.173344, y: 10.7176075}
+  - {x: 28.868092, y: 10.756756}
+  - {x: 29.008196, y: 3.984864}
+  - {x: 45.12716, y: 4.0274267}
+  - {x: 44.800064, y: 8.48332}
+  RoomCenter: {x: 0, y: 0}
+  edgeCollider: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  gravity: 0
+  roomBehaviour: {fileID: 0}
 --- !u!1 &1799534038
 GameObject:
   m_ObjectHideFlags: 0

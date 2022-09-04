@@ -51,7 +51,7 @@ public class RoomNavigationGrid : NavigationGrid
 
     private void OnSetRoomStateEvent(bool roomActive)
     {
-        if (roomActive) NavigationAgent.TriggerSwitchGridEvent(this);
+        //if (roomActive) NavigationAgent.TriggerSwitchGridEvent(this);
     }
 
     private class NavigationPointInfo : INavigationPoint
