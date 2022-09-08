@@ -32,7 +32,7 @@ public class Shower_Minigame : MinigamePhase
         base.Awake();
         emissionModule = steamShowerParticles.emission;
         mainModule = steamShowerParticles.main;
-        playerAnimator = PlayerServiceProvider.GetPlayerAnimator();
+        playerAnimator = ServiceProvider.Player.GetAnimator();
     }
 
     public override void StartPhase()
@@ -51,7 +51,7 @@ public class Shower_Minigame : MinigamePhase
         base.EndPhase();
         slider.OnValueChanged.RemoveListener(OnValueChanged);
         emissionModule.rateOverTime = new ParticleSystem.MinMaxCurve(0);
-        PlayerServiceProvider.SetPlayerSkin(PlayerSkinType.AfterShower);
+        ServiceProvider.Player.SetPlayerSkin(PlayerSkinType.AfterShower);
         showerSound.Stop();
         showerAnimationOverrider.gameObject.SetActive(false);
         whistlingAudioSource.gameObject.SetActive(false);

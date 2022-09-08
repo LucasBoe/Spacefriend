@@ -14,19 +14,19 @@ public class CarryableItemSlot_InteractionListener : InteractableConditionBase, 
 
     public override bool IsMet()
     {
-        return holdsItem || (PlayerServiceProvider.GetPlayerItemInHand() == itemData && !holdsItem);
+        return holdsItem || (ServiceProvider.Player.GetPlayerItemInHand() == itemData && !holdsItem);
     }
     public void Interact()
     {
         if (holdsItem)
         {
-            PlayerServiceProvider.CollectItemToHand(itemData, itemRenderer.transform);
+            ServiceProvider.Player.SetItemInHand(itemData, itemRenderer.transform);
             itemRenderer.enabled = false;
             holdsItem = false;
         }
-        else if (PlayerServiceProvider.GetPlayerItemInHand() == itemData)
+        else if (ServiceProvider.Player.GetPlayerItemInHand() == itemData)
         {
-            float transitionDuration = PlayerServiceProvider.RemoveItemFromHand(itemRenderer.transform);
+            float transitionDuration = ServiceProvider.Player.RemoveItemFromHand(itemRenderer.transform);
             CoroutineUtil.Delay(() =>
             {
                 itemRenderer.enabled = true;

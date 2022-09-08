@@ -38,13 +38,13 @@ public class RoomAgent : MonoBehaviour
                     if (spawnPoint != null)
                     {
                         Debug.Log(spawnPoint.GetPoint());
-                        PlayerServiceProvider.TeleportTo(spawnPoint.GetPoint());
+                        ServiceProvider.Player.TeleportTo(spawnPoint.GetPoint());
                     }
                     else
                     {
                         Interactable closestDoor = GetClosestRoomChangeInteractable(transform.position);
                         if (closestDoor != null)
-                            PlayerServiceProvider.TeleportTo(closestDoor.GetPoint());
+                            ServiceProvider.Player.TeleportTo(closestDoor.GetPoint());
                     }
                 }
             }
@@ -56,7 +56,7 @@ public class RoomAgent : MonoBehaviour
             currentRoom = point.GetRoom();
             Debug.LogWarning("TriggerEnterRoomEvent");
             RoomManager.TriggerEnterRoomEvent(currentRoom.Data);
-            PlayerServiceProvider.TeleportTo(point.GetPoint());
+            ServiceProvider.Player.TeleportTo(point.GetPoint());
 #if UNITY_EDITOR
         }
 #endif

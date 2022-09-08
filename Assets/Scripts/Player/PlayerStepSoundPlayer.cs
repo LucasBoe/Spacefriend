@@ -10,20 +10,19 @@ public class PlayerStepSoundPlayer : MonoBehaviour
 
     PlayerStates states;
    
-
     private void Start()
     {
-        states = PlayerServiceProvider.GetPlayerStates();
+        states = ServiceProvider.Player.GetPlayerStates();
     }
     public void Step()
     {
-        if (states.WalkState.IsActive && PlayerServiceProvider.Info.IsMoving())
+        if (states.WalkState.IsActive && ServiceProvider.Player.IsMoving())
             neutralWalk.Play();
     }
 
     public void Ladder()
     {
-        if (states.LadderState.IsActive && PlayerServiceProvider.Info.IsMoving())
+        if (states.LadderState.IsActive && ServiceProvider.Player.IsMoving())
             ladder.Play();
     }
 }

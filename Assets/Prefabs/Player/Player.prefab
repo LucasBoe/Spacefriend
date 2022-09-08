@@ -5062,6 +5062,8 @@ MonoBehaviour:
   AnimationController: {fileID: 3464573763880340825}
   SkinModule:
     skinType: 0
+  itemInHandController: {fileID: 6573544356131400939}
+  roomAgent: {fileID: 3284776779164404040}
 --- !u!114 &8766281158728668190
 MonoBehaviour:
   m_ObjectHideFlags: 0

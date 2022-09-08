@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using NaughtyAttributes;
-using System;
 
 public static class EditorPersistentDataStoragePathInfo
 {
@@ -17,6 +17,7 @@ public class EditorPersistentDataStorage : ScriptableSingleton<EditorPersistentD
     [SerializeField, ReadOnly] string lastSelectedObjectName;
     [SerializeField, ReadOnly] int sceneStartedFromBuildIndex;
     [SerializeField, ReadOnly] bool testFromStart = false;
+    [SerializeField] SceneAsset loaderScene;
 
     public static string LastSelectedObjectName
     {
@@ -34,6 +35,12 @@ public class EditorPersistentDataStorage : ScriptableSingleton<EditorPersistentD
         set { instance.testFromStart = value; }
         get { return instance.testFromStart; }
     }
+
+    public static SceneAsset LoaderScene
+    {
+        get { return instance.loaderScene; }
+    }
+
 
     internal static void EndSession()
     {

@@ -40,7 +40,7 @@ public static class HierarchyWindowGameObjectIcon
             if (obj.name.Contains("=="))
             {
                 Texture2D overlayTex = new Texture2D(1, 1, TextureFormat.ARGB32, false);
-                overlayTex.SetPixel(0, 0, new Color(0, 0, 1, 0.1f));
+                overlayTex.SetPixel(0, 0, new Color(0.5f, 0.6f, 0, 0.15f));
                 overlayTex.Apply();
                 GUI.DrawTexture(selectionRect, overlayTex, ScaleMode.StretchToFill);
 

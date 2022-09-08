@@ -5,16 +5,14 @@ using UnityEngine;
 public class SpaceSuitSpline : MonoBehaviour
 {
     [SerializeField] SplineCreator creator;
-    RoomAgent playerRoomAgent;
     Transform playerTransform;
     private void Start()
     {
-        playerRoomAgent = PlayerServiceProvider.GetRoomAgent();
-        playerTransform = PlayerServiceProvider.GetPlayerTransform();
+        playerTransform = ServiceProvider.Player.GetPlayerTransform();
     }
     private void Update()
     {
-        if (playerRoomAgent.CurrentRoom.Data.IsSpace)
+        if (ServiceProvider.Player.GetCurrentRoom().Data.IsSpace)
             creator.DrawSpline(playerTransform.position + Vector3.up, transform.position);
         else
             creator.DrawSpline(transform.position, transform.position);

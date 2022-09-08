@@ -11,7 +11,7 @@ public class CarriesItem_InteractableCondition : InteractableConditionBase
 
     public override bool IsMet()
     {
-        ItemData inHand = PlayerServiceProvider.GetPlayerItemInHand();
+        ItemData inHand = ServiceProvider.Player.GetPlayerItemInHand();
 
         if (toCheckFor == CarryQuestionType.SPECIFIC)
             return inHand == itemToCheckFor;

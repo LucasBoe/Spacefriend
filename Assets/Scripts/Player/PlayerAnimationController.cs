@@ -7,6 +7,7 @@ using UnityEngine.Experimental.U2D.Animation;
 
 public class PlayerAnimationController : MonoBehaviour
 {
+    public Animator Animator => animator;
     [SerializeField] Player player;
     [SerializeField] SpriteLibrary library;
     [SerializeField, Foldout("AnimatorReferences")] Animator animator;
@@ -16,20 +17,22 @@ public class PlayerAnimationController : MonoBehaviour
 
     private List<PlayerAnimationOverrider> playerAnimationOverrides = new List<PlayerAnimationOverrider>();
     private bool hasOverrides => playerAnimationOverrides.Count > 0;
+
+
     private Vector2 lastDirVector;
 
     private void OnEnable()
     {
         PlayerAnimationOverrider.AddOverrideEvent += OnAddOverride;
         PlayerAnimationOverrider.RemoveOverrideEvent += OnRemoveOverride;
-        player.SkinModule.ChangedSkinTypeEvent += OnSkinChanged;
+        player.ChangedSkinTypeEvent += OnSkinChanged;
     }
 
     private void OnDisable()
     {
         PlayerAnimationOverrider.AddOverrideEvent -= OnAddOverride;
         PlayerAnimationOverrider.RemoveOverrideEvent -= OnRemoveOverride;
-        player.SkinModule.ChangedSkinTypeEvent -= OnSkinChanged;
+        player.ChangedSkinTypeEvent -= OnSkinChanged;
     }
 
     private void OnAddOverride(PlayerAnimationOverrider over)
@@ -58,9 +61,10 @@ public class PlayerAnimationController : MonoBehaviour
         astronautBackpack.SetActive(newSkin == PlayerSkinType.Astronaut);
     }
 
+    //TODO: Make this into an event
     private void Update()
     {
-        Vector2 directionalVector = Vector2.Lerp(lastDirVector, player.PhysicsModule.GetDirectionalMoveVector(), Time.deltaTime * 10f);
+        Vector2 directionalVector = Vector2.Lerp(lastDirVector, player.GetPlayerDirectionalMoveVector(), Time.deltaTime * 10f);
 
         animator.SetFloat(directionalVectorX, directionalVector.x);
         animator.SetFloat(directionalVectorY, directionalVector.y);

@@ -84,6 +84,6 @@ public class NavigationAgent : MonoBehaviour
 
     internal void TeleportTo(Vector3 pos)
     {
-        PlayerServiceProvider.GetPlayerTransform().position = currentGrid.GetClosestPointOnGrid(pos);
+        ServiceProvider.Player.GetPlayerTransform().position = currentGrid.GetClosestPointOnGrid(pos);
     }
 }

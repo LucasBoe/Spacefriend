@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerPositionOverrider : MonoBehaviour
 {
+    //TODO: Add event the physics module can subscribe to
     private void OnEnable()
     {
-        PlayerServiceProvider.SetPositionOverride(this);
+        ServiceProvider.Player.SetPositionOverride(this);
     }
 
     private void OnDisable()
     {
-        PlayerServiceProvider.RevokeOverridePosition(this);
+        ServiceProvider.Player.RevokeOverridePosition(this);
     }
 }

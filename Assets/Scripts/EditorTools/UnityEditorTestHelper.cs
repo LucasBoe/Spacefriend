@@ -7,7 +7,7 @@ using UnityEditor;
 
 namespace Tools
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public class UnityEditorTestHelper : SingletonBehaviour<UnityEditorTestHelper>
     {
         [SerializeField] EditorPersistentDataStorage storage;
@@ -24,7 +24,7 @@ namespace Tools
                 string name = EditorPersistentDataStorage.LastSelectedObjectName;
                 GameObject toSelect = GameObject.Find(name);
                 Selection.activeObject = toSelect;
-            }, this, 0.5f);
+            }, this, 0.25f);
         }
 
         private void OnDestroy()

@@ -17,9 +17,9 @@ public class MakeCoffeInteractionPhase_Minigame : MinigamePhase
     {
         if (!IsRunning || mug.MugActive) return;
 
-        if (PlayerServiceProvider.GetPlayerItemInHand() == mugItem)
+        if (ServiceProvider.Player.GetPlayerItemInHand() == mugItem)
         {
-            PlayerServiceProvider.RemoveItemFromHand(transform);
+            ServiceProvider.Player.RemoveItemFromHand(transform);
             mug.MugActive = true;
         }    
     }

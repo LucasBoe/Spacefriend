@@ -12,7 +12,7 @@ public class CarryItem_InteractionListener : InteractableInteraction_BaseBehavio
 
     public override void Interact()
     {
-        PlayerServiceProvider.CollectItemToHand(data, transform);
+        ServiceProvider.Player.SetItemInHand(data, transform);
 
         if (disableInsteadOfDestroy)
             gameObject.SetActive(false);

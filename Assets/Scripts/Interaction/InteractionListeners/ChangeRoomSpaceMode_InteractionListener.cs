@@ -14,11 +14,8 @@ public class ChangeRoomSpaceMode_InteractionListener : InteractableInteraction_B
 
     public override void Interact()
     {
-        SpaceAgent spaceAgent = PlayerServiceProvider.GetSpaceAgent();
-        spaceAgent.SetSpaceMode(space);
-        //transitionRoom.SetRoomState(isSpace: space);
         RoomManager.TriggerEnterRoomEvent?.Invoke(spaceRoom);
-        if (addSpaceSuite) PlayerServiceProvider.SetPlayerSkin(space ? PlayerSkinType.Astronaut : PlayerSkinType.Clothes);
+        if (addSpaceSuite) ServiceProvider.Player.SetPlayerSkin(space ? PlayerSkinType.Astronaut : PlayerSkinType.Clothes);
     }
 
 #if UNITY_EDITOR

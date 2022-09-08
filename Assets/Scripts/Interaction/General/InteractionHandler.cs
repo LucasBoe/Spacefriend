@@ -10,12 +10,10 @@ public class InteractionHandler : MonoBehaviour
     [SerializeField, ReadOnly, Foldout("Info")] Interactable interactable;
     [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverPanel;
     [SerializeField, ReadOnly, Foldout("Info")] bool pointerOverUI;
-    [ShowNativeProperty] GameMode gameMode => GameModeManager.Current;
+    [ShowNativeProperty] GameMode gameMode => Application.isPlaying ? GameMode.StartUp : GameModeManager.Current;
 
     int roomLayerMask, interactableLayerMask, panelLayerMask, totalShipLayerMask;
     Camera mainCam;
-
-    RoomAgent roomAgent;
 
 
     public static System.Action ClickOutsideOfCloseUpEvent;
@@ -28,11 +26,6 @@ public class InteractionHandler : MonoBehaviour
         panelLayerMask = LayerMask.GetMask("Panel");
         totalShipLayerMask = LayerMask.GetMask("TotalShip");
         mainCam = Camera.main;
-    }
-
-    private void Start()
-    {
-        roomAgent = PlayerServiceProvider.GetRoomAgent();
     }
 
     // Update is called once per frame

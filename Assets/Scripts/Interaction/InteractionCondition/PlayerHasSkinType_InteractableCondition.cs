@@ -8,7 +8,7 @@ public class PlayerHasSkinType_InteractableCondition : InteractableConditionBase
     [SerializeField] bool invert = false;
     public override bool IsMet()
     {
-        bool hasSkin = PlayerServiceProvider.GetPlayerSkin() == playerSkinType;
+        bool hasSkin = ServiceProvider.Player.GetSkin() == playerSkinType;
         return invert ? !hasSkin : hasSkin;
     }
 }

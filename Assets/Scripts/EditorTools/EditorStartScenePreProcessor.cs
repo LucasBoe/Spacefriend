@@ -4,6 +4,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace Tools
 {
@@ -12,11 +13,10 @@ namespace Tools
     {
         static EditorStartScenePreProcessor()
         {
-            int index = EditorSceneManager.GetActiveScene().buildIndex;
-            var mainPath = "Assets/Scenes/Main.unity";
-            var ownPath = EditorSceneManager.GetActiveScene().path;
-            EditorPersistentDataStorage.SceneStartedFromBuildIndex = index;
-            EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(index < 0 ? ownPath: mainPath);
+            Scene ownScene = EditorSceneManager.GetActiveScene();
+            SceneAsset loaderScene = EditorPersistentDataStorage.LoaderScene;
+            EditorPersistentDataStorage.SceneStartedFromBuildIndex = ownScene.buildIndex;
+            EditorSceneManager.playModeStartScene = ownScene.buildIndex < 0 ? AssetDatabase.LoadAssetAtPath<SceneAsset>(ownScene.path) : loaderScene;
         }
     }
 }
