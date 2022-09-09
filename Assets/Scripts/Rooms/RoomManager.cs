@@ -7,7 +7,7 @@ using UnityEngine;
 public class RoomManager : SingletonBehaviour<RoomManager>
 {
     public static Action<RoomData> TriggerEnterRoomEvent;
-    public static Action<RoomInfo> OnChangeRoomEvent;
+    public static Action<RoomInfo> ChangeRoomEvent;
 
     [SerializeField, ReadOnly] private List<RoomInfo> roomInfos = new List<RoomInfo>();
 
@@ -26,7 +26,7 @@ public class RoomManager : SingletonBehaviour<RoomManager>
         {
             if (roomInfo.Data == data)
             {
-                OnChangeRoomEvent?.Invoke(roomInfo);
+                ChangeRoomEvent?.Invoke(roomInfo);
             }
         }
     }

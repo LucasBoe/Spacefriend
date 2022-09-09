@@ -32,11 +32,11 @@ public class RoomBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        RoomManager.OnChangeRoomEvent += OnChangeRoom;
+        RoomManager.ChangeRoomEvent += OnChangeRoom;
     }
     private void OnDisable()
     {
-        RoomManager.OnChangeRoomEvent -= OnChangeRoom;
+        RoomManager.ChangeRoomEvent -= OnChangeRoom;
     }
 
     private void OnChangeRoom(RoomInfo info)
@@ -51,7 +51,7 @@ public class RoomBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        RoomAgent roomAgent = collision.GetComponent<RoomAgent>();
+        PlayerRoomAgent roomAgent = collision.GetComponent<PlayerRoomAgent>();
 
         if (roomAgent != null && !IsActive && !roomAgent.CurrentRoom.Data.IsSpace)
             RoomManager.TriggerEnterRoomEvent(roomData);

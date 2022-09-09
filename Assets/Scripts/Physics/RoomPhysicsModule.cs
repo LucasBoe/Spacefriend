@@ -8,14 +8,16 @@ using UnityEngine;
 namespace Sprouts.Physics
 {
     [RequireComponent(typeof(RoomBehaviour))]
-    public class RoomPhysics : MonoBehaviour
+    public class RoomPhysicsModule : MonoBehaviour
     {
         [ReadOnly] public List<Vector2> RoomBoundaries = new List<Vector2>();
-        [SerializeField, ReadOnly] private Vector2 RoomCenter = Vector2.zero;
+        [SerializeField, ReadOnly] private Vector2 roomCenter = Vector2.zero;
         [SerializeField, ReadOnly] private EdgeCollider2D edgeCollider;
         [SerializeField] LineRenderer lineRenderer;
         [SerializeField, Range(-3, 3)] float gravity;
         [SerializeField, ReadOnly] RoomBehaviour roomBehaviour;
+        public Action<float, Vector2> ChangeGravityEvent;
+
         private void Awake()
         {
             roomBehaviour = GetComponent<RoomBehaviour>();
@@ -27,12 +29,7 @@ namespace Sprouts.Physics
         }
         private void OnEnable() => roomBehaviour.SetRoomStateEvent += OnRoomStateChanged;
         private void OnDisable() => roomBehaviour.SetRoomStateEvent -= OnRoomStateChanged;
-        public void UpdateGravity()
-        {
-            //TODO: make this event based
-            PhysicsBehaviour[] physicsBehavioursInRoom = GetComponentsInChildren<PhysicsBehaviour>();
-            physicsBehavioursInRoom.Each<PhysicsBehaviour>(p => p.UpdateGravity(gravity, RoomCenter));
-        }
+        public void UpdateGravity() => ChangeGravityEvent?.Invoke(gravity, roomCenter);
 
         private void OnRoomStateChanged(bool isActive)
         {
@@ -41,7 +38,7 @@ namespace Sprouts.Physics
 
         private void Setup()
         {
-            RoomCenter = CalculateRoomCenter(RoomBoundaries);
+            roomCenter = CalculateRoomCenter(RoomBoundaries);
             edgeCollider = AddEdgeCollider(RoomBoundaries);
 
             if (lineRenderer != null)
@@ -70,7 +67,7 @@ namespace Sprouts.Physics
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(RoomCenter, 0.5f);
+            Gizmos.DrawWireSphere(roomCenter, 0.5f);
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 using Tools;
 #endif
 
-public class RoomAgent : MonoBehaviour
+public class PlayerRoomAgent : MonoBehaviour
 {
     [SerializeField] RoomInfo currentRoom;
     public RoomInfo CurrentRoom => currentRoom;
@@ -64,11 +64,11 @@ public class RoomAgent : MonoBehaviour
 
     private void OnEnable()
     {
-        RoomManager.OnChangeRoomEvent += OnChangeRoom;
+        RoomManager.ChangeRoomEvent += OnChangeRoom;
     }
     private void OnDisable()
     {
-        RoomManager.OnChangeRoomEvent -= OnChangeRoom;
+        RoomManager.ChangeRoomEvent -= OnChangeRoom;
     }
 
     private void OnChangeRoom(RoomInfo info)

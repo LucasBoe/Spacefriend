@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sprouts.Physics.Player
 {
-    public class PlayerPhysicsModule : PhysicsBehaviour
+    public class PlayerPhysicsModule : RoomPhysicsBehaviour
     {
         PlayerStates states = null;
         public PlayerStates States => states;
@@ -24,15 +24,25 @@ namespace Sprouts.Physics.Player
         {
             states = new PlayerStates(Rigidbody, values);
         }
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             PlayerPositionOverrider.AddOverrideEvent += SetPositionOverride;
             PlayerPositionOverrider.RemoveOverrideEvent += RevokeOverridePosition;
+            RoomManager.ChangeRoomEvent += OnChangeRoom;
         }
-        private void OnDisable()
+
+        private void OnChangeRoom(RoomInfo roomInfo)
         {
+            ChangeRoomPhysicsModule(roomInfo.SceneBehaviour.GetComponent<RoomPhysicsModule>());
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
             PlayerPositionOverrider.AddOverrideEvent -= SetPositionOverride;
             PlayerPositionOverrider.RemoveOverrideEvent -= RevokeOverridePosition;
+            RoomManager.ChangeRoomEvent -= OnChangeRoom;
         }
         private void FixedUpdate()
         {
@@ -43,9 +53,9 @@ namespace Sprouts.Physics.Player
             PlayerMoveEvent?.Invoke(playerMoveVector);
 
         }
-        internal override void UpdateGravity(float gravity, Vector2 roomCenter)
+        internal override void OnChangeGravity(float gravity, Vector2 roomCenter)
         {
-            base.UpdateGravity(gravity, roomCenter);
+            base.OnChangeGravity(gravity, roomCenter);
             values.Gravity = gravity;
         }
         internal void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider)

@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IPlayer
     [SerializeField] private PlayerAnimationController AnimationController;
     [SerializeField] private PlayerSkinModule SkinModule;
     [SerializeField] private ItemInHandController itemInHandController;
-    [SerializeField] private RoomAgent roomAgent;
+    [SerializeField] private PlayerRoomAgent roomAgent;
 
     public Action<PlayerSkinType> ChangedSkinTypeEvent { get; internal set; }
 

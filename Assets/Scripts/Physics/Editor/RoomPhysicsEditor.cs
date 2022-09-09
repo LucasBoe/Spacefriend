@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace Sprouts.Physics.Edit
 {
-    [CustomEditor(typeof(RoomPhysics))]
+    [CustomEditor(typeof(RoomPhysicsModule))]
     public class RoomPhysicsEditor : Editor
     {
         bool deleteMode = false;
-        RoomPhysics roomPhysics;
+        RoomPhysicsModule roomPhysics;
         private void OnEnable()
         {
-            roomPhysics = target as RoomPhysics;
+            roomPhysics = target as RoomPhysicsModule;
         }
 
         // Custom in-scene UI for when ExampleScript
