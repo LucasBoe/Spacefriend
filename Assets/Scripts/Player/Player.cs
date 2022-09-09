@@ -7,8 +7,6 @@ using Sprouts.Physics.Player;
 
 public interface IPlayer
 {
-    void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider);
-    void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider);
     PlayerStates GetPlayerStates();
     ItemData GetPlayerItemInHand();
     void TeleportTo(Vector3 position);
@@ -19,7 +17,6 @@ public interface IPlayer
     float SetItemInHand(ItemData data, Transform origin);
     float RemoveItemFromHand(Transform transform);
     Transform GetPlayerTransform();
-    Vector2 GetPlayerDirectionalMoveVector();
     Animator GetAnimator();
 }
 
@@ -34,9 +31,6 @@ public class Player : MonoBehaviour, IPlayer
     public Action<PlayerSkinType> ChangedSkinTypeEvent { get; internal set; }
 
     public Transform GetPlayerTransform() => transform;
-    public void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider) => PhysicsModule.SetPositionOverride(playerPositionOverrider);
-    public void RevokeOverridePosition(PlayerPositionOverrider playerPositionOverrider) => PhysicsModule.RevokeOverridePosition(playerPositionOverrider);
-    public Vector2 GetPlayerDirectionalMoveVector() => PhysicsModule.GetDirectionalMoveVector();
     public void TeleportTo(Vector3 position) => PhysicsModule.TeleportTo(position);
     public PlayerSkinType GetSkin() => SkinModule.SkinType;
     public void SetPlayerSkin(PlayerSkinType skin) => SkinModule.SetSkinType(skin);
@@ -45,7 +39,7 @@ public class Player : MonoBehaviour, IPlayer
     public float RemoveItemFromHand(Transform transform) => itemInHandController.SetItemInHand(null, transform);
     public RoomInfo GetCurrentRoom() => roomAgent.CurrentRoom;
     public PlayerStates GetPlayerStates() => PhysicsModule.States;
-    public bool IsMoving() => GetPlayerDirectionalMoveVector() != Vector2.zero;
+    public bool IsMoving() => PhysicsModule.IsMoving;
 
 
     private void Start()

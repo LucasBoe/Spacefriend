@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.U2D.Animation;
+using Sprouts.Physics.Player;
 
 public class PlayerAnimationController : MonoBehaviour
 {
@@ -18,13 +19,11 @@ public class PlayerAnimationController : MonoBehaviour
     private List<PlayerAnimationOverrider> playerAnimationOverrides = new List<PlayerAnimationOverrider>();
     private bool hasOverrides => playerAnimationOverrides.Count > 0;
 
-
-    private Vector2 lastDirVector;
-
     private void OnEnable()
     {
         PlayerAnimationOverrider.AddOverrideEvent += OnAddOverride;
         PlayerAnimationOverrider.RemoveOverrideEvent += OnRemoveOverride;
+        PlayerPhysicsModule.PlayerMoveEvent += OnPlayerMove;
         player.ChangedSkinTypeEvent += OnSkinChanged;
     }
 
@@ -32,6 +31,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         PlayerAnimationOverrider.AddOverrideEvent -= OnAddOverride;
         PlayerAnimationOverrider.RemoveOverrideEvent -= OnRemoveOverride;
+        PlayerPhysicsModule.PlayerMoveEvent -= OnPlayerMove;
         player.ChangedSkinTypeEvent -= OnSkinChanged;
     }
 
@@ -60,16 +60,10 @@ public class PlayerAnimationController : MonoBehaviour
 
         astronautBackpack.SetActive(newSkin == PlayerSkinType.Astronaut);
     }
-
-    //TODO: Make this into an event
-    private void Update()
+    private void OnPlayerMove(Vector2 moveVector )
     {
-        Vector2 directionalVector = Vector2.Lerp(lastDirVector, player.GetPlayerDirectionalMoveVector(), Time.deltaTime * 10f);
-
-        animator.SetFloat(directionalVectorX, directionalVector.x);
-        animator.SetFloat(directionalVectorY, directionalVector.y);
-        transform.localScale = new Vector3(Mathf.Sign(directionalVector.x), 1, 1);
-
-        lastDirVector = directionalVector;
+        animator.SetFloat(directionalVectorX, moveVector.x);
+        animator.SetFloat(directionalVectorY, moveVector.y);
+        transform.localScale = new Vector3(Mathf.Sign(moveVector.x), 1, 1);
     }
 }

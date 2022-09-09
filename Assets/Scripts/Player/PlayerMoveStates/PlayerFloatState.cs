@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Sprouts.Physics.Player
 {
-    public class PlayerFloatState : PlayerMoveStateBase
+    public class PlayerFloatState : PlayerInputBasedState
     {
-        public PlayerFloatState(Rigidbody2D rigidbody) : base(rigidbody) { }
+        public PlayerFloatState(Rigidbody2D rigidbody, PlayerPhysicsValues values) : base(rigidbody, values) { }
 
         public override void Enter()
         {
@@ -21,11 +21,10 @@ namespace Sprouts.Physics.Player
             Rigidbody.rotation = Mathf.Abs(rot) < 90 ? 0 : 180;
         }
 
-        public override void FixedUpdate(PlayerPhysicsValues values)
+        public override void OnÁxisInput(Vector2 input)
         {
-            RotateTowardsGround(values);
-            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            Rigidbody.AddForceIgnoreMass(input * values.FloatForce);
+            RotateTowardsGround(Values);
+            Rigidbody.AddForceIgnoreMass(input * Values.FloatForce);
         }
 
         private void RotateTowardsGround(PlayerPhysicsValues values)

@@ -10,6 +10,7 @@ public class PlayerStates
     public PlayerWalkState WalkState;
     public PlayerLadderState LadderState;
     public PlayerFloatState FloatState;
+    public PlayerOverrideState OverrideState;
 
     [SerializeField] private PlayerMoveStateBase _currentState;
     public PlayerMoveStateBase CurrentState
@@ -25,11 +26,12 @@ public class PlayerStates
             }
         }
     }
-    public PlayerStates(Rigidbody2D rigidbody)
+    public PlayerStates(Rigidbody2D rigidbody, PlayerPhysicsValues values)
     {
-        WalkState = new PlayerWalkState(rigidbody);
-        LadderState = new PlayerLadderState(rigidbody);
-        FloatState = new PlayerFloatState(rigidbody);
+        WalkState = new PlayerWalkState(rigidbody, values);
+        LadderState = new PlayerLadderState(rigidbody, values);
+        FloatState = new PlayerFloatState(rigidbody, values);
+        OverrideState = new PlayerOverrideState(rigidbody, values);
 
         CurrentState = WalkState;
     }
@@ -38,6 +40,5 @@ public class PlayerStates
     {
         bool canWalk = values.DistanceToGround < 0.2f && values.Gravity != 0;
         CurrentState = canWalk ? WalkState : FloatState as PlayerMoveStateBase;
-        CurrentState.FixedUpdate(values);
     }
 }

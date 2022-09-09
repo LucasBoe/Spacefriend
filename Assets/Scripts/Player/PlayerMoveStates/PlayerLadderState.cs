@@ -5,11 +5,6 @@ namespace Sprouts.Physics.Player
 {
     public class PlayerLadderState : PlayerMoveStateBase
     {
-        public PlayerLadderState(Rigidbody2D rigidbody) : base(rigidbody) { }
-
-        public override void FixedUpdate(PlayerPhysicsValues values)
-        {
-            throw new System.NotImplementedException();
-        }
+        public PlayerLadderState(Rigidbody2D rigidbody, PlayerPhysicsValues values) : base(rigidbody, values) { }
     }
 }

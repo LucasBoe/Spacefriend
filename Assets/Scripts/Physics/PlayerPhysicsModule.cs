@@ -12,28 +12,42 @@ namespace Sprouts.Physics.Player
         public PlayerStates States => states;
         [ShowNativeProperty] string stateInfo => states == null ? "<null>" : states.CurrentState?.ToString().Split('.').Last();
 
+
         [SerializeField] PlayerPhysicsValues values = new PlayerPhysicsValues();
         [Foldout("References")]
         [SerializeField] Transform feetTransform;
 
+        private Vector2 playerMoveVector;
+        public static System.Action<Vector2> PlayerMoveEvent;
+        public bool IsMoving => playerMoveVector != Vector2.zero;
         private void Awake()
         {
-            states = new PlayerStates(Rigidbody);
+            states = new PlayerStates(Rigidbody, values);
         }
-
+        private void OnEnable()
+        {
+            PlayerPositionOverrider.AddOverrideEvent += SetPositionOverride;
+            PlayerPositionOverrider.RemoveOverrideEvent += RevokeOverridePosition;
+        }
+        private void OnDisable()
+        {
+            PlayerPositionOverrider.AddOverrideEvent -= SetPositionOverride;
+            PlayerPositionOverrider.RemoveOverrideEvent -= RevokeOverridePosition;
+        }
         private void FixedUpdate()
         {
             values.DistanceToGround = CalculateDistanceToGround();
             states.FixedUpdate(values);
-        }
 
+            playerMoveVector = Vector2.Lerp(playerMoveVector, GetDirectionalMoveVector(), Time.fixedDeltaTime * 10f);
+            PlayerMoveEvent?.Invoke(playerMoveVector);
+
+        }
         internal override void UpdateGravity(float gravity, Vector2 roomCenter)
         {
             base.UpdateGravity(gravity, roomCenter);
             values.Gravity = gravity;
         }
-
-        //TODO: Add overrides
         internal void SetPositionOverride(PlayerPositionOverrider playerPositionOverrider)
         {
             throw new NotImplementedException();
@@ -69,9 +83,11 @@ namespace Sprouts.Physics.Player
             Rigidbody.MovePosition(position);
         }
 
-        internal Vector2 GetDirectionalMoveVector()
+        private Vector2 GetDirectionalMoveVector()
         {
-            if (Rigidbody.velocity.magnitude < 0.5f) return Vector2.zero;
+            if (Rigidbody.velocity.magnitude < 0.5f)
+                return Vector2.zero;
+
             return Rigidbody.velocity.normalized;
         }
     }

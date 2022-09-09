@@ -29,6 +29,7 @@ namespace Sprouts.Physics
         private void OnDisable() => roomBehaviour.SetRoomStateEvent -= OnRoomStateChanged;
         public void UpdateGravity()
         {
+            //TODO: make this event based
             PhysicsBehaviour[] physicsBehavioursInRoom = GetComponentsInChildren<PhysicsBehaviour>();
             physicsBehavioursInRoom.Each<PhysicsBehaviour>(p => p.UpdateGravity(gravity, RoomCenter));
         }
